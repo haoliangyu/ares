@@ -24,4 +24,4 @@ A detail user guide could be found at: **[ArcMap Raster Editor](https://github.c
 |10.2|[Raster Editor 1.1.1 Beta for ArcMap 10.2](https://github.com/dz316424/arcmap-raster-editor/blob/gh-pages/files/1.1.1%20Beta%20for%20ArcMap%2010.2.zip?raw=true)| 
 
 ## Installation
-Simple double-click the **RasterEditor.esriAddIn** in the package and ArcGIS AddIn installation wizzard will guide you. for more detail, check the wiki page [Install and Uninstall](https://github.com/dz316424/arcmap-raster-editor/wiki/Install-and-Uninstall).
+Simply double-click the **RasterEditor.esriAddIn** in the package and ArcGIS AddIn installation wizzard will guide you. for more detail, check the wiki page [Install and Uninstall](https://github.com/dz316424/arcmap-raster-editor/wiki/Install-and-Uninstall).
