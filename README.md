@@ -14,11 +14,14 @@ The ArcMap Raster Editor is a toolbar for ArcMap 10.x, providing a set of tools 
 
 The toolbar is only compatible for ArcMap with version above 10.0. To install it, just download the zip file below, and double click the RasterEditor.esriAddIn to install after unzipping the package. 
 
-A detail user guide could be found at: **[ArcMap Raster Editor](https://bitbucket.org/dz316424/arcmap-raster-editor/wiki/Home)**
+A detail user guide could be found at: **[ArcMap Raster Editor](https://github.com/dz316424/arcmap-raster-editor/wiki)**
 
 ## Download
 
 |ArcMap Version|Download|
 |--------------|--------|
-|10.0/10.1|[Raster Editor 1.1.1 Beta for ArcMap 10.0/10.1]({filename}/files/Raster Editor for ArcMap 10.0.zip)|
-|10.2|[Raster Editor 1.1.1 Beta for ArcMap 10.2]({filename}/files/Raster Editor for ArcMap 10.2.zip)| 
+|10.0/10.1|[Raster Editor 1.1.1 Beta for ArcMap 10.0/10.1](https://github.com/dz316424/arcmap-raster-editor/blob/gh-pages/files/1.1.1%20Beta%20for%20ArcMap%2010.0%20%26%2010.1.zip)|
+|10.2|[Raster Editor 1.1.1 Beta for ArcMap 10.2](https://github.com/dz316424/arcmap-raster-editor/blob/gh-pages/files/1.1.1%20Beta%20for%20ArcMap%2010.2.zip)| 
+
+## Installation
+Simple double-click the **RasterEditor.esriAddIn** in the package and ArcGIS AddIn installation wizzard will guide you. for more detail, check the wiki page [Install and Uninstall](https://github.com/dz316424/arcmap-raster-editor/wiki/Install-and-Uninstall).
