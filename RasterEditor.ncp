@@ -1,0 +1,96 @@
+<Project>
+  <Name>RasterEditor</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>RasterEditor.Raster</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Interface">
+        <Name>IPosition</Name>
+        <Access>Public</Access>
+        <Location left="116" top="121" />
+        <Size width="347" height="146" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">int Column { get; set; }</Member>
+        <Member type="Property">int Row { get; set; }</Member>
+        <Member type="Method">bool Within(int minRow, int minCol, int maxRow, int maxCol)</Member>
+        <Member type="Method">bool Within(IPosition lbCorner, IPosition trCorner)</Member>
+        <Member type="Method">void Validate(IPosition tcCorner, IPosition trCorner)</Member>
+      </Entity>
+      <Entity type="Comment">
+        <Text>The function of Validate() is under consideration.</Text>
+        <Location left="95" top="24" />
+        <Size width="308" height="50" />
+      </Entity>
+      <Entity type="Class">
+        <Name>Pixel</Name>
+        <Access>Public</Access>
+        <Location left="559" top="121" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Position</Name>
+        <Access>Public</Access>
+        <Location left="559" top="384" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PixelCollection</Name>
+        <Access>Public</Access>
+        <Location left="819" top="121" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Render</Name>
+        <Access>Public</Access>
+        <Location left="825" top="384" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>RasterFile</Name>
+        <Access>Public</Access>
+        <Location left="1064" top="384" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Realization" first="2" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="3" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Comment" first="1" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="2" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="4" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>

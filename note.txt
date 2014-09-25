@@ -1,0 +1,12 @@
+Note:
+1. IRasterProps.NoDataValue actually is a Int32[].
+2. The index of item does not start from 0.
+3. The col and row index obtained from the program starts from 0.
+4. x = Column, y = row
+
+Protential Improvement:
+1. # For Com Version # If a cell of raster grid view enters the editing mode, it will be marked as edited even without value change.
+3. # Improtant # Multiple selection modes: add, subtract
+
+Potential Bug:
+1. Start edit while two identical layers are loaded.
