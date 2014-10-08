@@ -31,3 +31,20 @@ D:\Projects\C#\ArcGIS\RasterEditor 10.2\RasterEditor\obj\Debug\RasterEditor.Form
 D:\Projects\C#\ArcGIS\RasterEditor 10.2\RasterEditor\obj\Debug\RasterEditor.Controls.ColorPaletteButton.resources
 D:\Projects\C#\ArcGIS\RasterEditor 10.2\RasterEditor\obj\Debug\RasterEditor.Forms.OptionForm.resources
 D:\Projects\C#\ArcGIS\RasterEditor 10.2\RasterEditor\bin\Debug\RasterEditor.esriAddIn
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\bin\Debug\RasterEditor.dll
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\bin\Debug\RasterEditor.pdb
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.csprojResolveAssemblyReference.cache
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.Controls.ColorPaletteButton.resources
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.Controls.SplitButton.resources
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.Forms.EditForm.resources
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.Forms.EditExtentForm.resources
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.Forms.GoToForm.resources
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.Forms.IdentifyForm.resources
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.Forms.OptionForm.resources
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.Forms.SingleInputDialog.resources
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.Forms.ValueStatisticForm.resources
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.Properties.Resources.resources
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.csproj.GenerateResource.Cache
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.dll
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.pdb
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\bin\Debug\RasterEditor.esriAddIn

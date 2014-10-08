@@ -88,14 +88,14 @@ namespace RasterEditor
                     if (!flag)
                         removelist.Add(item.Cookie);
                 }
-       
+
                 foreach (int cookie in removelist)
                 {
                     Item item = this.GetItem(cookie);
-                    if (Editor.ActiveLayer !=null && item.Caption == Editor.ActiveLayer.Name)
+                    if (Editor.ActiveLayer != null && item.Caption == Editor.ActiveLayer.Name)
                     {
                         activeLayerDeleted = true;
-                    }    
+                    }
 
                     this.Remove(cookie);
                 }
@@ -153,9 +153,9 @@ namespace RasterEditor
         {
             base.OnSelChange(cookie);
 
-            Item selectedItem = this.GetItem(cookie);
-            if (selectedItem.Caption != "")
+            if (cookie != -1)
             {
+                Item selectedItem = this.GetItem(cookie);
                 Editor.ActiveLayer = (ILayer)selectedItem.Tag;
             }
         }
