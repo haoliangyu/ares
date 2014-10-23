@@ -2,11 +2,11 @@
   <Name>Raster Editor</Name>
   <AddInID>{188f12a1-059d-43c7-873d-366c48ee625f}</AddInID>
   <Description>This tool aims at extending the raster editing function of ArcMap. With the new Raster Editor toolbar, users are able to edit the raster layer in an interactive manner, just like what users can do with the feature layer. Find more guide and detail at https://sourceforge.net/projects/arcmaprastereditor/. </Description>
-  <Version>1.0.1</Version>
+  <Version>1.1.5408</Version>
   <Image>Images\RasterEditor.png</Image>
   <Author>Haoliang Yu</Author>
   <Company>Haoliang Yu</Company>
-  <Date>7/11/2014</Date>
+  <Date>10/22/2014</Date>
   <Targets>
     <Target name="Desktop" version="10.2" />
   </Targets>
