@@ -22,8 +22,8 @@ A detail user guide could be found at: **[ArcMap Raster Editor](https://github.c
 
 |ArcMap Version|Download|
 |--------------|--------|
-|10.0/10.1|[Raster Editor 1.1.1 Beta for ArcMap 10.0/10.1](https://github.com/dz316424/arcmap-raster-editor/blob/gh-pages/files/1.1.1%20Beta%20for%20ArcMap%2010.0%20&%2010.1.zip?raw=true)|
-|10.2|[Raster Editor 1.1.1 Beta for ArcMap 10.2](https://github.com/dz316424/arcmap-raster-editor/blob/gh-pages/files/1.1.1%20Beta%20for%20ArcMap%2010.2.zip?raw=true)| 
+|10.0/10.1|[Raster Editor 1.1.5408 for ArcMap 10.0/10.1](https://github.com/dz316424/arcmap-raster-editor/blob/10.0/Release%20for%2010.0/1.1.5408.zip?raw=true)|
+|10.2|[Raster Editor 1.1.5408 for ArcMap 10.2](https://github.com/dz316424/arcmap-raster-editor/blob/master/Release%20for%2010.2/1.1.5408.zip?raw=true)| 
 
 The listed packages are stable releases and may not include up-to-date modification. To have lastest version, please download the **RasterEditor.dll** and **RasterEditor.esriAddIn** at */RasterEditor/bin/Debug*. **The lastest version may not be fully tested**.
 
