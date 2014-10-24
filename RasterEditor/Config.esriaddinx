@@ -42,8 +42,8 @@
             <Button refID="RasterEditor_SaveEditsAsButton" />
             <Button refID="RasterEditor_RefreshButton" separator="true"/>
             <Button refID="RasterEditor_ShowEditsButton"/>
-            <Menu refID="RasterEditor_MoreEditingToolsMenu" separator="true" />           
-            <Button refID="RasterEditor_OptionButton" />
+            <!--<Menu refID="RasterEditor_MoreEditingToolsMenu" separator="true" />           
+            <Button refID="RasterEditor_OptionButton" />-->
           </Items>
         </Menu>
         <Menu id="RasterEditor_MoreEditingToolsMenu" caption="More Editing Tools" isRootMenu="false">
@@ -69,7 +69,7 @@
             <Item refID="RasterEdior_IdentifyTool" />
             <Item refID="RasterEditor_GoToPixelTool" />
             <!-- This button is used to debug. Delete it while the tool is finished. -->
-            <Item refID="RasterEditor_Debug" />
+            <!--<Item refID="RasterEditor_Debug" />-->
           </Items>
         </Toolbar>
       </Toolbars>

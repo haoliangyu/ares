@@ -47,7 +47,6 @@ D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.P
 D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.csproj.GenerateResource.Cache
 D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.dll
 D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.pdb
-D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\bin\Debug\RasterEditor.esriAddIn
 C:\Users\Yu\Desktop\arcmap-raster-editor\RasterEditor\bin\Debug\RasterEditor.dll
 C:\Users\Yu\Desktop\arcmap-raster-editor\RasterEditor\bin\Debug\RasterEditor.pdb
 C:\Users\Yu\Desktop\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.csprojResolveAssemblyReference.cache
@@ -65,3 +64,4 @@ C:\Users\Yu\Desktop\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.csp
 C:\Users\Yu\Desktop\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.dll
 C:\Users\Yu\Desktop\arcmap-raster-editor\RasterEditor\obj\Debug\RasterEditor.pdb
 C:\Users\Yu\Desktop\arcmap-raster-editor\RasterEditor\bin\Debug\RasterEditor.esriAddIn
+D:\Projects\C#\ArcGIS\arcmap-raster-editor\RasterEditor\bin\Debug\RasterEditor.esriAddIn

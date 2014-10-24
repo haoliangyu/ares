@@ -14,7 +14,7 @@ The ArcMap Raster Editor is a toolbar for ArcMap 10.x, providing a set of tools 
 
 The toolbar is only compatible for ArcMap with version above 10.0. To install it, just download the zip file below, and double click the RasterEditor.esriAddIn to install after unzipping the package. 
 
-A detail user guide could be found at: **[ArcMap Raster Editor](https://github.com/dz316424/arcmap-raster-editor/wiki)**
+A detailed user guide could be found at: **[ArcMap Raster Editor](https://github.com/dz316424/arcmap-raster-editor/wiki)**
 
 **In case of possible bugs, it is recommanded to use the .tiff formart as your primary raster file format while applying this addin.**
 
