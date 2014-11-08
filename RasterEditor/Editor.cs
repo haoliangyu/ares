@@ -15,6 +15,7 @@ using ESRI.ArcGIS.esriSystem;
 using RasterEditor.Raster;
 using RasterEditor.EditorMenu;
 using RasterEditor.EditorMenu.Edition;
+using RasterEditor.EditorMenu.Windows;
 
 namespace RasterEditor
 {
@@ -113,7 +114,7 @@ namespace RasterEditor
             stopButton.IsEnabled = true;
 
             // Enable the select tool
-            SelectTool selectTool = AddIn.FromID<SelectTool>(ThisAddIn.IDs.SelectTool);
+            EditTool selectTool = AddIn.FromID<EditTool>(ThisAddIn.IDs.EditTool);
             selectTool.IsEnabled = true;
 
             // Disable the start button
@@ -123,6 +124,10 @@ namespace RasterEditor
             // Enable the ShowEditsButton
             ShowEditsButton showEditsButton = AddIn.FromID<ShowEditsButton>(ThisAddIn.IDs.RasterEditor_EditorMenu_ShowEditsButton);
             showEditsButton.IsEnabled = true;
+
+            // Enable the EditFormButton
+            EditFormButton editFormButton = AddIn.FromID<EditFormButton>(ThisAddIn.IDs.RasterEditor_EditorMenu_Windows_EditFormButton);
+            editFormButton.IsEnabled = true;
 
             #endregion
         }
@@ -137,7 +142,7 @@ namespace RasterEditor
             Editor.EditRecord.Clear();
             Editor.SelectionRecord.Clear();
 
-            if (ArcMap.Application.CurrentTool.Caption == "Select")
+            if (ArcMap.Application.CurrentTool.Caption == "Edit")
             {
                 ArcMap.Application.CurrentTool = null;
             }
@@ -159,11 +164,14 @@ namespace RasterEditor
             LayerComboBox layerComboBox = AddIn.FromID<LayerComboBox>(ThisAddIn.IDs.LayerComboBox);
             layerComboBox.IsEnabled = true;
 
-            SelectTool selectTool = AddIn.FromID<SelectTool>(ThisAddIn.IDs.SelectTool);
+            EditTool selectTool = AddIn.FromID<EditTool>(ThisAddIn.IDs.EditTool);
             selectTool.IsEnabled = false;
 
             ShowEditsButton showEditsButton = AddIn.FromID<ShowEditsButton>(ThisAddIn.IDs.RasterEditor_EditorMenu_ShowEditsButton);
             showEditsButton.IsEnabled = false;
+
+            EditFormButton editFormButton = AddIn.FromID<EditFormButton>(ThisAddIn.IDs.RasterEditor_EditorMenu_Windows_EditFormButton);
+            editFormButton.IsEnabled = false;
 
             #endregion
         }

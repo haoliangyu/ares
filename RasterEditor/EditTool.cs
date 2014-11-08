@@ -17,9 +17,9 @@ using RasterEditor.Raster;
 
 namespace RasterEditor
 {
-    public class SelectTool : ESRI.ArcGIS.Desktop.AddIns.Tool
+    public class EditTool : ESRI.ArcGIS.Desktop.AddIns.Tool
     {
-        public SelectTool()
+        public EditTool()
         {
             this.Enabled = false;
 

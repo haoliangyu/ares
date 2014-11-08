@@ -105,6 +105,9 @@
     <Compile Include="EditorMenu\Edition\SaveEditsAsButton.cs" />
     <Compile Include="EditorMenu\RefreshButton.cs" />
     <Compile Include="EditorMenu\Tools\EditExtentButon.cs" />
+    <Compile Include="EditorMenu\Windows\EditFormButton.cs" />
+    <Compile Include="EditorMenu\Windows\GoToPixelFormButton.cs" />
+    <Compile Include="EditorMenu\Windows\IdentifyFormButton.cs" />
     <Compile Include="Forms\DoubleInputDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,7 +187,7 @@
     <Compile Include="Raster\Position.cs" />
     <Compile Include="Raster\RasterFile.cs" />
     <Compile Include="Raster\Render.cs" />
-    <Compile Include="SelectTool.cs" />
+    <Compile Include="EditTool.cs" />
   </ItemGroup>
   <ItemGroup>
     <AddInContent Include="Config.esriaddinx">

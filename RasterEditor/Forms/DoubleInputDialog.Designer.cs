@@ -51,6 +51,7 @@
             this.inputTextBox2.Name = "inputTextBox2";
             this.inputTextBox2.Size = new System.Drawing.Size(163, 20);
             this.inputTextBox2.TabIndex = 2;
+            this.inputTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label1
             // 
@@ -67,6 +68,7 @@
             this.inputTextBox.Name = "inputTextBox";
             this.inputTextBox.Size = new System.Drawing.Size(163, 20);
             this.inputTextBox.TabIndex = 1;
+            this.inputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // cancelButton
             // 
