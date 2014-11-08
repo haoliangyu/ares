@@ -43,6 +43,7 @@
             this.clearSelectedEditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearAllEditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionButton = new RasterEditor.Controls.SplitButton();
+            this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rasterGridView)).BeginInit();
             this.editionStatusStrip.SuspendLayout();
@@ -130,42 +131,43 @@
             this.optionsMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editSelectedPixelsToolStripMenuItem,
             this.editAllToolStripMenuItem,
+            this.replaceToolStripMenuItem,
             this.toolStripSeparator1,
             this.clearSelectedEditsToolStripMenuItem,
             this.clearAllEditsToolStripMenuItem});
             this.optionsMenuStrip.Name = "optionsMenuStrip";
-            this.optionsMenuStrip.Size = new System.Drawing.Size(183, 120);
+            this.optionsMenuStrip.Size = new System.Drawing.Size(177, 142);
             // 
             // editSelectedPixelsToolStripMenuItem
             // 
             this.editSelectedPixelsToolStripMenuItem.Name = "editSelectedPixelsToolStripMenuItem";
-            this.editSelectedPixelsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.editSelectedPixelsToolStripMenuItem.Text = "Edit Selected Pixels...";
+            this.editSelectedPixelsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.editSelectedPixelsToolStripMenuItem.Text = "Edit Selections...";
             this.editSelectedPixelsToolStripMenuItem.Click += new System.EventHandler(this.editSelectedPixelsToolStripMenuItem_Click);
             // 
             // editAllToolStripMenuItem
             // 
             this.editAllToolStripMenuItem.Name = "editAllToolStripMenuItem";
-            this.editAllToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.editAllToolStripMenuItem.Text = "Edit All Pixels...";
+            this.editAllToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.editAllToolStripMenuItem.Text = "Edit All...";
             this.editAllToolStripMenuItem.Click += new System.EventHandler(this.editAllToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(179, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
             // 
             // clearSelectedEditsToolStripMenuItem
             // 
             this.clearSelectedEditsToolStripMenuItem.Name = "clearSelectedEditsToolStripMenuItem";
-            this.clearSelectedEditsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.clearSelectedEditsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.clearSelectedEditsToolStripMenuItem.Text = "Clear Selected Edits";
             this.clearSelectedEditsToolStripMenuItem.Click += new System.EventHandler(this.clearSelectedEditsToolStripMenuItem_Click);
             // 
             // clearAllEditsToolStripMenuItem
             // 
             this.clearAllEditsToolStripMenuItem.Name = "clearAllEditsToolStripMenuItem";
-            this.clearAllEditsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.clearAllEditsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.clearAllEditsToolStripMenuItem.Text = "Clear All Edits";
             this.clearAllEditsToolStripMenuItem.Click += new System.EventHandler(this.clearAllEditsToolStripMenuItem_Click);
             // 
@@ -180,6 +182,13 @@
             this.optionButton.TabIndex = 5;
             this.optionButton.Text = "Options";
             this.optionButton.UseVisualStyleBackColor = true;
+            // 
+            // replaceToolStripMenuItem
+            // 
+            this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
+            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.replaceToolStripMenuItem.Text = "Replace...";
+            this.replaceToolStripMenuItem.Click += new System.EventHandler(this.replaceToolStripMenuItem_Click);
             // 
             // EditForm
             // 
@@ -219,6 +228,7 @@
         private System.Windows.Forms.ToolStripMenuItem editSelectedPixelsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem clearSelectedEditsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem replaceToolStripMenuItem;
 
     }
 }

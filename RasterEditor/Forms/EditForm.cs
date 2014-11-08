@@ -334,7 +334,9 @@ namespace RasterEditor.Forms
                 inputValueForm.ValueValidateMethod = this.ValueValidate;
 
                 if (inputValueForm.ShowDialog() != DialogResult.OK)
+                {
                     return;
+                }
 
                 double newValue = Convert.ToDouble(inputValueForm.Value);
 
@@ -344,9 +346,49 @@ namespace RasterEditor.Forms
                     {
                         double oldValue = Convert.ToDouble(rasterGridView[col, row].Value);
                         if (oldValue == newValue)
+                        {
                             continue;
+                        }
 
                         EditValue(newValue, oldValue, col, row);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
+            }
+        }
+
+        // Replace all pixels with specific value with a given value
+        private void replaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DoubleInputDialog inputValueForm = new DoubleInputDialog("Original Value:", "Replace With:", "Replace");
+                inputValueForm.ValueValidateMethod = this.ValueValidate;
+
+                if (inputValueForm.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                double oldValue = Convert.ToDouble(inputValueForm.Value);
+                double newValue = Convert.ToDouble(inputValueForm.Value2);
+
+                if (oldValue == newValue)
+                {
+                    return;
+                }
+
+                for (int col = 1; col < rasterGridView.Columns.Count; col++)
+                {
+                    for (int row = 0; row < rasterGridView.Rows.Count; row++)
+                    {
+                        if (oldValue == Convert.ToDouble(rasterGridView[col, row].Value))
+                        {
+                            EditValue(newValue, oldValue, col, row);
+                        }
                     }
                 }
             }

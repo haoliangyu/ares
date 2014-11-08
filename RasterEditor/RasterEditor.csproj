@@ -105,6 +105,12 @@
     <Compile Include="EditorMenu\Edition\SaveEditsAsButton.cs" />
     <Compile Include="EditorMenu\RefreshButton.cs" />
     <Compile Include="EditorMenu\Tools\EditExtentButon.cs" />
+    <Compile Include="Forms\DoubleInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DoubleInputDialog.Designer.cs">
+      <DependentUpon>DoubleInputDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\OptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SplitButton.resx">
       <DependentUpon>SplitButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DoubleInputDialog.resx">
+      <DependentUpon>DoubleInputDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditForm.resx">
       <DependentUpon>EditForm.cs</DependentUpon>
