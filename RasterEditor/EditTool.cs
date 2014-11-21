@@ -23,6 +23,11 @@ namespace RasterEditor
         {
             this.Enabled = false;
 
+            if (File.Exists(Config.ConfigFile))
+            {
+                File.Delete(Config.ConfigFile);
+            }
+
             if (!Config.IsLoaded)
             {
                 Config.Load();

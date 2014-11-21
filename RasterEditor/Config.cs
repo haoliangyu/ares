@@ -104,16 +104,17 @@ namespace RasterEditor
             selectionSymbol = new SimpleFillSymbolClass();
             selectionSymbol.Color = new RgbColorClass() { NullColor = true, Transparency = 0 };
             ISimpleLineSymbol selectionOutlineSymbol = new SimpleLineSymbolClass();
-            selectionOutlineSymbol.Color = new RgbColorClass() { Red = 0, Green = 255, Blue = 255};
+            selectionOutlineSymbol.Color = new RgbColorClass() { Red = 0, Green = 255, Blue = 255 };
             selectionOutlineSymbol.Width = 2;
             selectionSymbol.Outline = selectionOutlineSymbol;
 
-            customEditRender = true;
+            customEditRender = false;
             editSymbol = new SimpleFillSymbolClass();
             editSymbol.Color = new RgbColorClass() { Red = 255, Green = 255, Blue = 90, Transparency = 127 };
             ISimpleLineSymbol editOutlineSymbol = new SimpleLineSymbolClass();
             editOutlineSymbol.Color = new RgbColorClass() { Red = 255, Green = 255, Blue = 0 };
             editOutlineSymbol.Width = 2;
+            editSymbol.Style = esriSimpleFillStyle.esriSFSBackwardDiagonal;
             editSymbol.Outline = editOutlineSymbol;
         }
 
