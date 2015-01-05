@@ -25,7 +25,7 @@ A detailed user guide could be found at: **[ArcMap Raster Editor](https://github
 |10.1|[ARES 1.1.1 Beta for ArcMap 10.1](http://sourceforge.net/projects/arcmaprastereditor/files/release/ArcMapRasterEditor_1.1.1_Beta.zip/download)|
 |10.2|[ARES 1.1.5437 for ArcMap 10.2](https://github.com/dz316424/arcmap-raster-editor/blob/master/Release%20for%2010.2/1.1.5437.zip?raw=true)| 
 
-The listed packages are stable releases and may not include up-to-date modification. To have lastest version, please download the **RasterEditor.dll** and **RasterEditor.esriAddIn** at */RasterEditor/bin/Debug*. **The lastest version may not be fully tested**.
+The listed packages are stable releases and may not include up-to-date modification. To have lastest version, please download the **ARES.dll** and **ARES.esriAddIn** at */ARES/bin/Debug*. **The lastest version may not be fully tested**.
 
 ## Installation
 Simply double-click the **RasterEditor.esriAddIn** in the package and ArcGIS AddIn installation wizzard will guide you. for more detail, check the wiki page [Install and Uninstall](https://github.com/dz316424/arcmap-raster-editor/wiki/Install-and-Uninstall).
