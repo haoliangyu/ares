@@ -1,0 +1,68 @@
+﻿<ESRI.Configuration xmlns="http://schemas.esri.com/Desktop/AddIns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>ARES</Name>
+  <AddInID>{84661142-7c89-49c1-8d6b-17bc043a46d4}</AddInID>
+  <Description>ArcMap Raster Edit Suite</Description>
+  <Version>0.1.1</Version>
+  <Image>Images\ARES.png</Image>
+  <Author>Haoliang Yu</Author>
+  <Company>Haoliang Yu</Company>
+  <Date>2014-12-13</Date>
+  <Targets>
+    <Target name="Desktop" version="10.2" />
+  </Targets>
+  <AddIn language="CLR" library="ARES.dll" namespace="ARES">
+    <ArcMap>
+      <Commands>
+        <Button id="RasterEditor_StartEditingButton" class="StartEditingButton" message="Start an editing session so that you can edit values of raster pixels." caption="Start Edit" tip="Start Edit" category="Add-In Controls" image="Images\StartEditingButton.png" />
+        <Tool id="RasterEditor_IdentifyTool" class="IdentifyTool" message="Identify values and calculate statistic of raster pixels." caption="Identify" tip="Identify" category="Add-In Controls" image="Images\IdentifyTool.png" />
+        <ComboBox id="RasterEditor_LayerComboBox" class="LayerComboBox" message="Select the available raster layers for editing." caption="Raster Layers" tip="Raster Layers" category="Add-In Controls" image="Images\LayerComboBox.png" editable="false" />
+        <Button id="RasterEditor_StopEditingButton" class="StopEditingButton" message="Stop the editing session. If you have any unsaved edits, you are prompted to save them." caption="Stop Edit" tip="Stop Edit" category="Add-In Controls" image="Images\StopEditingButton.png" onDemand="false" />
+        <Button id="RasterEditor_SaveEditsButton" class="SaveEditsButton" message="Save all edits made since the last save to the original file. After saving, you cannot undo previous editing operations." caption="Save Edits" tip="Save Edits" category="Add-In Controls" image="Images\SaveEditsButton.png" onDemand="false" />
+        <Button id="RasterEditor_SaveEditsAsButton" class="SaveEditsAsButton" message="Save all edits made since the last save to a new file. After saving, you cannot undo previous editing operations." caption="Save Edits As..." tip="Save Edits As" category="Add-In Controls" onDemand="false" />
+        <Button id="RasterEditor_ShowEditsButton" class="ShowEditsButton" message="Show or hide edits of the selected raster." caption="Show/Hide Edits" tip="Show/Hide Edits" category="Add-In Controls" onDemand="false" />
+        <!--<Tool id="RasterEditor_EditTool" class="EditTool" message="Select and edit pixels by draging box on the raster layer." caption="Edit" tip="Edit" category="Add-In Controls" image="Images\SelectTool.png" onDemand="false" />-->
+        <Button id="RasterEditor_ClearSelectionButton" class="ClearSelectionButton" message="Clear all selections on map." caption="Clear Selection" tip="Clear Selection" category="Add-In Controls" />
+        <Button id="RasterEditor_GoToPixelTool" class="GoToPixelTool" message="Show the pixel with specified row index and column index.a" caption="GoToPixel" tip="Go To Pixel" category="Add-In Controls" image="Images\GoToPixelTool.png" />
+        <Button id="RasterEditor_EditExtentButon" class="EditExtentButon" message="Edit the extent of the input raster layer." caption="Edit Extent..." tip="Edit Extent..." category="Add-In Controls" />
+        <Tool id="RasterEditor_EditTool" class="EditTool" message="Select and edit pixels by draging box on the raster layer." caption="Edit" tip="Edit" category="Add-In Controls" image="Images\SelectTool.png" onDemand="false"/>
+      </Commands>
+      <DockableWindows>
+        <DockableWindow id="RasterEditor_IdentifyForm" class="IdentifyForm+AddinImpl" caption="Raster Identify" image="Images\IdentifyForm.png">
+          <InitialPlacement height="300" width="300" state="pinned" position="right" />
+        </DockableWindow>
+        <DockableWindow id="RasterEditor_EditForm" class="EditForm+AddinImpl" caption="Raster Eidt" image="Images\EditForm.png">
+          <InitialPlacement height="300" width="300" state="pinned" position="right" />
+        </DockableWindow>
+      </DockableWindows>
+      <Menus>
+        <Menu id="RasterEditor_Editor_Menu" caption="Editor" isRootMenu="true">
+          <Items>
+            <Button refID="RasterEditor_StartEditingButton" />
+            <Button refID="RasterEditor_StopEditingButton" />
+            <Button refID="RasterEditor_SaveEditsButton" separator="true" />
+            <Button refID="RasterEditor_SaveEditsAsButton" />
+            <Button refID="RasterEditor_ClearSelectionbutton" separator="true" />
+            <Button refID="RasterEditor_ShowEditsButton" />
+            <!--<Menu refID="RasterEditor_More_Tools" separator="true" />-->
+          </Items>
+        </Menu>
+        <Menu id="RasterEditor_More_Tools" caption="More Tools" isRootMenu="false">
+          <Items>
+            <Button refID="RasterEditor_EditExtentButon" />
+          </Items>
+        </Menu>
+      </Menus>
+      <Toolbars>
+        <Toolbar id="RasterEditor_Raster_Editor" caption="Raster Editor" showInitially="true">
+          <Items>
+            <Menu refID="RasterEditor_Editor_Menu" />
+            <ComboBox refID="RasterEditor_LayerComboBox" separator="true" />
+            <Tool refID="RasterEditor_EditTool" separator="true" />
+            <Tool refID="RasterEditor_IdentifyTool" />
+            <Tool refID="RasterEditor_GoToPixelTool" />
+          </Items>
+        </Toolbar>
+      </Toolbars>
+    </ArcMap>
+  </AddIn>
+</ESRI.Configuration>
