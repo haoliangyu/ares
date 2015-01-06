@@ -76,8 +76,8 @@ namespace ARES
         {
             try
             {
-                Display.ClearSelections();
-                Editor.SelectionRecord.Clear();
+                Display.ClearElement(Editor.Selections.GetAllGraphicElements());
+                Editor.Selections.Clear();
 
                 UID dockWinID = new UIDClass();
                 dockWinID.Value = ThisAddIn.IDs.IdentifyForm;
@@ -131,8 +131,8 @@ namespace ARES
             {
                 if (ArcMap.Document.FocusMap.LayerCount == 0)
                 {
-                    Display.ClearSelections();
-                    Editor.SelectionRecord.Clear();
+                    Display.ClearElement(Editor.Selections.GetAllGraphicElements());
+                    Editor.Selections.Clear();
 
                     UID dockWinID = new UIDClass();
                     dockWinID.Value = ThisAddIn.IDs.IdentifyForm;
@@ -164,8 +164,8 @@ namespace ARES
             {                                        
                 try
                 {
-                    Display.ClearSelections();
-                    Editor.SelectionRecord.Clear();
+                    Display.ClearElement(Editor.Selections.GetAllGraphicElements());
+                    Editor.Selections.Clear();
 
                     // Define the selection symbol.
                     IRgbColor color = new RgbColorClass();
@@ -247,7 +247,17 @@ namespace ARES
                     tlCorner.Adjust(0, 0, maxExtent.Column, maxExtent.Row);
                     brCorner.Adjust(0, 0, maxExtent.Column, maxExtent.Row);
 
-                    Display.DrawSelectionBox(tlCorner, brCorner, activeLayer);
+                    // Show symbols of selected pixels
+                    for (int row = tlCorner.Row; row <= brCorner.Row; row++)
+                    {
+                        for (int col = tlCorner.Column; col <= brCorner.Column; col++)
+                        {
+                            Pixel pixel = new Pixel(new Position(col, row));
+                            pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetSelectionSymbol(), Editor.ActiveLayer);
+                            Editor.Selections.Add(pixel);
+                        }
+                    }
+
                     double[,] values = Editor.GetValues(tlCorner, brCorner, activeLayer.Raster);
 
                     identifyForm.SetValues(tlCorner, brCorner, values);

@@ -29,12 +29,23 @@ namespace ARES
                 if (Editor.ShowEdits)
                 {
                     // Hide Edits
-                    Display.ClearEdits();
+                    Display.ClearElement(Editor.Edits.GetAllGraphicElements());
+                    foreach(Pixel pixel in Editor.Edits)
+                    {
+                        pixel.GraphicElement = null;
+                    }
                 }
                 else
                 {
                     // Show Edits
-                    Display.DrawEditionBox();
+                    foreach (Pixel pixel in Editor.Edits)
+                    {
+                        if (pixel.GraphicElement == null)
+                        {
+                            pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetEidtSymbol(), Editor.ActiveLayer);   
+                        }
+                    }
+                    ArcMap.Document.ActiveView.Refresh();
                 }
 
                 Editor.ShowEdits = !Editor.ShowEdits;

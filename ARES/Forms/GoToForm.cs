@@ -15,6 +15,9 @@ using ARES;
 
 namespace ARES.Forms
 {
+    /// <summary>
+    /// Defines behaviors of Go To Pixel form.
+    /// </summary>
     public partial class GoToForm : System.Windows.Forms.Form
     {
         public GoToForm()
@@ -88,9 +91,13 @@ namespace ARES.Forms
             {
                 int row = int.Parse(rowIndexTextBox.Text) - 1;                                
                 int col = int.Parse(colIndexTextBox.Text) - 1;
-                Position pos = new Position(col, row);
 
-                Display.DrawSelectionBox(pos, false, Editor.GetTopmostLayer());
+                if (!Editor.Selections.Exists(col, row))
+                {
+                    Pixel pixel = new Pixel(new Position(col, row));
+                    pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetSelectionSymbol(), Editor.GetTopmostLayer(), true);
+                    Editor.Selections.Add(pixel);
+                }
             }
             catch (Exception ex)
             {
@@ -106,8 +113,11 @@ namespace ARES.Forms
                 int col = int.Parse(colIndexTextBox.Text) - 1;
                 Position pos = new Position(col, row);
 
-                Display.RemoveSelectionBox(pos);
-                Editor.SelectionRecord.Remove(pos);
+                if (Editor.Selections.Exists(pos))
+                {
+                    Display.RemoveElement(Editor.Selections[pos].GraphicElement, true);
+                    Editor.Selections.Remove(pos);    
+                }
             }
             catch (Exception ex)
             {

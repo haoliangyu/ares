@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 using ESRI.ArcGIS.Geometry;
+using ESRI.ArcGIS.Carto;
 
 namespace ARES
 {                    
     /// <summary>
     /// Provide access to functions for a raster cell collection.
     /// </summary>
-    public class PixelCollection
+    public class PixelCollection : IEnumerable
     {
         #region Construction Method
 
@@ -237,6 +239,34 @@ namespace ARES
         public void Clear()
         {
             pixelCollection.Clear();
+        }
+
+        /// <summary>
+        /// Get graphic elements of all pixels.
+        /// </summary>
+        /// <returns></returns>
+        public IElement[] GetAllGraphicElements()
+        {
+            IElement[] elements = new IElement[pixelCollection.Count];
+
+            for(int i = 0;i<pixelCollection.Count;i++)
+            {
+                elements[i] = pixelCollection[i].GraphicElement;    
+            }
+
+            return elements;
+        }
+
+        /// <summary>
+        /// Get a enumerator for iteration.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < pixelCollection.Count; i++)
+            {
+                yield return pixelCollection[i];
+            }
         }
 
         #endregion

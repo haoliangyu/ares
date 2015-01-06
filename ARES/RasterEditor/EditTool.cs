@@ -80,8 +80,8 @@ namespace ARES
         {
             try
             {
-                Display.ClearSelections();
-                Editor.SelectionRecord.Clear();
+                Display.ClearElement(Editor.Selections.GetAllGraphicElements());
+                Editor.Selections.Clear();
 
                 UID dockWinID = new UIDClass();
                 dockWinID.Value = ThisAddIn.IDs.EditForm;
@@ -140,8 +140,8 @@ namespace ARES
             {
                 try
                 {
-                    Display.ClearSelections();
-                    Editor.SelectionRecord.Clear();
+                    Display.ClearElement(Editor.Selections.GetAllGraphicElements());
+                    Editor.Selections.Clear();
 
                     IRgbColor color = new RgbColorClass();
                     color.Red = 255;
@@ -212,7 +212,16 @@ namespace ARES
                     tlCorner.Adjust(0, 0, maxIndex.Column, maxIndex.Row);
                     brCorner.Adjust(0, 0, maxIndex.Column, maxIndex.Row);
 
-                    Display.DrawSelectionBox(tlCorner, brCorner);
+                    // Show symbols of selected pixels
+                    for(int row = tlCorner.Row; row <= brCorner.Row; row++)
+                    {
+                        for (int col = tlCorner.Column; col <= brCorner.Column; col++)
+                        { 
+                            Pixel pixel = new Pixel(new Position(col, row));
+                            pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetSelectionSymbol(), Editor.ActiveLayer);
+                            Editor.Selections.Add(pixel);
+                        }
+                    }
 
                     IRasterLayer rasterLayer = (IRasterLayer)activeLayer;
                     double[,] values = Editor.GetValues(tlCorner, brCorner, rasterLayer.Raster);

@@ -25,8 +25,8 @@ namespace ARES
         protected override void OnClick()
         {
             Editor.SaveEdits();
-            Display.ClearEdits();
-            Editor.EditRecord.Clear();
+            Display.ClearElement(Editor.Edits.GetAllGraphicElements());
+            Editor.Edits.Clear();
 
             ArcMap.Document.ActiveView.Refresh();
         }

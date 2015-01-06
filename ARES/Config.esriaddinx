@@ -8,7 +8,7 @@
   <Company>Haoliang Yu</Company>
   <Date>2014-12-13</Date>
   <Targets>
-    <Target name="Desktop" version="10.2" />
+    <Target name="Desktop" version="10.0" />
   </Targets>
   <AddIn language="CLR" library="ARES.dll" namespace="ARES">
     <ArcMap>

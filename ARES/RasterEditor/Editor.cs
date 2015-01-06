@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Windows.Forms;
 
+using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.DataSourcesRaster;
@@ -26,9 +27,9 @@ namespace ARES
 
         private static bool showEdits = true;
 
-        private static PixelCollection editRecord = new PixelCollection();
+        private static PixelCollection edits = new PixelCollection();
 
-        private static PixelCollection selectRecord = new PixelCollection();
+        private static PixelCollection selections = new PixelCollection();
                  
         #endregion
 
@@ -64,17 +65,17 @@ namespace ARES
         /// <summary>
         /// Get the cell collection of edits.
         /// </summary>
-        public static PixelCollection EditRecord
+        public static PixelCollection Edits
         {
-            get { return editRecord; }
+            get { return edits; }
         }
 
         /// <summary>
         /// Get the cell collection of selections
         /// </summary>
-        public static PixelCollection SelectionRecord
+        public static PixelCollection Selections
         {
-            get { return selectRecord; }
+            get { return selections; }
         }
 
         #endregion
@@ -87,7 +88,7 @@ namespace ARES
         public static void StartEditing()
         {
             Editor.IsEditing = true;
-            Editor.EditRecord.Clear();
+            Editor.Edits.Clear();
 
             // While editing, the active layer cannot be changed
             LayerComboBox layerComboBox = AddIn.FromID<LayerComboBox>(ThisAddIn.IDs.LayerComboBox);
@@ -125,9 +126,10 @@ namespace ARES
         public static void StopEditing()
         {
             Editor.isEditing = false;
-            Display.Clear();
-            Editor.EditRecord.Clear();
-            Editor.SelectionRecord.Clear();
+            Display.ClearElement(Editor.Edits.GetAllGraphicElements());
+            Editor.Edits.Clear();
+            Display.ClearElement(Editor.Selections.GetAllGraphicElements());
+            Editor.Selections.Clear();
 
             if (ArcMap.Application.CurrentTool.Caption == "Select")
             {
@@ -330,7 +332,7 @@ namespace ARES
         /// </summary>
         public static void SaveEdits()
         {
-            if (ActiveLayer == null || EditRecord.Count == 0)
+            if (ActiveLayer == null || Edits.Count == 0)
                 return;
 
             ESRI.ArcGIS.RuntimeManager.BindLicense(ESRI.ArcGIS.ProductCode.EngineOrDesktop);
@@ -426,7 +428,7 @@ namespace ARES
             {
                 for (int y = 0; y < rowCount; y++)
                 {
-                    Pixel cell = Editor.EditRecord[x + tlCorner.Column, y + tlCorner.Row];
+                    Pixel cell = Editor.Edits[x + tlCorner.Column, y + tlCorner.Row];
 
                     if (cell == null)
                     {
@@ -490,6 +492,39 @@ namespace ARES
             }
         }
 
+        /// <summary>
+        /// Gets the drawing symbol of selected pixel. (temporary function)
+        /// </summary>
+        /// <returns></returns>
+        public static ISimpleFillSymbol GetSelectionSymbol()
+        {
+            ISimpleFillSymbol selectionSymbol = new SimpleFillSymbolClass();
+            selectionSymbol.Color = new RgbColorClass() { NullColor = true, Transparency = 0 };
+            ISimpleLineSymbol selectionOutlineSymbol = new SimpleLineSymbolClass();
+            selectionOutlineSymbol.Color = new RgbColorClass() { Red = 0, Green = 255, Blue = 255};
+            selectionOutlineSymbol.Width = 2;
+            selectionSymbol.Outline = selectionOutlineSymbol;
+
+            return selectionSymbol;
+        }
+
+        /// <summary>
+        /// Gets the drawing symbol of edited pixel. (temporary function)
+        /// </summary>
+        /// <returns></returns>
+        public static ISimpleFillSymbol GetEidtSymbol()
+        {
+            ISimpleFillSymbol editSymbol = new SimpleFillSymbolClass();
+            editSymbol.Color = new RgbColorClass() { Red = 255, Green = 255, Blue = 90, Transparency = 127 };
+            ISimpleLineSymbol editOutlineSymbol = new SimpleLineSymbolClass();
+            editOutlineSymbol.Color = new RgbColorClass() { Red = 255, Green = 255, Blue = 0 };
+            editOutlineSymbol.Width = 2;
+            editSymbol.Style = esriSimpleFillStyle.esriSFSBackwardDiagonal;
+            editSymbol.Outline = editOutlineSymbol;
+
+            return editSymbol;
+        }
+
         #endregion
 
         #region Private Methods
@@ -507,11 +542,11 @@ namespace ARES
             int minCol = rasterProps.Width - 1;
             int maxCol = 0;
 
-            for (int i = 0; i < Editor.EditRecord.Count; i++)
+            for (int i = 0; i < Editor.Edits.Count; i++)
             {
                 #region Get the extent of the edition region
 
-                Position cellPos = Editor.EditRecord[i].Position;
+                Position cellPos = Editor.Edits[i].Position;
 
                 if (cellPos.Row > maxRow)
                 {
@@ -546,14 +581,14 @@ namespace ARES
             IPixelBlock3 pixelBlock3 = (IPixelBlock3)pixelBlock;
             Array pixels = (Array)pixelBlock3.get_PixelData(0);
 
-            for (int i = 0; i < Editor.EditRecord.Count; i++)
+            for (int i = 0; i < Editor.Edits.Count; i++)
             {
                 object value = null;
-                Editor.CSharpValue2PixelValue(Editor.EditRecord[i].NewValue, rasterProps.PixelType, out value);
+                Editor.CSharpValue2PixelValue(Editor.Edits[i].NewValue, rasterProps.PixelType, out value);
 
                 pixels.SetValue(value,
-                                Editor.EditRecord[i].Position.Column - minCol,
-                                Editor.EditRecord[i].Position.Row - minRow);
+                                Editor.Edits[i].Position.Column - minCol,
+                                Editor.Edits[i].Position.Row - minRow);
             }
 
             pixelBlock3.set_PixelData(0, (System.Object)pixels);

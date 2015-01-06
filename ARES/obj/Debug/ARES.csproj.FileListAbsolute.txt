@@ -29,7 +29,6 @@ C:\Documents and Settings\Yu\桌面\ARES\ARES\obj\Debug\GenerateResource-ResGen.
 C:\Documents and Settings\Yu\桌面\ARES\ARES\obj\Debug\GenerateResource-ResGen.write.1.tlog
 C:\Documents and Settings\Yu\桌面\ARES\ARES\obj\Debug\ARES.dll
 C:\Documents and Settings\Yu\桌面\ARES\ARES\obj\Debug\ARES.pdb
-C:\Documents and Settings\Yu\桌面\ARES\ARES\bin\Debug\ARES.esriAddIn
 D:\Projects\C#\ArcGIS\ARES\ARES\obj\Debug\ARES.csprojResolveAssemblyReference.cache
 D:\Projects\C#\ArcGIS\ARES\ARES\obj\Debug\ARES.Control.SplitButton.resources
 D:\Projects\C#\ArcGIS\ARES\ARES\obj\Debug\ARES.EditForm.resources
@@ -43,3 +42,4 @@ D:\Projects\C#\ArcGIS\ARES\ARES\obj\Debug\ARES.dll
 D:\Projects\C#\ArcGIS\ARES\ARES\obj\Debug\ARES.pdb
 D:\Projects\C#\ArcGIS\ARES\ARES\bin\Debug\ARES.dll
 D:\Projects\C#\ArcGIS\ARES\ARES\bin\Debug\ARES.pdb
+C:\Documents and Settings\Yu\桌面\ares\ARES\bin\Debug\ARES.esriAddIn

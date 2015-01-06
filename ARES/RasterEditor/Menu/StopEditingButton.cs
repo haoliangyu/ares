@@ -26,7 +26,7 @@ namespace ARES
         {
             try
             {
-                if (Editor.EditRecord.Count > 0)
+                if (Editor.Edits.Count > 0)
                 {
                     DialogResult result = MessageBox.Show("Save edits to the file?", "Message", MessageBoxButtons.YesNo);
 

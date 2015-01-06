@@ -90,7 +90,7 @@ namespace ARES
         public void SetValues(Position tlCorner, Position brCorner, double[,] values)
         {
             rasterGridView.SetValues(tlCorner, brCorner, values);
-            PixelCollection editedCellCollection = Editor.EditRecord.WithIn(tlCorner, brCorner);
+            PixelCollection editedCellCollection = Editor.Edits.WithIn(tlCorner, brCorner);
             for (int i = 0; i < editedCellCollection.Count; i++)
             {
                 int gridViewCol = editedCellCollection[i].Position.Column - tlCorner.Column + 1;
@@ -133,7 +133,7 @@ namespace ARES
                 }
                 else
                 {
-                    Pixel cell = Editor.EditRecord[Convert.ToInt32(rasterGridView.SelectedCells[0].OwningColumn.HeaderText) - 1,
+                    Pixel cell = Editor.Edits[Convert.ToInt32(rasterGridView.SelectedCells[0].OwningColumn.HeaderText) - 1,
                                                          Convert.ToInt32(rasterGridView.SelectedCells[0].OwningRow.Cells[0].Value) - 1];
 
                     if (cell != null)
@@ -164,26 +164,32 @@ namespace ARES
             Position pos = new Position(Convert.ToInt32(rasterGridView.Columns[gridViewCol].HeaderText) - 1,
                                               Convert.ToInt32(rasterGridView.Rows[gridViewRow].Cells[0].Value) - 1);
 
-            Pixel existingCell = Editor.EditRecord[pos];
+            Pixel existingCell = Editor.Edits[pos];
             if (existingCell == null)
             {
                 Pixel newCell = new Pixel(oldValue, pos);
                 newCell.NewValue = newValue;
-                Editor.EditRecord.Add(newCell);
+                
 
                 rasterGridView.BoldCellText(gridViewCol, gridViewRow);
 
                 if (Editor.ShowEdits)
-                    Display.DrawEditionBox(pos);
+                {
+                    newCell.GraphicElement = Display.DrawBox(newCell.Position, Editor.GetEidtSymbol(), Editor.ActiveLayer);       
+                }
+
+                Editor.Edits.Add(newCell);
             }
             else
             {
                 if (existingCell.NewValue == newValue)
                 {
                     if (Editor.ShowEdits)
-                        Display.RemoveEditionBox(pos);
+                    {
+                        Display.RemoveElement(existingCell.GraphicElement, true);
+                    }
 
-                    Editor.EditRecord.Remove(existingCell);
+                    Editor.Edits.Remove(existingCell);
                     rasterGridView.UnboldCellText(gridViewCol, gridViewRow);
 
                     if (newValue == rasterGridView.NoDataValue)
@@ -373,7 +379,7 @@ namespace ARES
                     int col = Convert.ToInt32(selectedCell.OwningColumn.HeaderText) - 1;
                     int row = Convert.ToInt32(selectedCell.OwningRow.Cells[0].Value) - 1;
 
-                    Pixel editedCell = Editor.EditRecord[col, row];
+                    Pixel editedCell = Editor.Edits[col, row];
                     if (editedCell != null)
                     {
                         EditValue(editedCell.NewValue, editedCell.NewValue, selectedCell.ColumnIndex, selectedCell.RowIndex);
@@ -399,7 +405,7 @@ namespace ARES
             Position brCorner = new Position(Convert.ToInt32(rasterGridView.Columns[rasterGridView.Columns.Count - 1].HeaderText) - 1,
                                                    Convert.ToInt32(rasterGridView.Rows[rasterGridView.Rows.Count - 1].Cells[0].Value) - 1);
 
-            PixelCollection editedCellCollection = Editor.EditRecord.WithIn(tlCorner, brCorner);
+            PixelCollection editedCellCollection = Editor.Edits.WithIn(tlCorner, brCorner);
             for (int i = 0; i < editedCellCollection.Count; i++)
             {
                 Pixel editedCell = editedCellCollection[i];

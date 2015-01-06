@@ -40,8 +40,8 @@ namespace ARES
                 {
                     Editor.SaveEditsAs(saveFileDialog.FileName);
 
-                    Display.ClearEdits();
-                    Editor.EditRecord.Clear();
+                    Display.ClearElement(Editor.Edits.GetAllGraphicElements());
+                    Editor.Edits.Clear();
                 }
             }
             catch (Exception ex)

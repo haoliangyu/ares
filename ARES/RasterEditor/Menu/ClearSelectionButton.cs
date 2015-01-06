@@ -10,8 +10,8 @@ namespace ARES
     {
         protected override void OnClick()
         {
-            Display.ClearSelections();
-            Editor.SelectionRecord.Clear();
+            Display.ClearElement(Editor.Selections.GetAllGraphicElements());
+            Editor.Selections.Clear();
         }
     }
 }

@@ -18,209 +18,27 @@ namespace ARES
         #region Public Methods
 
         /// <summary>
-        /// Dras all selection boxes.
+        /// Draw box symbol at the given position.
         /// </summary>
-        /// <param name="activeLayer">Raster layer to be symbolized.</param>
-        public static void DrawSelectionBox(ILayer activeLayer = null)
+        /// <param name="pos">Position of pixel</param>
+        /// <param name="activeLayer">Raster layer to add symbol</param>
+        /// <param name="refresh">An value indicating whether to refresh screen after adding symbol</param>
+        /// <param name="symbol">Symbol style</param>
+        public static IElement DrawBox(Position pos, ISimpleFillSymbol symbol, ILayer activeLayer, bool refresh = false)
         {
-            // Probably should be removed.
-            ILayer layer = activeLayer == null ? Editor.ActiveLayer : activeLayer;
-
-            if (layer != null)
+            if (activeLayer != null)
             {
-                for (int i = 0; i < Editor.SelectionRecord.Count; i++)
-                {
-                    Display.DrawSelectionBox(Editor.SelectionRecord[i].Position, false, activeLayer);
-                }
-            }
-        }                                                                     
-
-        /// <summary>
-        /// Draw a selection box at the selected pixel.
-        /// </summary>
-        /// <param name="position">Position of the selected pixel.</param>
-        /// <param name="activeLayer">Raster layer to be symbolized.</param>
-        public static void DrawSelectionBox(Position position, bool refresh = false, ILayer activeLayer = null)
-        {
-            // Probably should be removed.
-            ILayer layer = activeLayer == null ? Editor.ActiveLayer : activeLayer;
-
-            if (layer != null)
-            {
-                Pixel cell = Editor.SelectionRecord[position];
-                if (cell != null)
-                    return;
-
-                IElement element = DrawBoxElement(Config.SelectionSmbol, position, layer);
-
-                Pixel newCell = new Pixel(0, position);
-                newCell.GraphicElement = element;
-                Editor.SelectionRecord.Add(newCell);
+                IElement element = DrawBoxElement(symbol, pos, activeLayer);
 
                 if (refresh)
                 {
-                    ArcMap.Document.ActiveView.Refresh();    
-                }
-            }
-       }
-
-        /// <summary>
-        /// Draw a selection box.
-        /// </summary>
-        /// <param name="brCorner">Buttom-right corner of the selected region.</param>
-        /// <param name="tlCorner">Top-left corner of the selected region.</param>
-        /// <param name="activeLayer">Raster layer to be symbolized.</param>
-        public static void DrawSelectionBox(Position tlCorner, Position brCorner, ILayer activeLayer = null)
-        {
-            // Probably should be removed.
-            ILayer layer = activeLayer == null ? Editor.ActiveLayer : activeLayer;
-
-            if (layer != null)
-            {
-                IRasterLayer rasterLayer = (IRasterLayer)layer;
-                IRasterProps rasterProp = (IRasterProps)rasterLayer.Raster;
-                brCorner.Adjust(RasterFile.Origin.Column, RasterFile.Origin.Row, 
-                                rasterProp.Width - 1, rasterProp.Height - 1);
-
-                for (int col = tlCorner.Column; col <= brCorner.Column; col++)
-                {
-                    for (int row = tlCorner.Row; row <= brCorner.Row; row++)
-                    {
-                        DrawSelectionBox(new Position(col, row), false, layer);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Remove the selection box at the given position.
-        /// </summary>
-        /// <param name="pos"></param>
-        public static void RemoveSelectionBox(Position pos)
-        {
-            if (Editor.SelectionRecord.Exists(pos.Column, pos.Row))
-            {
-                Pixel pixel = Editor.SelectionRecord[pos];
-                ArcMap.Document.ActiveView.GraphicsContainer.DeleteElement(pixel.GraphicElement);
-                pixel.GraphicElement = null;
-                ArcMap.Document.ActiveView.Refresh();
-            }
-        }
-
-        /// <summary>
-        /// Clear all selection graphic elements.
-        /// </summary>
-        public static void ClearSelections()
-        {
-            IActiveView activeView = ArcMap.Document.ActiveView;
-
-            for (int i = 0; i < Editor.SelectionRecord.Count; i++)
-            {
-                if (Editor.SelectionRecord[i].GraphicElement != null)
-                {
-                    activeView.GraphicsContainer.DeleteElement(Editor.SelectionRecord[i].GraphicElement);
-                    Editor.SelectionRecord[i].GraphicElement = null;
-                }
-            }
-
-            activeView.Refresh();
-        }
-
-        /// <summary>
-        /// Draw box for all edited sites.
-        /// </summary>
-        public static void DrawEditionBox()
-        {
-            for (int i = 0; i < Editor.EditRecord.Count; i++)
-            {
-                Display.DrawEditionBox(Editor.EditRecord[i].Position);
-            }
-        }
-
-        /// <summary>
-        /// Draw a box that represents the edition site.
-        /// Note: This method assumes that the responding cell class has been added into the edition record.
-        /// </summary>
-        /// <param name="position"></param>
-        public static void DrawEditionBox(Position position)
-        {
-            if (Editor.ActiveLayer != null)
-            {
-                if (Editor.EditRecord[position].GraphicElement != null)
-                    return;
-
-                IElement element;
-                if (Config.CustormEditColor)
-                {
-                    MessageBox.Show((Config.CustormEditColor == true).ToString());
-                    ISimpleFillSymbol editSymbol = new SimpleFillSymbolClass();
-                    double newValue = Editor.EditRecord[position].NewValue;
-                    editSymbol.Color = RasterRender.GetRenderColor((IRasterLayer)Editor.ActiveLayer, newValue);
-                    editSymbol.Outline = Config.EditSymbol.Outline;
-                    editSymbol.Style = Config.EditSymbol.Style;
-                    element = DrawBoxElement(editSymbol, position);   
-                }
-                else
-                {
-                    element = DrawBoxElement(Config.EditSymbol, position);
+                    ArcMap.Document.ActiveView.Refresh();
                 }
 
-                Editor.EditRecord[position].GraphicElement = element;
-            }
-        }
-
-        /// <summary>
-        /// Remove the edition box at the specified position.
-        /// </summary>
-        /// <param name="position"></param>
-        public static void RemoveEditionBox(Position position)
-        {
-            RemoveEditionBox(position.Column, position.Row);
-        }
-
-        /// <summary>
-        /// Remove the edition box at the specified position.
-        /// </summary>
-        /// <param name="column"></param>
-        /// <param name="row"></param>
-        public static void RemoveEditionBox(int column, int row)
-        {
-            Pixel cell = Editor.EditRecord[column, row];
-
-            if (cell != null && cell.GraphicElement != null)
-            {
-                ArcMap.Document.ActivatedView.GraphicsContainer.DeleteElement(cell.GraphicElement);
-                ArcMap.Document.ActivatedView.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
-                cell.GraphicElement = null;
-            }     
-        }
-
-        /// <summary>
-        /// Clear all edition graphic elements.
-        /// </summary>
-        public static void ClearEdits()
-        {
-            IActiveView activeView = ArcMap.Document.ActiveView;
-
-            for (int i = 0; i < Editor.EditRecord.Count; i++)
-            {
-                if (Editor.EditRecord[i].GraphicElement != null)
-                {
-                    activeView.GraphicsContainer.DeleteElement(Editor.EditRecord[i].GraphicElement);
-                    Editor.EditRecord[i].GraphicElement = null;
-                }
+                return element;
             }
 
-            activeView.Refresh();
-        }
-
-        /// <summary>
-        /// Clear all graphic elements.
-        /// </summary>
-        public static void Clear()
-        {
-            Display.ClearEdits();
-            Display.ClearSelections();
+            return null;
         }
 
         /// <summary>
@@ -265,6 +83,38 @@ namespace ARES
                 display.DrawPolygon((IGeometry)envelop);
                 display.FinishDrawing();    
             }
+        }
+
+        /// <summary>
+        /// Remvoe a graphic box symbol.                                                     
+        /// </summary>
+        /// <param name="graphicElement">Graphic element to be removed</param>
+        /// <param name="refresh">An boolean value indicating whether to refresh screen after adding symbol</param>
+        public static void RemoveElement(IElement graphicElement, bool refresh = false)
+        {
+            if (graphicElement != null)
+            {
+                ArcMap.Document.ActivatedView.GraphicsContainer.DeleteElement(graphicElement);
+            }
+
+            if (refresh)
+            {
+                ArcMap.Document.ActiveView.Refresh();
+            }
+        }
+
+        /// <summary>
+        /// Remvoe graphic box symbols.
+        /// </summary>
+        /// <param name="graphicElements">Graphic elements to be removed</param>
+        public static void ClearElement(IElement[] graphicElements)
+        {
+            foreach (IElement element in graphicElements)
+            {
+                RemoveElement(element);
+            }
+
+            ArcMap.Document.ActiveView.Refresh();
         }
 
         #endregion

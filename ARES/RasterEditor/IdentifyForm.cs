@@ -71,7 +71,7 @@ namespace ARES
             brPosTextBox.Text = String.Format("({0}, {1})", brCorner.Column + 1, brCorner.Row + 1);
 
             rasterGridView.SetValues(tlCorner, brCorner, values);
-            PixelCollection editedCellCollection = Editor.EditRecord.WithIn(tlCorner, brCorner);
+            PixelCollection editedCellCollection = Editor.Edits.WithIn(tlCorner, brCorner);
             for (int i = 0; i < editedCellCollection.Count; i++)
             {
                 int gridViewCol = editedCellCollection[i].Position.Column - tlCorner.Column + 1;
