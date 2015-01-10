@@ -116,7 +116,7 @@ namespace ARES
 
             ArcMap.Document.ActiveView.Refresh();
         }
-
+                                                                                  
         #endregion
         
         #region Private Methods
