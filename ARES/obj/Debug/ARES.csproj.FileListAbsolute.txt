@@ -1,0 +1,11 @@
+D:\Projects\C#\ArcGIS\ares\ARES\bin\Debug\ARES.dll
+D:\Projects\C#\ArcGIS\ares\ARES\bin\Debug\ARES.pdb
+D:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.csprojResolveAssemblyReference.cache
+D:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.dll
+D:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.pdb
+D:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.Forms.SingleInputForm.resources
+D:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.csproj.GenerateResource.Cache
+D:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.Editor.EditForm.resources
+D:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.Editor.GoToForm.resources
+D:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.Editor.IdentifyForm.resources
+D:\Projects\C#\ArcGIS\ares\ARES\bin\Debug\ARES.esriAddIn

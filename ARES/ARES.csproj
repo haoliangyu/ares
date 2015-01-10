@@ -36,31 +36,105 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ESRI.ArcGIS.Carto, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Catalog, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.CatalogUI, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.DataSourcesRaster, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="ESRI.ArcGIS.Desktop.AddIns">
       <Private>False</Private>
     </Reference>
+    <Reference Include="ESRI.ArcGIS.Display, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="ESRI.ArcGIS.Framework">
       <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Geodatabase, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Geometry, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="ESRI.ArcGIS.System">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ESRI.ArcGIS.Version, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
     <Compile Include="Config.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Config.esriaddinx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RasterGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SplitButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Display.cs" />
+    <Compile Include="Editor\EditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Editor\EditForm.designer.cs">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor\Editor.cs" />
+    <Compile Include="Editor\EditTool.cs" />
+    <Compile Include="Editor\GoToForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor\GoToForm.designer.cs">
+      <DependentUpon>GoToForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor\GoToPixelTool.cs" />
+    <Compile Include="Editor\IdentifyForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Editor\IdentifyForm.designer.cs">
+      <DependentUpon>IdentifyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor\IdentifyTool.cs" />
+    <Compile Include="Editor\Math.cs" />
+    <Compile Include="Editor\Menu\ClearSelectionButton.cs" />
+    <Compile Include="Editor\Menu\SaveEditsAsButton.cs" />
+    <Compile Include="Editor\Menu\SaveEditsButton.cs" />
+    <Compile Include="Editor\Menu\ShowEditsButton.cs" />
+    <Compile Include="Editor\Menu\StartEditingButton.cs" />
+    <Compile Include="Editor\Menu\StopEditingButton.cs" />
+    <Compile Include="Forms\FileDialogType.cs" />
+    <Compile Include="Forms\FormList.cs" />
+    <Compile Include="Forms\RasterFileDialog.cs" />
+    <Compile Include="Forms\SingleInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SingleInputForm.designer.cs">
+      <DependentUpon>SingleInputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pixel.cs" />
+    <Compile Include="PixelCollection.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RasterFile.cs" />
+    <Compile Include="RasterRender.cs" />
   </ItemGroup>
   <ItemGroup>
     <AddInContent Include="Config.esriaddinx">
@@ -75,6 +149,38 @@
     <Reference Include="ESRI.ArcGIS.ArcMapUI">
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\AddSelection.png" />
+    <Content Include="Images\DeleteSelection.png" />
+    <Content Include="Images\EditTool.png" />
+    <Content Include="Images\GoToPixelTool.png" />
+    <Content Include="Images\IdentifyTool.png" />
+    <Content Include="Images\NullColor32.png" />
+    <Content Include="Images\OpenFile.ico" />
+    <Content Include="Images\OpenFile.png" />
+    <Content Include="Images\PixelFlashingButton.png" />
+    <Content Include="Images\SaveEditingButton.png" />
+    <Content Include="Images\SaveEditsButton.png" />
+    <Content Include="Images\SelectTool.png" />
+    <Content Include="Images\StartEditingButton.png" />
+    <Content Include="Images\StartEditionButton.png" />
+    <Content Include="Images\StopEditingButton.png" />
+    <Content Include="Images\Tool.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Editor\EditForm.resx">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor\GoToForm.resx">
+      <DependentUpon>GoToForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor\IdentifyForm.resx">
+      <DependentUpon>IdentifyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SingleInputForm.resx">
+      <DependentUpon>SingleInputForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <ZipFileExtension>esriAddIn</ZipFileExtension>
