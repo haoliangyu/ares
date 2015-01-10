@@ -17,7 +17,6 @@ C:\Documents and Settings\Yu\桌面\ARES\RasterEditor\bin\Debug\ARES.esriAddIn
 C:\Documents and Settings\Yu\桌面\ARES\ARES\bin\Debug\ARES.dll
 C:\Documents and Settings\Yu\桌面\ARES\ARES\bin\Debug\ARES.pdb
 C:\Documents and Settings\Yu\桌面\ARES\ARES\obj\Debug\ResolveAssemblyReference.cache
-C:\Documents and Settings\Yu\桌面\ARES\ARES\obj\Debug\ARES.Control.SplitButton.resources
 C:\Documents and Settings\Yu\桌面\ARES\ARES\obj\Debug\ARES.EditForm.resources
 C:\Documents and Settings\Yu\桌面\ARES\ARES\obj\Debug\ARES.Forms.EditExtentForm.resources
 C:\Documents and Settings\Yu\桌面\ARES\ARES\obj\Debug\ARES.Forms.GoToForm.resources
@@ -42,4 +41,5 @@ D:\Projects\C#\ArcGIS\ARES\ARES\obj\Debug\ARES.dll
 D:\Projects\C#\ArcGIS\ARES\ARES\obj\Debug\ARES.pdb
 D:\Projects\C#\ArcGIS\ARES\ARES\bin\Debug\ARES.dll
 D:\Projects\C#\ArcGIS\ARES\ARES\bin\Debug\ARES.pdb
+C:\Documents and Settings\Yu\桌面\ares\ARES\obj\Debug\ARES.Controls.SplitButton.resources
 C:\Documents and Settings\Yu\桌面\ares\ARES\bin\Debug\ARES.esriAddIn

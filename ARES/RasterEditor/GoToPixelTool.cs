@@ -11,9 +11,10 @@ namespace ARES
     {
         protected override void OnClick()
         {
-            if (FormReference.GoToForm == null)
+            if (!FormList.Exists<GoToForm>())
             {
                 GoToForm goToForm = new GoToForm();
+                FormList.Add(goToForm);
                 goToForm.Show();
             }
         }

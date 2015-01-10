@@ -11,10 +11,11 @@ namespace ARES
     {
         protected override void OnClick()
         {
-            if (FormReference.EditExtentForm == null)
+            if (!FormList.Exists<EditExtentForm>())
             {
-                FormReference.EditExtentForm = new EditExtentForm();
-                FormReference.EditExtentForm.Show();
+                EditExtentForm editExtentForm = new EditExtentForm();
+                FormList.Add(editExtentForm);
+                editExtentForm.Show();
             }
         }
     }

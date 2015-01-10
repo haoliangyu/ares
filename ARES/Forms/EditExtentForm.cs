@@ -37,8 +37,8 @@ namespace ARES.Forms
             InitializeRasterComboBox(inputRasterComboBox);
             InitializeRasterComboBox(outputExtentComboBox);
 
-            FormReference.EditExtentForm = this;
-            this.FormClosed += (s, e) => FormReference.EditExtentForm = null;
+            // Remove the 
+            this.FormClosed += (s, e) => FormList.Remove<EditExtentForm>();
         }
 
         #endregion

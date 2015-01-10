@@ -102,18 +102,18 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\RasterGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SplitButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="RasterEditor\EditTool.cs" />
     <Compile Include="RasterEditor\Menu\ClearSelectionButton.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Config.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Config.esriaddinx</DependentUpon>
-    </Compile>
-    <Compile Include="Control\RasterGridView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Control\SplitButton.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Display.cs" />
     <Compile Include="RasterEditor\Menu\EditExtentButon.cs" />
@@ -131,7 +131,7 @@
       <DependentUpon>EditExtentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FileDialogType.cs" />
-    <Compile Include="Forms\FormReference.cs" />
+    <Compile Include="Forms\FormList.cs" />
     <Compile Include="Forms\GoToForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,7 +227,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Control\SplitButton.resx">
+    <EmbeddedResource Include="Controls\SplitButton.resx">
       <DependentUpon>SplitButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RasterEditor\EditForm.resx">

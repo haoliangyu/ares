@@ -5,7 +5,7 @@
   <Version>0.1.1</Version>
   <Image>Images\ARES.png</Image>
   <Author>Haoliang Yu</Author>
-  <Company>Haoliang Yu</Company>
+  <Company>SUNY Buffalo</Company>
   <Date>2014-12-13</Date>
   <Targets>
     <Target name="Desktop" version="10.0" />

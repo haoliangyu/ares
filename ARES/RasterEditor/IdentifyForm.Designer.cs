@@ -37,7 +37,7 @@
             this.brPosTextBox = new System.Windows.Forms.TextBox();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.valueTabPage = new System.Windows.Forms.TabPage();
-            this.rasterGridView = new ARES.Control.RasterGridView();
+            this.rasterGridView = new ARES.Controls.RasterGridView();
             this.statTabPage = new System.Windows.Forms.TabPage();
             this.statDataGridView = new System.Windows.Forms.DataGridView();
             this.fieldColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -220,7 +220,7 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage valueTabPage;
         private System.Windows.Forms.TabPage statTabPage;
-        private Control.RasterGridView rasterGridView;
+        private Controls.RasterGridView rasterGridView;
         private System.Windows.Forms.DataGridView statDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn fieldColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn valueColumn;

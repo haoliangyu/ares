@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-using ARES.Control;
+using ARES.Controls;
 
 namespace ARES
 {

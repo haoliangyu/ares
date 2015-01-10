@@ -4,13 +4,14 @@ using System.Windows.Forms.VisualStyles;
 using System.Drawing;
 using System.ComponentModel;     
 
-namespace RasterEditor.Controls {
+namespace ARES.Controls {
     public class SplitButton : Button {
         private PushButtonState _state;
         private const int PushButtonWidth = 14;
         private static int BorderSize = SystemInformation.Border3DSize.Width * 2;
         private bool skipNextOpen = false;
         private Rectangle dropDownRectangle = new Rectangle();
+        private ARES.Controls.RasterGridView rasterGridView1;
         private bool showSplit = true;
 
         public SplitButton() {
@@ -288,7 +289,25 @@ namespace RasterEditor.Controls {
 
         private void InitializeComponent()
         {
+            this.rasterGridView1 = new ARES.Controls.RasterGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.rasterGridView1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // rasterGridView1
+            // 
+            this.rasterGridView1.AllowUserToAddRows = false;
+            this.rasterGridView1.AllowUserToDeleteRows = false;
+            this.rasterGridView1.AllowUserToResizeColumns = false;
+            this.rasterGridView1.AllowUserToResizeRows = false;
+            this.rasterGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.rasterGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.rasterGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.rasterGridView1.Editable = true;
+            this.rasterGridView1.Location = new System.Drawing.Point(0, 0);
+            this.rasterGridView1.Name = "rasterGridView1";
+            this.rasterGridView1.Size = new System.Drawing.Size(240, 150);
+            this.rasterGridView1.TabIndex = 0;
+            ((System.ComponentModel.ISupportInitialize)(this.rasterGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -5,9 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
-using RasterEditor.Raster;
-
-namespace RasterEditor.Controls
+namespace ARES.Controls
 {
     public class RasterGridView : DataGridView
     {

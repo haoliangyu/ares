@@ -23,7 +23,6 @@ namespace ARES.Forms
         public GoToForm()
         {
             InitializeComponent();
-            FormReference.GoToForm = this;
 
             this.toolStrip.Enabled = false;
             this.flashingToolStripButton.ToolTipText = "Flashing";
@@ -66,7 +65,7 @@ namespace ARES.Forms
 
         void GoToForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormReference.GoToForm = null;
+            FormList.Remove<GoToForm>();
         }
 
         #region Tool Button Event

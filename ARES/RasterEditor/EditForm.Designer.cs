@@ -38,8 +38,8 @@
             this.editionStatusStrip = new System.Windows.Forms.StatusStrip();
             this.editionToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.noDataValueLabel = new System.Windows.Forms.Label();
-            this.rasterGridView = new ARES.Control.RasterGridView();
-            this.optionButton = new ARES.Control.SplitButton();
+            this.rasterGridView = new ARES.Controls.RasterGridView();
+            this.optionButton = new ARES.Controls.SplitButton();
             this.editSelectedPixelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.clearSelectedEditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -205,7 +205,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox layerNameTextBox;
-        private Control.SplitButton optionButton;
+        private Controls.SplitButton optionButton;
         private System.Windows.Forms.GroupBox groupBox;
         private System.Windows.Forms.StatusStrip editionStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel editionToolStripStatusLabel;
@@ -213,7 +213,7 @@
         private System.Windows.Forms.ContextMenuStrip optionsMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem editAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearAllEditsToolStripMenuItem;
-        private Control.RasterGridView rasterGridView;
+        private Controls.RasterGridView rasterGridView;
         private System.Windows.Forms.ToolStripMenuItem editSelectedPixelsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem clearSelectedEditsToolStripMenuItem;

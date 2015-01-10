@@ -10,7 +10,7 @@ using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.DataSourcesRaster;
 using ESRI.ArcGIS.Geodatabase;
 
-using ARES.Control;
+using ARES.Controls;
 using ARES.Forms;
 
 namespace ARES
