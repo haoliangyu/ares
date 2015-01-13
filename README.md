@@ -23,7 +23,7 @@ A detailed user guide could be found at: **[ArcMap Raster Editor](https://github
 |--------------|--------|
 |10.0|[ARES 1.1.5437 for ArcMap 10.0](https://github.com/dz316424/ares/blob/master/Release%20for%2010.0/1.1.5437.zip?raw=true)|
 |10.1|[ARES 1.1.1 Beta for ArcMap 10.1](http://sourceforge.net/projects/arcmaprastereditor/files/release/ArcMapRasterEditor_1.1.1_Beta.zip/download)|
-|10.2|[ARES 1.1.5437 for ArcMap 10.2](https://github.com/dz316424/arcmap-raster-editor/blob/master/Release%20for%2010.2/1.1.5437.zip?raw=true)| 
+|10.2|[ARES 1.1.5437 for ArcMap 10.2](https://github.com/dz316424/ares/blob/master_10.2/Release%20for%2010.2/1.1.5437.zip?raw=true)| 
 
 The listed packages are stable releases and may not include up-to-date modification. To have lastest version, please download the **ARES.dll** and **ARES.esriAddIn** at */ARES/bin/Debug*. **The lastest version may not be fully tested**.
 
