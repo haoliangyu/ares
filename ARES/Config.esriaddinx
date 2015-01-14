@@ -2,11 +2,11 @@
   <Name>ARES</Name>
   <AddInID>{84661142-7c89-49c1-8d6b-17bc043a46d4}</AddInID>
   <Description>ArcMap Raster Edit Suite</Description>
-  <Version>0.1.1</Version>
+  <Version>0.1.2</Version>
   <Image>Images\ARES.png</Image>
-  <Author>Haoliang Yu</Author>
+  <Author>Haoliang Yu, Xuan Wang, Jian Qing, Hancheng Nie</Author>
   <Company>SUNY Buffalo</Company>
-  <Date>2014-12-13</Date>
+  <Date>1/14/2015</Date>
   <Targets>
     <Target name="Desktop" version="10.0" />
   </Targets>
@@ -14,12 +14,11 @@
     <ArcMap>
       <Commands>
         <Button id="RasterEditor_StartEditingButton" class="StartEditingButton" message="Start an editing session so that you can edit values of raster pixels." caption="Start Edit" tip="Start Edit" category="Add-In Controls" image="Images\StartEditingButton.png" />
-        <Tool id="RasterEditor_IdentifyTool" class="IdentifyTool" message="Identify values and calculate statistic of raster pixels." caption="Identify" tip="Identify" category="Add-In Controls" image="Images\IdentifyTool.png" />
+        <Tool id="RasterEditor_IdentifyTool" class="IdentifyTool" message="Identify values and calculate statistic of raster pixels for the topmost raster layer." caption="Identify" tip="Identify" category="Add-In Controls" image="Images\IdentifyTool.png" />
         <Button id="RasterEditor_StopEditingButton" class="StopEditingButton" message="Stop the editing session. If you have any unsaved edits, you are prompted to save them." caption="Stop Edit" tip="Stop Edit" category="Add-In Controls" image="Images\StopEditingButton.png" onDemand="false" />
         <Button id="RasterEditor_SaveEditsButton" class="SaveEditsButton" message="Save all edits made since the last save to the original file. After saving, you cannot undo previous editing operations." caption="Save Edits" tip="Save Edits" category="Add-In Controls" image="Images\SaveEditsButton.png" onDemand="false" />
         <Button id="RasterEditor_SaveEditsAsButton" class="SaveEditsAsButton" message="Save all edits made since the last save to a new file. After saving, you cannot undo previous editing operations." caption="Save Edits As..." tip="Save Edits As" category="Add-In Controls" onDemand="false" />
         <Button id="RasterEditor_ShowEditsButton" class="ShowEditsButton" message="Show or hide edits of the selected raster." caption="Show/Hide Edits" tip="Show/Hide Edits" category="Add-In Controls" onDemand="false" />
-        <!--<Tool id="RasterEditor_EditTool" class="EditTool" message="Select and edit pixels by draging box on the raster layer." caption="Edit" tip="Edit" category="Add-In Controls" image="Images\SelectTool.png" onDemand="false" />-->
         <Button id="RasterEditor_ClearSelectionButton" class="ClearSelectionButton" message="Clear all selections on map." caption="Clear Selection" tip="Clear Selection" category="Add-In Controls" />
         <Button id="RasterEditor_GoToPixelTool" class="GoToPixelTool" message="Show the pixel with specified row index and column index.a" caption="GoToPixel" tip="Go To Pixel" category="Add-In Controls" image="Images\GoToPixelTool.png" />
         <Button id="RasterEditor_EditExtentButon" class="EditExtentButon" message="Edit the extent of the input raster layer." caption="Edit Extent..." tip="Edit Extent..." category="Add-In Controls" />
