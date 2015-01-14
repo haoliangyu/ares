@@ -22,7 +22,7 @@ namespace ARES
 
         protected override void OnClick()
         {
-            if (Editor.ActiveLayer != null)
+            if (ArcMapApp.RasterLayerCount > 0)
             {
                 Editor.StartEditing();
             }

@@ -15,7 +15,6 @@
       <Commands>
         <Button id="RasterEditor_StartEditingButton" class="StartEditingButton" message="Start an editing session so that you can edit values of raster pixels." caption="Start Edit" tip="Start Edit" category="Add-In Controls" image="Images\StartEditingButton.png" />
         <Tool id="RasterEditor_IdentifyTool" class="IdentifyTool" message="Identify values and calculate statistic of raster pixels." caption="Identify" tip="Identify" category="Add-In Controls" image="Images\IdentifyTool.png" />
-        <ComboBox id="RasterEditor_LayerComboBox" class="LayerComboBox" message="Select the available raster layers for editing." caption="Raster Layers" tip="Raster Layers" category="Add-In Controls" image="Images\LayerComboBox.png" editable="false" />
         <Button id="RasterEditor_StopEditingButton" class="StopEditingButton" message="Stop the editing session. If you have any unsaved edits, you are prompted to save them." caption="Stop Edit" tip="Stop Edit" category="Add-In Controls" image="Images\StopEditingButton.png" onDemand="false" />
         <Button id="RasterEditor_SaveEditsButton" class="SaveEditsButton" message="Save all edits made since the last save to the original file. After saving, you cannot undo previous editing operations." caption="Save Edits" tip="Save Edits" category="Add-In Controls" image="Images\SaveEditsButton.png" onDemand="false" />
         <Button id="RasterEditor_SaveEditsAsButton" class="SaveEditsAsButton" message="Save all edits made since the last save to a new file. After saving, you cannot undo previous editing operations." caption="Save Edits As..." tip="Save Edits As" category="Add-In Controls" onDemand="false" />
@@ -35,7 +34,7 @@
         </DockableWindow>
       </DockableWindows>
       <Menus>
-        <Menu id="RasterEditor_Editor_Menu" caption="Editor" isRootMenu="true">
+        <Menu id="RasterEditor_Editor_Menu" caption="Raster Editor" isRootMenu="true">
           <Items>
             <Button refID="RasterEditor_StartEditingButton" />
             <Button refID="RasterEditor_StopEditingButton" />

@@ -158,7 +158,7 @@ namespace ARES
         {
             base.OnMouseDown(arg);
 
-            activeLayer = (IRasterLayer)Editor.GetTopmostLayer();
+            activeLayer = ArcMapApp.GetRasterLayer();
 
             if (activeLayer != null)
             {                                        
@@ -253,7 +253,7 @@ namespace ARES
                         for (int col = tlCorner.Column; col <= brCorner.Column; col++)
                         {
                             Pixel pixel = new Pixel(new Position(col, row));
-                            pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetSelectionSymbol(), Editor.ActiveLayer);
+                            pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetSelectionSymbol(), ArcMapApp.GetRasterLayer());
                             Editor.Selections.Add(pixel);
                         }
                     }

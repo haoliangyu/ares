@@ -166,6 +166,7 @@ namespace ARES
 
         #region Computer Graphic Portion (Need to be merged)
 
+
         /// <summary>
         /// Gets pixels on given line using Digital Differential Analyzer(DDA).
         /// </summary>
@@ -178,7 +179,7 @@ namespace ARES
             int y0 = -startPos.Row;
             int x1 = endPos.Column;
             int y1 = -endPos.Row;
-
+                 
             int dx = x1 - x0;
             int dy = y1 - y0;
             double x = x0;

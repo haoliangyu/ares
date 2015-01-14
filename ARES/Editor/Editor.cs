@@ -12,6 +12,8 @@ using ESRI.ArcGIS.DataSourcesRaster;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Desktop.AddIns;
 
+using ARES.Forms;
+
 namespace ARES
 {
     /// <summary>
@@ -87,12 +89,27 @@ namespace ARES
         /// </summary>
         public static void StartEditing()
         {
+            // Select a layer to edit first
+            int rasterLayerCount = ArcMapApp.RasterLayerCount;
+            if (rasterLayerCount == 1)
+            {
+                Editor.activeLayer = ArcMapApp.GetRasterLayer();
+            }
+            else 
+            {
+                SelectLayerForm selectLayerForm = new SelectLayerForm();
+                selectLayerForm.ShowDialog();
+
+                if (selectLayerForm.ReturnLayer == null)
+                {
+                    return;
+                }
+
+                Editor.activeLayer = selectLayerForm.ReturnLayer;
+            }
+            
             Editor.IsEditing = true;
             Editor.Edits.Clear();
-
-            // While editing, the active layer cannot be changed
-            LayerComboBox layerComboBox = AddIn.FromID<LayerComboBox>(ThisAddIn.IDs.LayerComboBox);
-            layerComboBox.IsEnabled = false;
 
             // Enable the save button
             SaveEditsButton saveButton = AddIn.FromID<SaveEditsButton>(ThisAddIn.IDs.SaveEditsButton);
@@ -125,6 +142,7 @@ namespace ARES
         /// </summary>
         public static void StopEditing()
         {
+            Editor.activeLayer = null;
             Editor.isEditing = false;
             Display.ClearElement(Editor.Edits.GetAllGraphicElements());
             Editor.Edits.Clear();
@@ -147,9 +165,6 @@ namespace ARES
 
             SaveEditsAsButton saveEditsAsButton = AddIn.FromID<SaveEditsAsButton>(ThisAddIn.IDs.SaveEditsAsButton);
             saveEditsAsButton.IsEnabled = false;
-
-            LayerComboBox layerComboBox = AddIn.FromID<LayerComboBox>(ThisAddIn.IDs.LayerComboBox);
-            layerComboBox.IsEnabled = true;
 
             EditTool selectTool = AddIn.FromID<EditTool>(ThisAddIn.IDs.EditTool);
             selectTool.IsEnabled = false;
@@ -183,23 +198,6 @@ namespace ARES
                 if (layer.Name == layerName)
                 {
                     return layer;
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the topmost layer.
-        /// </summary>                            
-        /// <returns></returns>
-        public static ILayer GetTopmostLayer()
-        {
-            for (int i = 0; i < ArcMap.Document.FocusMap.LayerCount; i++)
-            {
-                if (ArcMap.Document.FocusMap.Layer[i] is IRasterLayer)
-                {
-                    return ArcMap.Document.FocusMap.Layer[i];
                 }
             }
 

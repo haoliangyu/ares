@@ -108,22 +108,29 @@
     <Compile Include="Controls\SplitButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="RasterEditor\EditTool.cs" />
-    <Compile Include="RasterEditor\Menu\ClearSelectionButton.cs" />
+    <Compile Include="ArcMapApp.cs" />
+    <Compile Include="Forms\SelectLayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectLayerForm.designer.cs">
+      <DependentUpon>SelectLayerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor\EditTool.cs" />
+    <Compile Include="Editor\Menu\ClearSelectionButton.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Config.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Config.esriaddinx</DependentUpon>
     </Compile>
     <Compile Include="Display.cs" />
-    <Compile Include="RasterEditor\Menu\EditExtentButon.cs" />
-    <Compile Include="RasterEditor\EditForm.cs">
+    <Compile Include="Editor\Menu\EditExtentButon.cs" />
+    <Compile Include="Editor\EditForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RasterEditor\EditForm.Designer.cs">
+    <Compile Include="Editor\EditForm.Designer.cs">
       <DependentUpon>EditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RasterEditor\Editor.cs" />
+    <Compile Include="Editor\Editor.cs" />
     <Compile Include="Forms\EditExtentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,8 +152,8 @@
     <Compile Include="Forms\SingleInputForm.designer.cs">
       <DependentUpon>SingleInputForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RasterEditor\GoToPixelTool.cs" />
-    <Compile Include="RasterEditor\Math.cs" />
+    <Compile Include="Editor\GoToPixelTool.cs" />
+    <Compile Include="Editor\Math.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -158,10 +165,10 @@
     <Compile Include="Position.cs" />
     <Compile Include="RasterFile.cs" />
     <Compile Include="RasterRender.cs" />
-    <Compile Include="RasterEditor\Menu\SaveEditsAsButton.cs" />
-    <Compile Include="RasterEditor\Menu\SaveEditsButton.cs" />
-    <Compile Include="RasterEditor\Menu\ShowEditsButton.cs" />
-    <Compile Include="RasterEditor\Menu\StopEditingButton.cs" />
+    <Compile Include="Editor\Menu\SaveEditsAsButton.cs" />
+    <Compile Include="Editor\Menu\SaveEditsButton.cs" />
+    <Compile Include="Editor\Menu\ShowEditsButton.cs" />
+    <Compile Include="Editor\Menu\StopEditingButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <AddInContent Include="Config.esriaddinx">
@@ -174,29 +181,25 @@
     <AddInContent Include="Images\ARES.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RasterEditor\Menu\StartEditingButton.cs" />
+    <Compile Include="Editor\Menu\StartEditingButton.cs" />
     <AddInContent Include="Images\StartEditingButton.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RasterEditor\IdentifyTool.cs" />
+    <Compile Include="Editor\IdentifyTool.cs" />
     <AddInContent Include="Images\IdentifyTool.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="LayerComboBox.cs" />
-    <AddInContent Include="Images\LayerComboBox.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RasterEditor\IdentifyForm.cs">
+    <Compile Include="Editor\IdentifyForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RasterEditor\IdentifyForm.Designer.cs">
+    <Compile Include="Editor\IdentifyForm.Designer.cs">
       <DependentUpon>IdentifyForm.cs</DependentUpon>
     </Compile>
     <AddInContent Include="Images\IdentifyForm.png" />
@@ -230,7 +233,10 @@
     <EmbeddedResource Include="Controls\SplitButton.resx">
       <DependentUpon>SplitButton.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RasterEditor\EditForm.resx">
+    <EmbeddedResource Include="Forms\SelectLayerForm.resx">
+      <DependentUpon>SelectLayerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor\EditForm.resx">
       <DependentUpon>EditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditExtentForm.resx">
@@ -242,7 +248,7 @@
     <EmbeddedResource Include="Forms\SingleInputForm.resx">
       <DependentUpon>SingleInputForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RasterEditor\IdentifyForm.resx">
+    <EmbeddedResource Include="Editor\IdentifyForm.resx">
       <DependentUpon>IdentifyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -269,7 +275,7 @@
     <None Include="Resources\NullColorImage.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="RasterPainter\" />
+    <Folder Include="Paintor\" />
   </ItemGroup>
   <ItemGroup>
     <AddInContent Include="Images\EditTool.png" />
