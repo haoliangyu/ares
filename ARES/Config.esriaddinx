@@ -1,38 +1,38 @@
 ﻿<ESRI.Configuration xmlns="http://schemas.esri.com/Desktop/AddIns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Name>ARES</Name>
+  <Name>ARES for ArcMap 10.2</Name>
   <AddInID>{b73b4d76-92ea-440f-98d9-a187c9f26f3c}</AddInID>
   <Description>ArcMap Raster Edit Suit</Description>
   <Version>0.1.2</Version>
   <Image>Images\ARES.png</Image>
-  <Author>Haoliang Yu, </Author>
-  <Company>University at Buffalo</Company>
-  <Date>1/9/2015</Date>
+  <Author>Haoliang Yu, Xuan Wang, Jian Qing, Hancheng Nie</Author>
+  <Company>Haoliang Yu, Xuan Wang, Jian Qing, Hancheng Nie</Company>
+  <Date>1/14/2015</Date>
   <Targets>
     <Target name="Desktop" version="10.2" />
   </Targets>
   <AddIn language="CLR" library="ARES.dll" namespace="ARES">
     <ArcMap>
       <Commands>
-        <Button id="Editor_StartEditingButton" class="Editor.StartEditingButton" message="Start an editing session so that you can edit values of raster pixels." caption="Start Edit" tip="Start Edit" category="Add-In Controls" image="Images\StartEditingButton.png" />
-        <Tool id="Editor_IdentifyTool" class="Editor.IdentifyTool" message="Identify values and calculate statistic of raster pixels." caption="Identify" tip="Identify" category="Add-In Controls" image="Images\IdentifyTool.png" />
-        <Button id="Editor_StopEditingButton" class="Editor.StopEditingButton" message="Stop the editing session. If you have any unsaved edits, you are prompted to save them." caption="Stop Edit" tip="Stop Edit" category="Add-In Controls" image="Images\StopEditingButton.png" onDemand="false" />
-        <Button id="Editor_SaveEditsButton" class="Editor.SaveEditsButton" message="Save all edits made since the last save to the original file. After saving, you cannot undo previous editing operations." caption="Save Edits" tip="Save Edits" category="Add-In Controls" image="Images\SaveEditsButton.png" onDemand="false" />
-        <Button id="Editor_SaveEditsAsButton" class="Editor.SaveEditsAsButton" message="Save all edits made since the last save to a new file. After saving, you cannot undo previous editing operations." caption="Save Edits As..." tip="Save Edits As" category="Add-In Controls" onDemand="false" />
-        <Button id="Editor_ShowEditsButton" class="Editor.ShowEditsButton" message="Show or hide edits of the selected raster." caption="Show/Hide Edits" tip="Show/Hide Edits" category="Add-In Controls" onDemand="false" />
-        <Button id="Editor_ClearSelectionButton" class="Editor.ClearSelectionButton" message="Clear all selections on map." caption="Clear Selection" tip="Clear Selection" category="Add-In Controls" />
-        <Button id="Editor_GoToPixelTool" class="Editor.GoToPixelTool" message="Show the pixel with specified row index and column index.a" caption="GoToPixel" tip="Go To Pixel" category="Add-In Controls" image="Images\GoToPixelTool.png" />
-        <Tool id="Editor_EditTool" class="Editor.EditTool" message="Select and edit pixels by draging box on the raster layer." caption="Edit" tip="Edit" category="Add-In Controls" image="Images\SelectTool.png" onDemand="false"/>
+        <Button id="Editor_ClearSelectionButton" class="ARES.Editor.ClearSelectionButton" message="Clear all selections on map." caption="Clear Selections" tip="Clear Selections" category="Editor" />
+        <Button id="Editor_StartEditingButton" class="ARES.Editor.StartEditingButton" message="Start an editing session so that you can edit values of raster pixels." caption="Start Editing" tip="Start Editing" category="Editor" image="Images\StartEditingButton.png" />
+        <Button id="Editor_StopEditingButton" class="ARES.Editor.StopEditingButton" message="Stop the editing session. If you have any unsaved edits, you are prompted to save them." caption="Stop Editing" tip="Stop Editing" category="Editor" image="Images\StopEditingButton.png" onDemand="false" />
+        <Button id="Editor_SaveEditsAsButton" class="ARES.Editor.SaveEditsAsButton" message="Save all edits made since the last save to a new file. After saving, you cannot undo previous editing operations." caption="Save Edits As..." tip="Save Edits As..." category="Editor" onDemand="false" />
+        <Button id="Editor_SaveEditsButton" class="ARES.Editor.SaveEditsButton" message="Save all edits made since the last save to the original file. After saving, you cannot undo previous editing operations." caption="Save Edits" tip="Save Edits" category="Editor" image="Images\SaveEditsButton.png" onDemand="false" />
+        <Button id="Editor_ShowEditsButton" class="ARES.Editor.ShowEditsButton" message="Show or hide edits of the selected raster." caption="Show/Hide Edits" tip="Show/Hide Edits" category="Editor" onDemand="false" />
+        <Tool id="Editor_EditTool" class="ARES.Editor.EditTool" message="Select and edit pixels by draging box on the raster layer." caption="Edit" tip="Select &amp; Edit" category="Editor" image="Images\EditTool.png" onDemand="false" />
+        <Button id="Editor_GoToPixelTool" class="ARES.Editor.GoToPixelTool" message="Show the pixel with specified row index and column index." caption="Go To Pixel" tip="Go To Pixel" category="Editor" image="Images\GoToPixelTool.png" />
+        <Tool id="Editor_IdentifyTool" class="ARES.Editor.IdentifyTool" message="Identify values and calculate statistic of raster pixels for the topmost raster layer." caption="Identify" tip="Identify" category="Editor" image="Images\IdentifyTool.png" />
       </Commands>
       <DockableWindows>
-        <DockableWindow id="Editor_IdentifyForm" class="Editor.IdentifyForm+AddinImpl" caption="Raster Identify">
+        <DockableWindow id="Editor_IdentifyForm" class="ARES.Editor.IdentifyForm+AddinImpl" caption="Raster Identify">
           <InitialPlacement height="300" width="300" state="pinned" position="right" />
         </DockableWindow>
-        <DockableWindow id="Editor_EditForm" class="Editor.EditForm+AddinImpl" caption="Raster Eidt">
+        <DockableWindow id="Editor_EditForm" class="ARES.Editor.EditForm+AddinImpl" caption="Raster Eidt">
           <InitialPlacement height="300" width="300" state="pinned" position="right" />
         </DockableWindow>
       </DockableWindows>
       <Menus>
-        <Menu id="Editor_Menu" caption="Editor" isRootMenu="true">
+        <Menu id="Editor_Menu" caption="Raster Editor" isRootMenu="true">
           <Items>
             <Button refID="Editor_StartEditingButton" />
             <Button refID="Editor_StopEditingButton" />
@@ -44,7 +44,7 @@
         </Menu>
       </Menus>
       <Toolbars>
-        <Toolbar id="Editor" caption="Raster Editor" showInitially="true">
+        <Toolbar id="Editor_Toolbar" caption="Raster Editor" showInitially="true">
           <Items>
             <Menu refID="Editor_Menu" />
             <Tool refID="Editor_EditTool" separator="true" />

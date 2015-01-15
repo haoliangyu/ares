@@ -55,7 +55,7 @@ namespace ARES.Editor
                 {
                     int row = int.Parse(rowIndexTextBox.Text) - 1;
                     int col = int.Parse(colIndexTextBox.Text) - 1;
-                    Display.FlashSelection(new Position(col, row), Editor.GetTopmostLayer());
+                    Display.FlashSelection(new Position(col, row), ArcMapApp.GetRasterLayer());
                 }
                 catch (Exception ex)
                 {
@@ -77,7 +77,7 @@ namespace ARES.Editor
             {
                 int row = int.Parse(rowIndexTextBox.Text) - 1;
                 int col = int.Parse(colIndexTextBox.Text) - 1;
-                Display.FlashSelection(new Position(col, row), Editor.GetTopmostLayer());
+                Display.FlashSelection(new Position(col, row), ArcMapApp.GetRasterLayer());
             }
             catch (Exception ex)
             {
@@ -95,7 +95,7 @@ namespace ARES.Editor
                 if (!Editor.Selections.Exists(col, row))
                 {
                     Pixel pixel = new Pixel(new Position(col, row));
-                    pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetSelectionSymbol(), Editor.GetTopmostLayer(), true);
+                    pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetSelectionSymbol(), ArcMapApp.GetRasterLayer(), true);
                     Editor.Selections.Add(pixel);
                 }
             }
@@ -135,7 +135,7 @@ namespace ARES.Editor
         /// <returns></returns>
         private bool CheckRowColValue()
         {
-            ILayer layer = Editor.GetTopmostLayer();
+            ILayer layer = ArcMapApp.GetRasterLayer();
             if (layer == null)
             {
                 return false;

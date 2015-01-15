@@ -79,6 +79,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArcMapApp.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Config.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -123,6 +124,12 @@
     <Compile Include="Forms\FileDialogType.cs" />
     <Compile Include="Forms\FormList.cs" />
     <Compile Include="Forms\RasterFileDialog.cs" />
+    <Compile Include="Forms\SelectLayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectLayerForm.designer.cs">
+      <DependentUpon>SelectLayerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SingleInputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,19 +160,18 @@
   <ItemGroup>
     <Content Include="Images\AddSelection.png" />
     <Content Include="Images\DeleteSelection.png" />
-    <Content Include="Images\EditTool.png" />
-    <Content Include="Images\GoToPixelTool.png" />
-    <Content Include="Images\IdentifyTool.png" />
+    <AddInContent Include="Images\EditTool.png" />
+    <AddInContent Include="Images\GoToPixelTool.png" />
+    <AddInContent Include="Images\IdentifyTool.png" />
     <Content Include="Images\NullColor32.png" />
     <Content Include="Images\OpenFile.ico" />
     <Content Include="Images\OpenFile.png" />
     <Content Include="Images\PixelFlashingButton.png" />
-    <Content Include="Images\SaveEditingButton.png" />
-    <Content Include="Images\SaveEditsButton.png" />
+    <AddInContent Include="Images\SaveEditsButton.png" />
     <Content Include="Images\SelectTool.png" />
-    <Content Include="Images\StartEditingButton.png" />
+    <AddInContent Include="Images\StartEditingButton.png" />
     <Content Include="Images\StartEditionButton.png" />
-    <Content Include="Images\StopEditingButton.png" />
+    <AddInContent Include="Images\StopEditingButton.png" />
     <Content Include="Images\Tool.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editor\IdentifyForm.resx">
       <DependentUpon>IdentifyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectLayerForm.resx">
+      <DependentUpon>SelectLayerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SingleInputForm.resx">
       <DependentUpon>SingleInputForm.cs</DependentUpon>

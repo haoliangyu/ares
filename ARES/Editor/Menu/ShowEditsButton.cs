@@ -30,7 +30,7 @@ namespace ARES.Editor
                 {
                     // Hide Edits
                     Display.ClearElement(Editor.Edits.GetAllGraphicElements());
-                    foreach(Pixel pixel in Editor.Edits)
+                    foreach (Pixel pixel in Editor.Edits)
                     {
                         pixel.GraphicElement = null;
                     }
@@ -42,7 +42,7 @@ namespace ARES.Editor
                     {
                         if (pixel.GraphicElement == null)
                         {
-                            pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetEidtSymbol(), Editor.ActiveLayer);   
+                            pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetEidtSymbol(), Editor.ActiveLayer);
                         }
                     }
                     ArcMap.Document.ActiveView.Refresh();

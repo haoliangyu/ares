@@ -84,12 +84,12 @@ namespace ARES.Editor
                 Editor.Selections.Clear();
 
                 UID dockWinID = new UIDClass();
-                dockWinID.Value = ThisAddIn.IDs.Editor_EditForm;
+                dockWinID.Value = ThisAddIn.IDs.ARES_Editor_EditForm;
                 IDockableWindow dockWindow = ArcMap.DockableWindowManager.GetDockableWindow(dockWinID);
                 if (dockWindow.IsVisible())
                 {
                     dockWindow.Show(false);
-                    EditForm editForm = AddIn.FromID<EditForm.AddinImpl>(ThisAddIn.IDs.Editor_EditForm).UI;
+                    EditForm editForm = AddIn.FromID<EditForm.AddinImpl>(ThisAddIn.IDs.ARES_Editor_EditForm).UI;
                     editForm.ClearValues();
                 }
             }
@@ -106,7 +106,7 @@ namespace ARES.Editor
             try
             {
                 UID dockWinID = new UIDClass();
-                dockWinID.Value = ThisAddIn.IDs.Editor_EditForm;
+                dockWinID.Value = ThisAddIn.IDs.ARES_Editor_EditForm;
                 IDockableWindow dockWindow = ArcMap.DockableWindowManager.GetDockableWindow(dockWinID);
                 if (!dockWindow.IsVisible())
                 {
@@ -118,7 +118,7 @@ namespace ARES.Editor
                 IRasterProps rasterProp = (IRasterProps)rasterLayer.Raster;
                 maxIndex = new Position(rasterProp.Width - 1, rasterProp.Height - 1);
 
-                EditForm editForm = AddIn.FromID<EditForm.AddinImpl>(ThisAddIn.IDs.Editor_EditForm).UI;
+                EditForm editForm = AddIn.FromID<EditForm.AddinImpl>(ThisAddIn.IDs.ARES_Editor_EditForm).UI;
                 editForm.SetLayer(activeLayer.Name);
                 System.Array noDataValue = (System.Array)rasterProp.NoDataValue;
                 editForm.RasterGridView.NoDataValue = Convert.ToDouble(noDataValue.GetValue(0));
@@ -185,9 +185,9 @@ namespace ARES.Editor
                 try
                 {
                     UID uid = new UIDClass();
-                    uid.Value = ThisAddIn.IDs.Editor_EditForm;
+                    uid.Value = ThisAddIn.IDs.ARES_Editor_EditForm;
                     IDockableWindow dockWin = ArcMap.DockableWindowManager.GetDockableWindow(uid);
-                    EditForm editForm = AddIn.FromID<EditForm.AddinImpl>(ThisAddIn.IDs.Editor_EditForm).UI;
+                    EditForm editForm = AddIn.FromID<EditForm.AddinImpl>(ThisAddIn.IDs.ARES_Editor_EditForm).UI;
 
                     IEnvelope envelop = newEnvelopeFeedback.Stop();
 
@@ -213,10 +213,10 @@ namespace ARES.Editor
                     brCorner.Adjust(0, 0, maxIndex.Column, maxIndex.Row);
 
                     // Show symbols of selected pixels
-                    for(int row = tlCorner.Row; row <= brCorner.Row; row++)
+                    for (int row = tlCorner.Row; row <= brCorner.Row; row++)
                     {
                         for (int col = tlCorner.Column; col <= brCorner.Column; col++)
-                        { 
+                        {
                             Pixel pixel = new Pixel(new Position(col, row));
                             pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetSelectionSymbol(), Editor.ActiveLayer);
                             Editor.Selections.Add(pixel);

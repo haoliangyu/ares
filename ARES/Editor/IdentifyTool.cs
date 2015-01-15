@@ -80,12 +80,12 @@ namespace ARES.Editor
                 Editor.Selections.Clear();
 
                 UID dockWinID = new UIDClass();
-                dockWinID.Value = ThisAddIn.IDs.Editor_IdentifyForm;
+                dockWinID.Value = ThisAddIn.IDs.ARES_Editor_IdentifyForm;
                 IDockableWindow dockWindow = ArcMap.DockableWindowManager.GetDockableWindow(dockWinID);
                 if (dockWindow.IsVisible())
                 {
                     dockWindow.Show(false);
-                    IdentifyForm identifyForm = AddIn.FromID<IdentifyForm.AddinImpl>(ThisAddIn.IDs.Editor_IdentifyForm).UI;
+                    IdentifyForm identifyForm = AddIn.FromID<IdentifyForm.AddinImpl>(ThisAddIn.IDs.ARES_Editor_IdentifyForm).UI;
                     identifyForm.ClearValues();
                 }
             }
@@ -105,7 +105,7 @@ namespace ARES.Editor
             try
             {
                 UID dockWinID = new UIDClass();
-                dockWinID.Value = ThisAddIn.IDs.Editor_IdentifyForm;
+                dockWinID.Value = ThisAddIn.IDs.ARES_Editor_IdentifyForm;
                 IDockableWindow dockWindow = ArcMap.DockableWindowManager.GetDockableWindow(dockWinID);
                 if (!dockWindow.IsVisible())
                 {
@@ -135,13 +135,13 @@ namespace ARES.Editor
                     Editor.Selections.Clear();
 
                     UID dockWinID = new UIDClass();
-                    dockWinID.Value = ThisAddIn.IDs.Editor_IdentifyForm;
+                    dockWinID.Value = ThisAddIn.IDs.ARES_Editor_IdentifyForm;
                     IDockableWindow dockWindow = ArcMap.DockableWindowManager.GetDockableWindow(dockWinID);
                     if (dockWindow.IsVisible())
                     {
-                        IdentifyForm identifyForm = AddIn.FromID<IdentifyForm.AddinImpl>(ThisAddIn.IDs.Editor_IdentifyForm).UI;
+                        IdentifyForm identifyForm = AddIn.FromID<IdentifyForm.AddinImpl>(ThisAddIn.IDs.ARES_Editor_IdentifyForm).UI;
                         identifyForm.ClearValues();
-                    }    
+                    }
                 }
             }
             catch (Exception ex)
@@ -149,7 +149,7 @@ namespace ARES.Editor
                 MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
             }
         }
-                    
+
         /// <summary>
         /// Start to track the rectangle when mouse down.
         /// </summary>
@@ -158,10 +158,10 @@ namespace ARES.Editor
         {
             base.OnMouseDown(arg);
 
-            activeLayer = (IRasterLayer)Editor.GetTopmostLayer();
+            activeLayer = ArcMapApp.GetRasterLayer();
 
             if (activeLayer != null)
-            {                                        
+            {
                 try
                 {
                     Display.ClearElement(Editor.Selections.GetAllGraphicElements());
@@ -181,7 +181,7 @@ namespace ARES.Editor
                     newEnvelopeFeedback = new NewEnvelopeFeedbackClass();
                     newEnvelopeFeedback.Display = ArcMap.Document.ActiveView.ScreenDisplay;
                     newEnvelopeFeedback.Symbol = (ISymbol)lineSymbol;
-                    newEnvelopeFeedback.Start(startCoor);                                                
+                    newEnvelopeFeedback.Start(startCoor);
 
                     // Get the maximum extent of the active layer.
                     IRasterProps rasterProps = (IRasterProps)activeLayer.Raster;
@@ -220,11 +220,11 @@ namespace ARES.Editor
                     IEnvelope envelop = newEnvelopeFeedback.Stop();
 
                     UID dockWinID = new UIDClass();
-                    dockWinID.Value = ThisAddIn.IDs.Editor_IdentifyForm;
+                    dockWinID.Value = ThisAddIn.IDs.ARES_Editor_IdentifyForm;
 
                     // Use GetDockableWindow directly as we want the client IDockableWindow not the internal class
                     IDockableWindow dockWindow = ArcMap.DockableWindowManager.GetDockableWindow(dockWinID);
-                    IdentifyForm identifyForm = AddIn.FromID<IdentifyForm.AddinImpl>(ThisAddIn.IDs.Editor_IdentifyForm).UI;
+                    IdentifyForm identifyForm = AddIn.FromID<IdentifyForm.AddinImpl>(ThisAddIn.IDs.ARES_Editor_IdentifyForm).UI;
 
                     Position tlCorner, brCorner;
                     if (envelop.UpperLeft.IsEmpty)
@@ -253,7 +253,7 @@ namespace ARES.Editor
                         for (int col = tlCorner.Column; col <= brCorner.Column; col++)
                         {
                             Pixel pixel = new Pixel(new Position(col, row));
-                            pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetSelectionSymbol(), Editor.ActiveLayer);
+                            pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetSelectionSymbol(), ArcMapApp.GetRasterLayer());
                             Editor.Selections.Add(pixel);
                         }
                     }
@@ -265,7 +265,7 @@ namespace ARES.Editor
                     if (!dockWindow.IsVisible())
                     {
                         dockWindow.Show(true);
-                    }   
+                    }
                 }
                 catch (Exception ex)
                 {

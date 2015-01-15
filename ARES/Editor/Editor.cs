@@ -12,6 +12,8 @@ using ESRI.ArcGIS.DataSourcesRaster;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Desktop.AddIns;
 
+using ARES.Forms;
+
 namespace ARES.Editor
 {
     /// <summary>
@@ -87,31 +89,50 @@ namespace ARES.Editor
         /// </summary>
         public static void StartEditing()
         {
+            // Select a layer to edit first
+            int rasterLayerCount = ArcMapApp.RasterLayerCount;
+            if (rasterLayerCount == 1)
+            {
+                Editor.activeLayer = ArcMapApp.GetRasterLayer();
+            }
+            else
+            {
+                SelectLayerForm selectLayerForm = new SelectLayerForm();
+                selectLayerForm.ShowDialog();
+
+                if (selectLayerForm.ReturnLayer == null)
+                {
+                    return;
+                }
+
+                Editor.activeLayer = selectLayerForm.ReturnLayer;
+            }
+
             Editor.IsEditing = true;
             Editor.Edits.Clear();
 
             // Enable the save button
-            SaveEditsButton saveButton = AddIn.FromID<SaveEditsButton>(ThisAddIn.IDs.Editor_SaveEditsButton);
+            SaveEditsButton saveButton = AddIn.FromID<SaveEditsButton>(ThisAddIn.IDs.ARES_Editor_SaveEditsButton);
             saveButton.IsEnabled = true;
 
             // Enable the save as button
-            SaveEditsAsButton saveAsButton = AddIn.FromID<SaveEditsAsButton>(ThisAddIn.IDs.Editor_SaveEditsAsButton);
+            SaveEditsAsButton saveAsButton = AddIn.FromID<SaveEditsAsButton>(ThisAddIn.IDs.ARES_Editor_SaveEditsAsButton);
             saveAsButton.IsEnabled = true;
-
+            
             // Enable the stop button
-            StopEditingButton stopButton = AddIn.FromID<StopEditingButton>(ThisAddIn.IDs.Editor_StopEditingButton);
+            StopEditingButton stopButton = AddIn.FromID<StopEditingButton>(ThisAddIn.IDs.ARES_Editor_StopEditingButton);
             stopButton.IsEnabled = true;
 
             // Enable the edit tool.
-            EditTool selectTool = AddIn.FromID<EditTool>(ThisAddIn.IDs.Editor_EditTool);
+            EditTool selectTool = AddIn.FromID<EditTool>(ThisAddIn.IDs.ARES_Editor_EditTool);
             selectTool.IsEnabled = true;
-
+            
             // Disable the start button
-            StartEditingButton startEditingButton = AddIn.FromID<StartEditingButton>(ThisAddIn.IDs.Editor_StartEditingButton);
+            StartEditingButton startEditingButton = AddIn.FromID<StartEditingButton>(ThisAddIn.IDs.ARES_Editor_StartEditingButton);
             startEditingButton.IsEnabled = false;
 
             // Enable the ShowEditsButton
-            ShowEditsButton showEditsButton = AddIn.FromID<ShowEditsButton>(ThisAddIn.IDs.Editor_ShowEditsButton);
+            ShowEditsButton showEditsButton = AddIn.FromID<ShowEditsButton>(ThisAddIn.IDs.ARES_Editor_ShowEditsButton);
             showEditsButton.IsEnabled = true;
 
         }
@@ -121,6 +142,7 @@ namespace ARES.Editor
         /// </summary>
         public static void StopEditing()
         {
+            Editor.activeLayer = null;
             Editor.isEditing = false;
             Display.ClearElement(Editor.Edits.GetAllGraphicElements());
             Editor.Edits.Clear();
@@ -132,22 +154,22 @@ namespace ARES.Editor
                 ArcMap.Application.CurrentTool = null;
             }
 
-            StopEditingButton stopEditingButton = AddIn.FromID<StopEditingButton>(ThisAddIn.IDs.Editor_StopEditingButton);
+            StopEditingButton stopEditingButton = AddIn.FromID<StopEditingButton>(ThisAddIn.IDs.ARES_Editor_StopEditingButton);
             stopEditingButton.IsEnabled = false;
 
-            StartEditingButton startEditionButton = AddIn.FromID<StartEditingButton>(ThisAddIn.IDs.Editor_StartEditingButton);
+            StartEditingButton startEditionButton = AddIn.FromID<StartEditingButton>(ThisAddIn.IDs.ARES_Editor_StartEditingButton);
             startEditionButton.IsEnabled = true;
 
-            SaveEditsButton saveEditsButton = AddIn.FromID<SaveEditsButton>(ThisAddIn.IDs.Editor_SaveEditsButton);
+            SaveEditsButton saveEditsButton = AddIn.FromID<SaveEditsButton>(ThisAddIn.IDs.ARES_Editor_SaveEditsButton);
             saveEditsButton.IsEnabled = false;
 
-            SaveEditsAsButton saveEditsAsButton = AddIn.FromID<SaveEditsAsButton>(ThisAddIn.IDs.Editor_SaveEditsAsButton);
+            SaveEditsAsButton saveEditsAsButton = AddIn.FromID<SaveEditsAsButton>(ThisAddIn.IDs.ARES_Editor_SaveEditsAsButton);
             saveEditsAsButton.IsEnabled = false;
 
-            EditTool selectTool = AddIn.FromID<EditTool>(ThisAddIn.IDs.Editor_EditTool);
+            EditTool selectTool = AddIn.FromID<EditTool>(ThisAddIn.IDs.ARES_Editor_EditTool);
             selectTool.IsEnabled = false;
 
-            ShowEditsButton showEditsButton = AddIn.FromID<ShowEditsButton>(ThisAddIn.IDs.Editor_ShowEditsButton);
+            ShowEditsButton showEditsButton = AddIn.FromID<ShowEditsButton>(ThisAddIn.IDs.ARES_Editor_ShowEditsButton);
             showEditsButton.IsEnabled = false;
         }
 
@@ -176,23 +198,6 @@ namespace ARES.Editor
                 if (layer.Name == layerName)
                 {
                     return layer;
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the topmost layer.
-        /// </summary>                            
-        /// <returns></returns>
-        public static ILayer GetTopmostLayer()
-        {
-            for (int i = 0; i < ArcMap.Document.FocusMap.LayerCount; i++)
-            {
-                if (ArcMap.Document.FocusMap.Layer[i] is IRasterLayer)
-                {
-                    return ArcMap.Document.FocusMap.Layer[i];
                 }
             }
 

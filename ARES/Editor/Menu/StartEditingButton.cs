@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Windows.Forms;
 
 namespace ARES.Editor
 {
     public class StartEditingButton : ESRI.ArcGIS.Desktop.AddIns.Button
     {
-        public StartEditingButton()
-        {
-        }
-
         /// <summary>
         /// Get or set a value Indicating whether the StartEditingButton is enabled.
         /// </summary>
@@ -22,9 +19,16 @@ namespace ARES.Editor
 
         protected override void OnClick()
         {
-            if (Editor.ActiveLayer != null)
+            try
             {
-                Editor.StartEditing();
+                if (ArcMapApp.RasterLayerCount > 0)
+                {
+                    Editor.StartEditing();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
             }
         }
     }
