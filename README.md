@@ -23,5 +23,14 @@ A detailed user guide could be found at: **[ArcMap Raster Editor](https://github
 
 The package are stable releas and may not include up-to-date modification. To have lastest version, please download the **ARES.dll** and **ARES.esriAddIn** at */ARES/bin/Debug*. **The lastest version may not be fully tested**.
 
+## Staff
+
+Special thanks for these people who contribut to this project:
+
+* Haoliang Yu
+* Xuan Wang
+* Jian Qing
+* Hancheng Nie
+
 ## Installation
 Simply double-click the **RasterEditor.esriAddIn** in the package and ArcGIS AddIn installation wizzard will guide you. for more detail, check the wiki page [Install and Uninstall](https://github.com/dz316424/arcmap-raster-editor/wiki/Install-and-Uninstall).
