@@ -25,7 +25,7 @@ The package are stable releas and may not include up-to-date modification. To ha
 
 ## Staff
 
-Special thanks for these people who contribut to this project:
+Special thanks to these people who contribut to this project:
 
 * Haoliang Yu
 * Xuan Wang
