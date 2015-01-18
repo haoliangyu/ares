@@ -1,11 +1,11 @@
-ArcMap Raster Edit Suit
+ArcMap Raster Edit Suite
 ====================
 
 Sometimes we need to edit just a few pixels of a raster layer in ArcMap, not all. For example, removing several misclassified pixels from a classification result is a very common situation. In ArcMap, tools we usually use to edit raster layer includes Reclassify and Raster Calculator. However, both of them aim at editing the raster layer as a whole and it takes a lot of additional work if only a few pixels are of interest. Editing a raster layer in ArcMap should be as simple and quick as what we deal with a feature layer. This addin makes this possible.
 
 ## Introduction
 
-ArcMap Raster Edit Suit (ARES), previously called ArcMap Raster Editor, is an addin for ArcMap 10.x, providing a set of tools in order to improve the convenience of minor raster editing. Its main features include:
+ArcMap Raster Edit Suite (ARES), previously called ArcMap Raster Editor, is an addin for ArcMap 10.x, providing a set of tools in order to improve the convenience of minor raster editing. Its main features include:
 
 + **Modify pixels just by click-and-edit**
 + **Identify pixels to get its row and column index**
