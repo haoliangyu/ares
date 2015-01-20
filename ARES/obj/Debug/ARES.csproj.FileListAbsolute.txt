@@ -9,4 +9,4 @@ D:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.Editor.EditForm.resources
 D:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.Editor.GoToForm.resources
 D:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.Editor.IdentifyForm.resources
 D:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.Forms.SelectLayerForm.resources
-D:\Projects\C#\ArcGIS\ARES\ARES\bin\Debug\ARES.esriAddIn
+D:\Projects\C#\ArcGIS\ares\ARES\bin\Debug\ARES.esriAddIn

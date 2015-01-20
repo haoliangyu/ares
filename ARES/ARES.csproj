@@ -79,6 +79,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArcGISAddin1.cs" />
     <Compile Include="ArcMapApp.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Config.Designer.cs">
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\AddSelection.png" />
+    <AddInContent Include="Images\ArcGISAddin1.png" />
     <Content Include="Images\DeleteSelection.png" />
     <AddInContent Include="Images\EditTool.png" />
     <AddInContent Include="Images\GoToPixelTool.png" />
