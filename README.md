@@ -11,7 +11,7 @@ ArcMap Raster Edit Suite (ARES), previously called ArcMap Raster Editor, is an a
 + **Identify pixels to get its row and column index**
 + **Go to pixel with given row and column index**
 
-This addin is only compatible with ArcMap 10.0/10./10.2. 
+This addin is only compatible with ArcMap 10.x. 
 
 A detailed user guide could be found at: **[ArcMap Raster Editor](https://github.com/dz316424/arcmap-raster-editor/wiki)**
 
