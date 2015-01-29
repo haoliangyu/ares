@@ -252,9 +252,13 @@ namespace ARES
                     {
                         for (int col = tlCorner.Column; col <= brCorner.Column; col++)
                         {
-                            Pixel pixel = new Pixel(new Position(col, row));
-                            pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetSelectionSymbol(), ArcMapApp.GetRasterLayer());
-                            Editor.Selections.Add(pixel);
+                            Position pos = new Position(col, row);
+                            if (!Editor.Selections.Exists(pos))
+                            {
+                                Pixel pixel = new Pixel(pos);
+                                pixel.GraphicElement = Display.DrawBox(pixel.Position, Editor.GetSelectionSymbol(), ArcMapApp.GetRasterLayer());
+                                Editor.Selections.Add(pixel);
+                            }
                         }
                     }
 
