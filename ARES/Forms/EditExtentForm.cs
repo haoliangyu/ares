@@ -161,7 +161,7 @@ namespace ARES.Forms
         /// </summary>
         private void outputExtentComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            IRasterLayer rasterLayer = (IRasterLayer)Editor.GetLayer(outputExtentComboBox.Text);
+            IRasterLayer rasterLayer = (IRasterLayer)ArcMapApp.GetLayer(outputExtentComboBox.Text);
             ShowExtent(rasterLayer);
         }
 
@@ -170,7 +170,7 @@ namespace ARES.Forms
         /// </summary>
         private void inputRasterComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            editLayer = (IRasterLayer)Editor.GetLayer(inputRasterComboBox.Text);
+            editLayer = (IRasterLayer)ArcMapApp.GetLayer(inputRasterComboBox.Text);
             ShowExtent(editLayer);
         }
 
@@ -204,7 +204,7 @@ namespace ARES.Forms
 
             try
             {
-                Editor.SaveExtentAs(editLayer, outputRasterTextBox.Text, xmin, ymin, pixelSize);
+                Raster.SaveExtentAs(editLayer, outputRasterTextBox.Text, xmin, ymin, pixelSize);
                 this.Close();
             }
             catch (Exception ex)

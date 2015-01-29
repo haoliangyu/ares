@@ -87,7 +87,7 @@ namespace ARES
         /// <returns></returns>
         public static IColor GetRenderColor(IRasterLayer rasterLayer, Position position)
         {
-            return GetRenderColor(rasterLayer, Editor.GetValue(position, rasterLayer));
+            return GetRenderColor(rasterLayer, Raster.GetValue(position, rasterLayer));
         }
 
         #endregion

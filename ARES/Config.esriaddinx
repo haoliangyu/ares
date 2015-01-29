@@ -1,11 +1,11 @@
 ﻿<ESRI.Configuration xmlns="http://schemas.esri.com/Desktop/AddIns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Name>ARES</Name>
+  <Name>ARES for ArcMap 10.0</Name>
   <AddInID>{84661142-7c89-49c1-8d6b-17bc043a46d4}</AddInID>
   <Description>ArcMap Raster Edit Suite</Description>
-  <Version>0.1.2</Version>
+  <Version>0.1.3</Version>
   <Image>Images\ARES.png</Image>
   <Author>Haoliang Yu, Xuan Wang, Jian Qing, Hancheng Nie</Author>
-  <Company>SUNY Buffalo</Company>
+  <Company>Haoliang Yu, Xuan Wang, Jian Qing, Hancheng Nie</Company>
   <Date>1/14/2015</Date>
   <Targets>
     <Target name="Desktop" version="10.0" />

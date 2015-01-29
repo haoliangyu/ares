@@ -152,7 +152,7 @@ namespace ARES
                     lineSymbol.Width = 1;
                     lineSymbol.Color = (IColor)color;
 
-                    IPoint startCoor = Editor.ScreenCoor2MapCoor(arg.X, arg.Y);
+                    IPoint startCoor = Raster.ScreenCoor2MapCoor(arg.X, arg.Y);
                     newEnvelopeFeedback = new NewEnvelopeFeedbackClass();
                     newEnvelopeFeedback.Display = ArcMap.Document.ActiveView.ScreenDisplay;
                     newEnvelopeFeedback.Symbol = (ISymbol)lineSymbol;
@@ -171,7 +171,7 @@ namespace ARES
 
             if (arg.Button == MouseButtons.Left && Editor.ActiveLayer != null)
             {
-                IPoint moveCoor = Editor.ScreenCoor2MapCoor(arg.X, arg.Y);
+                IPoint moveCoor = Raster.ScreenCoor2MapCoor(arg.X, arg.Y);
                 newEnvelopeFeedback.MoveTo(moveCoor);
             }
         }
@@ -194,13 +194,13 @@ namespace ARES
                     Position tlCorner, brCorner;
                     if (envelop.UpperLeft.IsEmpty)
                     {
-                        tlCorner = Editor.ScreenCoor2RasterCoor(arg.X, arg.Y);
+                        tlCorner = Raster.ScreenCoor2RasterCoor(arg.X, arg.Y, (IRasterLayer)Editor.ActiveLayer);
                         brCorner = tlCorner;
                     }
                     else
                     {
-                        tlCorner = Editor.MapCoor2RasterCoor(envelop.UpperLeft);
-                        brCorner = Editor.MapCoor2RasterCoor(envelop.LowerRight);
+                        tlCorner = Raster.MapCoor2RasterCoor(envelop.UpperLeft, (IRasterLayer)Editor.ActiveLayer);
+                        brCorner = Raster.MapCoor2RasterCoor(envelop.LowerRight, (IRasterLayer)Editor.ActiveLayer);
                     }
 
                     if (!IsIntersect(tlCorner, brCorner, maxIndex))
@@ -224,7 +224,7 @@ namespace ARES
                     }
 
                     IRasterLayer rasterLayer = (IRasterLayer)activeLayer;
-                    double[,] values = Editor.GetValues(tlCorner, brCorner, rasterLayer.Raster);
+                    double[,] values = Raster.GetValues(tlCorner, brCorner, rasterLayer.Raster);
                     editForm.SetValues(tlCorner, brCorner, values);
 
                     // If there is only one value, select that.

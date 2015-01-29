@@ -219,7 +219,7 @@ namespace ARES
             IRasterLayer rasterLayer = (IRasterLayer)Editor.ActiveLayer;
             IRasterProps rasterProp = (IRasterProps)rasterLayer.Raster;
 
-            return Editor.CSharpValue2PixelValue(value, rasterProp.PixelType, out validValue);
+            return Raster.CSharpValue2PixelValue(value, rasterProp.PixelType, out validValue);
         }
 
         #endregion
@@ -261,7 +261,7 @@ namespace ARES
                 }
                 else
                 {
-                    if (Editor.CSharpValue2PixelValue(rasterGridView[e.ColumnIndex, e.RowIndex].Value, rasterProps.PixelType, out newValue))
+                    if (Raster.CSharpValue2PixelValue(rasterGridView[e.ColumnIndex, e.RowIndex].Value, rasterProps.PixelType, out newValue))
                     {
                         double newDValue = Convert.ToDouble(newValue);
                         EditValue(newDValue, oldValue, e.ColumnIndex, e.RowIndex);

@@ -163,7 +163,7 @@
     <Compile Include="Pixel.cs" />
     <Compile Include="PixelCollection.cs" />
     <Compile Include="Position.cs" />
-    <Compile Include="RasterFile.cs" />
+    <Compile Include="Raster.cs" />
     <Compile Include="RasterRender.cs" />
     <Compile Include="Editor\Menu\SaveEditsAsButton.cs" />
     <Compile Include="Editor\Menu\SaveEditsButton.cs" />
