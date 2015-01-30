@@ -96,11 +96,7 @@ namespace ARES.Editor
                 int gridViewCol = editedCellCollection[i].Position.Column - tlCorner.Column + 1;
                 int gridViewRow = editedCellCollection[i].Position.Row - tlCorner.Row;
 
-                if (editedCellCollection[i].NewValue == rasterGridView.NoDataValue)
-                {
-                    rasterGridView[gridViewCol, gridViewRow].Value = editedCellCollection[i].NewValue;
-                }
-
+                rasterGridView[gridViewCol, gridViewRow].Value = editedCellCollection[i].NewValue;
                 rasterGridView[gridViewCol, gridViewRow].Style.Font = new Font(rasterGridView.Font, FontStyle.Bold);
             }
         }
@@ -138,7 +134,7 @@ namespace ARES.Editor
 
                     if (cell != null)
                     {
-                        editionToolStripStatusLabel.Text = String.Format("New Value: {0}, Original Value: {1}", cell.NewValue, cell.NewValue);
+                        editionToolStripStatusLabel.Text = String.Format("New Value: {0}, Original Value: {1}", cell.NewValue, cell.Value);
                     }
                     else
                     {
@@ -219,7 +215,7 @@ namespace ARES.Editor
             IRasterLayer rasterLayer = (IRasterLayer)Editor.ActiveLayer;
             IRasterProps rasterProp = (IRasterProps)rasterLayer.Raster;
 
-            return Editor.CSharpValue2PixelValue(value, rasterProp.PixelType, out validValue);
+            return Raster.CSharpValue2PixelValue(value, rasterProp.PixelType, out validValue);
         }
 
         #endregion
@@ -261,7 +257,7 @@ namespace ARES.Editor
                 }
                 else
                 {
-                    if (Editor.CSharpValue2PixelValue(rasterGridView[e.ColumnIndex, e.RowIndex].Value, rasterProps.PixelType, out newValue))
+                    if (Raster.CSharpValue2PixelValue(rasterGridView[e.ColumnIndex, e.RowIndex].Value, rasterProps.PixelType, out newValue))
                     {
                         double newDValue = Convert.ToDouble(newValue);
                         EditValue(newDValue, oldValue, e.ColumnIndex, e.RowIndex);

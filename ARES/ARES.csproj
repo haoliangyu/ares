@@ -79,7 +79,6 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArcGISAddin1.cs" />
     <Compile Include="ArcMapApp.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Config.Designer.cs">
@@ -141,7 +140,7 @@
     <Compile Include="PixelCollection.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RasterFile.cs" />
+    <Compile Include="Raster.cs" />
     <Compile Include="RasterRender.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -160,7 +159,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\AddSelection.png" />
-    <AddInContent Include="Images\ArcGISAddin1.png" />
     <Content Include="Images\DeleteSelection.png" />
     <AddInContent Include="Images\EditTool.png" />
     <AddInContent Include="Images\GoToPixelTool.png" />
@@ -170,9 +168,7 @@
     <Content Include="Images\OpenFile.png" />
     <Content Include="Images\PixelFlashingButton.png" />
     <AddInContent Include="Images\SaveEditsButton.png" />
-    <Content Include="Images\SelectTool.png" />
     <AddInContent Include="Images\StartEditingButton.png" />
-    <Content Include="Images\StartEditionButton.png" />
     <AddInContent Include="Images\StopEditingButton.png" />
     <Content Include="Images\Tool.ico" />
   </ItemGroup>

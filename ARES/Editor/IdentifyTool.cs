@@ -177,7 +177,7 @@ namespace ARES.Editor
                     lineSymbol.Width = 1;
                     lineSymbol.Color = (IColor)color;
 
-                    IPoint startCoor = Editor.ScreenCoor2MapCoor(arg.X, arg.Y);
+                    IPoint startCoor = Raster.ScreenCoor2MapCoor(arg.X, arg.Y);
                     newEnvelopeFeedback = new NewEnvelopeFeedbackClass();
                     newEnvelopeFeedback.Display = ArcMap.Document.ActiveView.ScreenDisplay;
                     newEnvelopeFeedback.Symbol = (ISymbol)lineSymbol;
@@ -200,7 +200,7 @@ namespace ARES.Editor
 
             if (arg.Button == MouseButtons.Left && activeLayer != null)
             {
-                IPoint moveCoor = Editor.ScreenCoor2MapCoor(arg.X, arg.Y);
+                IPoint moveCoor = Raster.ScreenCoor2MapCoor(arg.X, arg.Y);
                 newEnvelopeFeedback.MoveTo(moveCoor);
             }
         }
@@ -229,13 +229,13 @@ namespace ARES.Editor
                     Position tlCorner, brCorner;
                     if (envelop.UpperLeft.IsEmpty)
                     {
-                        tlCorner = Editor.ScreenCoor2RasterCoor(arg.X, arg.Y, activeLayer);
+                        tlCorner = Raster.ScreenCoor2RasterCoor(arg.X, arg.Y, activeLayer);
                         brCorner = tlCorner;
                     }
                     else
                     {
-                        tlCorner = Editor.MapCoor2RasterCoor(envelop.UpperLeft, activeLayer);
-                        brCorner = Editor.MapCoor2RasterCoor(envelop.LowerRight, activeLayer);
+                        tlCorner = Raster.MapCoor2RasterCoor(envelop.UpperLeft, activeLayer);
+                        brCorner = Raster.MapCoor2RasterCoor(envelop.LowerRight, activeLayer);
                     }
 
                     if (!IsIntersect(tlCorner, brCorner, maxExtent))
@@ -258,7 +258,7 @@ namespace ARES.Editor
                         }
                     }
 
-                    double[,] values = Editor.GetValues(tlCorner, brCorner, activeLayer.Raster);
+                    double[,] values = Raster.GetValues(tlCorner, brCorner, activeLayer.Raster);
 
                     identifyForm.SetValues(tlCorner, brCorner, values);
                     identifyForm.SetLayerName(activeLayer.Name);
