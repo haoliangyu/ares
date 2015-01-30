@@ -212,16 +212,7 @@ namespace ARES
             {
                 for (int y = 0; y < rowCount; y++)
                 {
-                    Pixel cell = Editor.Edits[x + tlCorner.Column, y + tlCorner.Row];
-
-                    if (cell == null)
-                    {
-                        values[x, y] = Convert.ToDouble(pixelBlock.GetVal(0, x, y));
-                    }
-                    else
-                    {
-                        values[x, y] = cell.NewValue;
-                    }
+                    values[x, y] = Convert.ToDouble(pixelBlock.GetVal(0, x, y));
                 }
             }
             return values;

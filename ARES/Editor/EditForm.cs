@@ -96,11 +96,7 @@ namespace ARES
                 int gridViewCol = editedCellCollection[i].Position.Column - tlCorner.Column + 1;
                 int gridViewRow = editedCellCollection[i].Position.Row - tlCorner.Row;
 
-                if (editedCellCollection[i].NewValue == rasterGridView.NoDataValue)
-                {
-                    rasterGridView[gridViewCol, gridViewRow].Value = editedCellCollection[i].NewValue;
-                }
-
+                rasterGridView[gridViewCol, gridViewRow].Value = editedCellCollection[i].NewValue;
                 rasterGridView[gridViewCol, gridViewRow].Style.Font = new Font(rasterGridView.Font, FontStyle.Bold);
             }
         }
@@ -138,7 +134,7 @@ namespace ARES
 
                     if (cell != null)
                     {
-                        editionToolStripStatusLabel.Text = String.Format("New Value: {0}, Original Value: {1}", cell.NewValue, cell.NewValue);
+                        editionToolStripStatusLabel.Text = String.Format("New Value: {0}, Original Value: {1}", cell.NewValue, cell.Value);
                     }
                     else
                     {
