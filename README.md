@@ -23,9 +23,9 @@ A detailed user guide could be found at: **[ArcMap Raster Editor](https://github
 
 The package are stable releas and may not include up-to-date modification. To have lastest version, please download the **ARES.dll** and **ARES.esriAddIn** at */ARES/bin/Debug*. **The lastest version may not be fully tested**.
 
-## Staff
+## Contribution
 
-Special thanks to these people who contribut to this project:
+Special thanks to these people who contribute to this project:
 
 * Haoliang Yu
 * Xuan Wang
