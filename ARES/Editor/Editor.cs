@@ -149,17 +149,12 @@ namespace ARES
             Display.ClearElement(Editor.Selections.GetAllGraphicElements());
             Editor.Selections.Clear();
 
-            if (ArcMap.Application.CurrentTool.Caption == "Select")
-            {
-                ArcMap.Application.CurrentTool = null;
-            }
-
             StopEditingButton stopEditingButton = AddIn.FromID<StopEditingButton>(ThisAddIn.IDs.StopEditingButton);
             stopEditingButton.IsEnabled = false;
 
             StartEditingButton startEditionButton = AddIn.FromID<StartEditingButton>(ThisAddIn.IDs.StartEditingButton);
             startEditionButton.IsEnabled = true;
-
+            
             SaveEditsButton saveEditsButton = AddIn.FromID<SaveEditsButton>(ThisAddIn.IDs.SaveEditsButton);
             saveEditsButton.IsEnabled = false;
 
