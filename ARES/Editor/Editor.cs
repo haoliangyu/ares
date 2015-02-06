@@ -149,11 +149,6 @@ namespace ARES.Editor
             Display.ClearElement(Editor.Selections.GetAllGraphicElements());
             Editor.Selections.Clear();
 
-            if (ArcMap.Application.CurrentTool.Caption == "Select")
-            {
-                ArcMap.Application.CurrentTool = null;
-            }
-
             StopEditingButton stopEditingButton = AddIn.FromID<StopEditingButton>(ThisAddIn.IDs.ARES_Editor_StopEditingButton);
             stopEditingButton.IsEnabled = false;
 
@@ -221,77 +216,6 @@ namespace ARES.Editor
             editSymbol.Outline = editOutlineSymbol;
 
             return editSymbol;
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        /// <summary>
-        /// Write edits to the input raster.
-        /// </summary>
-        /// <param name="raster"></param>
-        private static void WriteEdits(IRaster raster)
-        {
-            IRasterProps rasterProps = (IRasterProps)raster;
-
-            int minRow = rasterProps.Height - 1;
-            int maxRow = 0;
-            int minCol = rasterProps.Width - 1;
-            int maxCol = 0;
-
-            for (int i = 0; i < Editor.Edits.Count; i++)
-            {
-                #region Get the extent of the edition region
-
-                Position cellPos = Editor.Edits[i].Position;
-
-                if (cellPos.Row > maxRow)
-                {
-                    maxRow = cellPos.Row;
-                }
-
-                if (cellPos.Row < minRow)
-                {
-                    minRow = cellPos.Row;
-                }
-
-                if (cellPos.Column > maxCol)
-                {
-                    maxCol = cellPos.Column;
-                }
-
-                if (cellPos.Column < minCol)
-                {
-                    minCol = cellPos.Column;
-                }
-
-                #endregion
-            }
-
-            IPnt pos = new PntClass();
-            pos.SetCoords(maxCol - minCol + 1, maxRow - minRow + 1);
-            IPixelBlock pixelBlock = raster.CreatePixelBlock(pos);
-            pos.SetCoords(minCol, minRow);
-            raster.Read(pos, pixelBlock);
-
-            // Set new values
-            IPixelBlock3 pixelBlock3 = (IPixelBlock3)pixelBlock;
-            Array pixels = (Array)pixelBlock3.get_PixelData(0);
-
-            for (int i = 0; i < Editor.Edits.Count; i++)
-            {
-                object value = null;
-                Raster.CSharpValue2PixelValue(Editor.Edits[i].NewValue, rasterProps.PixelType, out value);
-
-                pixels.SetValue(value,
-                                Editor.Edits[i].Position.Column - minCol,
-                                Editor.Edits[i].Position.Row - minRow);
-            }
-
-            pixelBlock3.set_PixelData(0, (System.Object)pixels);
-            IRasterEdit rasterEdit = (IRasterEdit)raster;
-            rasterEdit.Write(pos, (IPixelBlock)pixelBlock3);    
         }
 
         #endregion
