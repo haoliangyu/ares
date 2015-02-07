@@ -19,7 +19,7 @@ A detailed user guide could be found at: **[ArcMap Raster Editor](https://github
 
 ## Download
 
-[ARES 0.1.2 alpha](https://github.com/dz316424/ares/releases/download/v0.1.2-alpha/ARES.0.1.2.alpha.7z)
+[ARES 0.1.3](https://github.com/dz316424/ares/releases/download/0.1.3/AREA.0.1.3.zip)
 
 The package are stable releas and may not include up-to-date modification. To have lastest version, please download the **ARES.dll** and **ARES.esriAddIn** at */ARES/bin/Debug*. **The lastest version may not be fully tested**.
 
