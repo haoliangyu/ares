@@ -8,7 +8,7 @@ Sometimes we need to edit just a few pixels of a raster layer in ArcMap, not all
 ArcMap Raster Edit Suite (ARES), previously called ArcMap Raster Editor, is an addin for ArcMap 10.x, providing a set of tools in order to improve the convenience of minor raster editing. Its main features include:
 
 + **Modify pixels just by click-and-edit**
-+ **Identify pixels to get its row and column index**
++ **Identify pixels to get their row and column index, as well as statistic**
 + **Go to pixel with given row and column index**
 
 This addin is only compatible with ArcMap 10.x. 
