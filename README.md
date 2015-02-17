@@ -13,7 +13,7 @@ ArcMap Raster Edit Suite (ARES), previously called ArcMap Raster Editor, is an a
 
 This addin is only compatible with ArcMap 10.x. 
 
-A detailed user guide could be found at: **[ArcMap Raster Editor](https://github.com/dz316424/arcmap-raster-editor/wiki)**
+A detailed user guide could be found at **[ArcMap Raster Edit Suite Wiki](https://github.com/dz316424/arcmap-raster-editor/wiki)**
 
 **In case of possible bugs, it is recommanded to use the .tiff formart as your primary raster file format while using this addin.**
 
