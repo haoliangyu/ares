@@ -7,17 +7,17 @@ Sometimes we need to edit just a few pixels of a raster layer in ArcMap, not all
 
 ArcMap Raster Edit Suite (ARES), previously called ArcMap Raster Editor, is an addin for ArcMap 10.0/10.1/10,2, providing a set of tools in order to improve the convenience of minor raster editing. Its main features include:
 
-* **Modify pixels just by click-and-edit**
+* Modify pixels just by click-and-edit
 
-* **Identify pixels to get their row and column index, as well as statistic**
+* Identify pixels to get their row and column index, as well as the statistic
 
-* **Go to pixel with given row and column index**
+* Go to pixel with given row and column index
 
 This addin is only compatible with ArcMap 10.x. 
 
-A detailed user guide could be found at **[ArcMap Raster Edit Suite Wiki](https://github.com/dz316424/arcmap-raster-editor/wiki)**
+A detailed user guide could be found at [ArcMap Raster Edit Suite Wiki](https://github.com/dz316424/arcmap-raster-editor/wiki)
 
-**In case of possible bugs, it is recommanded to use the .tiff formart as your primary raster file format while using this addin.**
+In case of possible bugs, it is recommanded to use the .tiff formart as your primary raster file format while using this addin.
 
 ## Download & Install
 
@@ -25,7 +25,7 @@ A detailed user guide could be found at **[ArcMap Raster Edit Suite Wiki](https:
 
 * Unzip the installation file and get into the folder that mathces your ArcMap version.
  
-* Double-click the **RasterEditor.esriAddIn** and click *Install Add-In* in the wizzard.
+* Double-click the *RasterEditor.esriAddIn* and click *Install Add-In* in the wizzard.
 
 Now you get it. 
 
