@@ -166,6 +166,10 @@ namespace ARES.Editor
 
             ShowEditsButton showEditsButton = AddIn.FromID<ShowEditsButton>(ThisAddIn.IDs.ARES_Editor_ShowEditsButton);
             showEditsButton.IsEnabled = false;
+
+            EditForm editForm = AddIn.FromID<EditForm.AddinImpl>(ThisAddIn.IDs.ARES_Editor_EditForm).UI;
+            editForm.ClearValues();
+            editForm.SetLayer("");
         }
 
         /// <summary>
