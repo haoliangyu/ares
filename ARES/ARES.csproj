@@ -109,6 +109,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ArcMapApp.cs" />
+    <Compile Include="Envelope.cs" />
     <Compile Include="Forms\SelectLayerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +147,12 @@
       <DependentUpon>GoToForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\RasterFileDialog.cs" />
+    <Compile Include="Forms\SelectValueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectValueForm.Designer.cs">
+      <DependentUpon>SelectValueForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SingleInputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +161,17 @@
     </Compile>
     <Compile Include="Editor\GoToPixelTool.cs" />
     <Compile Include="Editor\Math.cs" />
+    <Compile Include="Painter\ValueSymbolForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Painter\ValueSymbolForm.designer.cs">
+      <DependentUpon>ValueSymbolForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Painter\EraseTool.cs" />
+    <Compile Include="Painter\FreeDrawTool.cs" />
+    <Compile Include="Painter\Menu\StartPaintingButton.cs" />
+    <Compile Include="Painter\Menu\StopPaintingButton.cs" />
+    <Compile Include="Painter\Painter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -245,11 +263,17 @@
     <EmbeddedResource Include="Forms\GoToForm.resx">
       <DependentUpon>GoToForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectValueForm.resx">
+      <DependentUpon>SelectValueForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SingleInputForm.resx">
       <DependentUpon>SingleInputForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editor\IdentifyForm.resx">
       <DependentUpon>IdentifyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Painter\ValueSymbolForm.resx">
+      <DependentUpon>ValueSymbolForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -275,10 +299,19 @@
     <None Include="Resources\NullColorImage.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Paintor\" />
+    <AddInContent Include="Images\StopPaintingButton.png" />
   </ItemGroup>
   <ItemGroup>
     <AddInContent Include="Images\EditTool.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AddInContent Include="Images\DrawTool.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AddInContent Include="Images\StartPaintingButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AddInContent Include="Images\EraseTool.png" />
   </ItemGroup>
   <PropertyGroup>
     <ZipFileExtension>esriAddIn</ZipFileExtension>

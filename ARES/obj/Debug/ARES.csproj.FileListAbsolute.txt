@@ -43,4 +43,6 @@ D:\Projects\C#\ArcGIS\ARES\ARES\bin\Debug\ARES.dll
 D:\Projects\C#\ArcGIS\ARES\ARES\bin\Debug\ARES.pdb
 C:\Documents and Settings\Yu\桌面\ares\ARES\obj\Debug\ARES.Controls.SplitButton.resources
 C:\Documents and Settings\Yu\桌面\ares\ARES\obj\Debug\ARES.Forms.SelectLayerForm.resources
+C:\Documents and Settings\Yu\桌面\ares\ARES\obj\Debug\ARES.ValueSymbolForm.resources
+C:\Documents and Settings\Yu\桌面\ares\ARES\obj\Debug\ARES.Forms.SelectValueForm.resources
 C:\Documents and Settings\Yu\桌面\ares\ARES\bin\Debug\ARES.esriAddIn

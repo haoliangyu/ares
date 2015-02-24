@@ -6,7 +6,7 @@ using System.Text;
 namespace ARES
 {      
     /// <summary>
-    /// Provide access to the members that control a positio on a raster.
+    /// Provide access to the members that define a positio on a raster.
     /// </summary>
     public class Position
     {
