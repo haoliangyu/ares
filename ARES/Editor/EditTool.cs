@@ -39,8 +39,6 @@ namespace ARES
 
         private INewEnvelopeFeedback newEnvelopeFeedback = null;
 
-        private ILayer activeLayer = null;
-
         private Position maxIndex = null;
 
         #endregion
@@ -113,13 +111,17 @@ namespace ARES
                     dockWindow.Show(true);
                 }
 
-                activeLayer = Editor.ActiveLayer;
-                IRasterLayer rasterLayer = (IRasterLayer)activeLayer;
+                if (Editor.ActiveLayer == null)
+                {
+                    return;
+                }
+
+                IRasterLayer rasterLayer = (IRasterLayer)Editor.ActiveLayer;
                 IRasterProps rasterProp = (IRasterProps)rasterLayer.Raster;
                 maxIndex = new Position(rasterProp.Width - 1, rasterProp.Height - 1);
 
                 EditForm editForm = AddIn.FromID<EditForm.AddinImpl>(ThisAddIn.IDs.EditForm).UI;
-                editForm.SetLayer(activeLayer.Name);
+                editForm.SetLayer(Editor.ActiveLayer.Name);
                 System.Array noDataValue = (System.Array)rasterProp.NoDataValue;
                 editForm.RasterGridView.NoDataValue = Convert.ToDouble(noDataValue.GetValue(0));
                 editForm.SetNoDataValue(editForm.RasterGridView.NoDataValue);
@@ -227,7 +229,7 @@ namespace ARES
                         }
                     }
 
-                    IRasterLayer rasterLayer = (IRasterLayer)activeLayer;
+                    IRasterLayer rasterLayer = (IRasterLayer)Editor.ActiveLayer;
                     double[,] values = Raster.GetValues(tlCorner, brCorner, rasterLayer.Raster);
                     editForm.SetValues(tlCorner, brCorner, values);
 

@@ -107,7 +107,7 @@ namespace ARES
 
                 Editor.activeLayer = selectLayerForm.ReturnLayer;
             }
-            
+
             Editor.IsEditing = true;
             Editor.Edits.Clear();
 
@@ -166,6 +166,10 @@ namespace ARES
 
             ShowEditsButton showEditsButton = AddIn.FromID<ShowEditsButton>(ThisAddIn.IDs.ShowEditsButton);
             showEditsButton.IsEnabled = false;
+
+            EditForm editForm = AddIn.FromID<EditForm.AddinImpl>(ThisAddIn.IDs.EditForm).UI;
+            editForm.ClearValues();
+            editForm.SetLayer("");
         }
 
         /// <summary>
