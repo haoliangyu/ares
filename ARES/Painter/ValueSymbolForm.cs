@@ -35,7 +35,7 @@ namespace ARES
             colorRampComboBox.DrawItem += new DrawItemEventHandler(comboBox1_DrawItem);
 
             FillColorRampList();
-            colorRampComboBox.SelectedIndex = -1;
+            colorRampComboBox.SelectedIndex = 0;
         }
 
         #region Attributes
@@ -47,6 +47,8 @@ namespace ARES
         private Color selectedColor;
 
         private List<string> listedValue = new List<string>();
+
+        Random randomRGBCount = new Random();
 
         #endregion
 
@@ -256,49 +258,57 @@ namespace ARES
 
         private void addValueButton_Click(object sender, EventArgs e)
         {
-            if (Painter.ActiveLayer == null)
+            try
             {
-                return;
-            }
-
-            // Get value list
-            IDataset rasterDataset = (IDataset)Painter.ActiveLayer;
-            ITable table = (ITable)rasterDataset;
-            string[] values = new string[table.RowCount(null)];
-            for (int x = 0; x < values.Length; x++)
-            {
-                values[x] = table.GetRow(x).get_Value(1).ToString();
-            }
-
-            SelectValueForm selectValueForm = new SelectValueForm();
-            selectValueForm.InitializeValues(values);
-            selectValueForm.ValueName = "Value";
-
-            if (selectValueForm.ShowDialog() == DialogResult.OK)
-            {
-                string[] selectedValues = selectValueForm.SelectedValue;
-                Random RandomRGB = new Random();
-                foreach (string value in values)
+                if (Painter.ActiveLayer == null)
                 {
-                    if (!listedValue.Contains(value))
+                    return;
+                }
+
+                // Get value list
+                IDataset rasterDataset = (IDataset)Painter.ActiveLayer;
+                ITable table = (ITable)rasterDataset;
+                string[] values = new string[table.RowCount(null)];
+                for (int x = 0; x < values.Length; x++)
+                {
+                    values[x] = table.GetRow(x).get_Value(1).ToString();
+                }
+
+                SelectValueForm selectValueForm = new SelectValueForm();
+                selectValueForm.InitializeValues(values);
+                selectValueForm.ValueName = "Value";
+
+                if (selectValueForm.ShowDialog() == DialogResult.OK)
+                {
+                    string[] selectedValues = selectValueForm.SelectedValue;
+                    
+                    ColorRamp colorRamp = (ColorRamp)colorRampComboBox.Items[colorRampComboBox.SelectedIndex];
+                    foreach (string value in values)
                     {
-                        ListViewItem layerItem = new ListViewItem();
+                        if (!listedValue.Contains(value))
+                        {
+                            ListViewItem layerItem = new ListViewItem();
 
-                        int[] rgb = new int[3] { RandomRGB.Next(0, 255),
-                                                      RandomRGB.Next(0, 255),
-                                                      RandomRGB.Next(0, 255)};
-                        
-                        layerItem.Text = value;
-                        layerItem.SubItems.Add("    ");
-                        layerItem.SubItems[1].BackColor = Color.FromArgb(rgb[0], rgb[1], rgb[2]); ;
-
-                        layerItem.UseItemStyleForSubItems = false;
-                        ValueListBox.Items.Add(layerItem);
+                            layerItem.Text = value;
+                            layerItem.SubItems.Add("    ");
  
+                            int[]
+                            layerItem.SubItems[1].BackColor = Color.FromArgb(RandomRGB.Next(colorRamp.fromColor.R, colorRamp.toColor.R),
+                                                                             RandomRGB.Next(colorRamp.fromColor.G, colorRamp.toColor.G),
+                                                                             RandomRGB.Next(colorRamp.fromColor.B, colorRamp.toColor.B));
 
-                        listedValue.Add(value);   
+                            layerItem.UseItemStyleForSubItems = false;
+                            ValueListBox.Items.Add(layerItem);
+
+
+                            listedValue.Add(value);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
             }
         }
 
@@ -455,7 +465,6 @@ namespace ARES
 
                     layerItem.UseItemStyleForSubItems = false;
                     ValueListBox.Items.Add(layerItem);
-
                 }
             }
 
@@ -490,7 +499,7 @@ namespace ARES
 
   
         /// <summary>
-        /// 色带类
+        /// Defines a color ramp.
         /// </summary>
         private class ColorRamp
         {
