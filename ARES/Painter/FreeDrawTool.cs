@@ -29,6 +29,12 @@ namespace ARES
 
         private Envelope layerExetent = null;
 
+        private Position preMousePos = null;
+
+        private double? selectedValue = null;
+
+        private IColor selectedColor = null;
+
         #endregion
 
         #region Properties
@@ -64,24 +70,22 @@ namespace ARES
         {
             try
             {
-                //UID dockWinID = new UIDClass();
-                //dockWinID.Value = ThisAddIn.IDs.EditForm;
-                //IDockableWindow dockWindow = ArcMap.DockableWindowManager.GetDockableWindow(dockWinID);
-                //if (!dockWindow.IsVisible())
-                //{
-                //    dockWindow.Show(true);
-                //}
+                if (Painter.ActiveLayer == null)
+                {
+                    return;
+                }
 
-                //activeLayer = Painter.ActiveLayer;
-                //IRasterLayer rasterLayer = (IRasterLayer)activeLayer;
-                //IRasterProps rasterProp = (IRasterProps)rasterLayer.Raster;
-                //maxIndex = new Position(rasterProp.Width -1, rasterProp.Height -1);
+                UID dockWinID = new UIDClass();
+                dockWinID.Value = ThisAddIn.IDs.ValueSymbolForm;
+                IDockableWindow dockWindow = ArcMap.DockableWindowManager.GetDockableWindow(dockWinID);
+                if (!dockWindow.IsVisible())
+                {
+                    dockWindow.Show(true);
+                }
 
-                //EditForm editForm = AddIn.FromID<EditForm.AddinImpl>(ThisAddIn.IDs.EditForm).UI;
-                //editForm.SetLayer(activeLayer.Name);
-                //System.Array noDataValue = (System.Array)rasterProp.NoDataValue;
-                //editForm.RasterGridView.NoDataValue = Convert.ToDouble(noDataValue.GetValue(0));
-                //editForm.SetNoDataValue(editForm.RasterGridView.NoDataValue);
+                IRasterLayer rasterLayer = (IRasterLayer)Painter.ActiveLayer;
+                IRasterProps rasterProp = (IRasterProps)rasterLayer.Raster;
+                layerExetent = new Envelope(0, rasterProp.Height - 1, 0, rasterProp.Width - 1);
             }
             catch (Exception ex)
             {
@@ -95,33 +99,24 @@ namespace ARES
         {
             base.OnMouseDown(arg);
 
-            if (Painter.ActiveLayer != null)
+            ValueSymbolForm valueSymbolForm = AddIn.FromID<ValueSymbolForm.AddinImpl>(ThisAddIn.IDs.ValueSymbolForm).UI;
+            selectedValue = valueSymbolForm.SelectedValue;
+            selectedColor = valueSymbolForm.SelectedColor;
+
+            if ((Painter.ActiveLayer == null) || 
+                (arg.Button != MouseButtons.Left) ||
+                (selectedValue == null))
             {
-                try
-                {
-                    //Display.ClearElement(Painter.Selections.GetAllGraphicElements());
-                    //Painter.Selections.Clear();
+                return;
+            }
 
-                    //IRgbColor color = new RgbColorClass();
-                    //color.Red = 255;
-                    //color.Green = 255;
-                    //color.Blue = 255;
-
-                    //ISimpleLineSymbol lineSymbol = new SimpleLineSymbolClass();
-                    //lineSymbol.Width = 1;
-                    //lineSymbol.Color = (IColor)color;
-                    
-
-                    //IPoint startCoor = Painter.ScreenCoor2MapCoor(arg.X, arg.Y);
-                    //newLineFeedback = new NewLineFeedbackClass();
-                    //newLineFeedback.Display = ArcMap.Document.ActiveView.ScreenDisplay;
-                    //newLineFeedback.Symbol = (ISymbol)lineSymbol;
-                    //newLineFeedback.Start(startCoor);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
-                }
+            try
+            {
+                preMousePos = Raster.ScreenCoor2RasterCoor(arg.X, arg.Y, Painter.ActiveLayer);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
             }
         }
 
@@ -129,36 +124,47 @@ namespace ARES
         {
             base.OnMouseMove(arg);
 
-            //if (arg.Button == MouseButtons.Left && Painter.ActiveLayer != null)
-            //{
-            //    IPoint moveCoor = Painter.ScreenCoor2MapCoor(arg.X, arg.Y);
-            //    newLineFeedback.MoveTo(moveCoor);
-            //}
+            if ((Painter.ActiveLayer == null) ||
+                (arg.Button != MouseButtons.Left) ||
+                (selectedValue == null))
+            {
+                return;
+            }
+
+            try
+            {
+                Position mousePos = Raster.ScreenCoor2RasterCoor(arg.X, arg.Y, Painter.ActiveLayer);
+                if (layerExetent.Contains(mousePos) && !(mousePos.Equals(preMousePos)))
+                {
+                    Pixel paintedPixel = Painter.Paints[mousePos];
+                    if (paintedPixel == null)
+                    {
+                        paintedPixel = new Pixel(Raster.GetValue(mousePos, Painter.ActiveLayer), mousePos);
+                        Painter.Paints.Add(paintedPixel);
+                    }
+                    else 
+                    {
+                        Display.RemoveElement(paintedPixel.GraphicElement);
+                    }
+                    paintedPixel.NewValue = Convert.ToDouble(selectedValue);
+                    paintedPixel.GraphicElement = Display.DrawBox(mousePos,
+                                          Painter.GetPaintSymbol(selectedColor),
+                                          Painter.ActiveLayer);
+
+                    preMousePos = mousePos;        
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
+            }
         }
 
         protected override void OnMouseUp(ESRI.ArcGIS.Desktop.AddIns.Tool.MouseEventArgs arg)
         {
             base.OnMouseDown(arg);
 
-            //if (Painter.ActiveLayer != null)
-            //{
-            //    try
-            //    {
-            //        UID uid = new UIDClass();
-            //        uid.Value = ThisAddIn.IDs.EditForm;
-            //        IDockableWindow dockWin = ArcMap.DockableWindowManager.GetDockableWindow(uid);
-            //        EditForm editForm = AddIn.FromID<EditForm.AddinImpl>(ThisAddIn.IDs.EditForm).UI;
-                                        
-            //        IPolyline polyline = newLineFeedback.Stop();
-                    
-                                                          
-                                                            
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
-            //    }
-            //}
+            preMousePos = null;
         }
 
         #endregion

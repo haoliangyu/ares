@@ -31,24 +31,21 @@ namespace ARES
         {
             InitializeComponent();
             this.Hook = hook;
-
-            colorRampComboBox.DrawItem += new DrawItemEventHandler(comboBox1_DrawItem);
-
-            FillColorRampList();
-            colorRampComboBox.SelectedIndex = 0;
         }
 
         #region Attributes
 
         private IRasterLayer activeLayer = null;
 
-        private int? selectedValue = null;
+        private double? selectedValue = null;
 
-        private Color selectedColor;
+        private Color selectedColor = Color.Empty;
 
         private List<string> listedValue = new List<string>();
 
-        Random randomRGBCount = new Random();
+        private Random randomRGB = new Random();
+
+        private int changeColorIndex = -1;
 
         #endregion
 
@@ -66,7 +63,7 @@ namespace ARES
         /// <summary>
         /// Get the selected value. If there is no value selected, returns null.
         /// </summary>
-        public int? SelectedValue
+        public double? SelectedValue
         {
             get { return selectedValue; }
         }
@@ -78,7 +75,7 @@ namespace ARES
         {
             get 
             {
-                if (selectedColor == null)
+                if (selectedColor == Color.Empty)
                 {
                     return null;
                 }
@@ -118,142 +115,6 @@ namespace ARES
 
         #endregion
 
-        #region Private Methods
-
-        /// <summary>
-        /// Initialize color ramp list.
-        /// </summary>
-        private void FillColorRampList()
-        {
-            ColorRamp colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(176, 176, 176);
-            colorRamp.toColor = Color.FromArgb(255, 0, 0);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(0, 0, 0);
-            colorRamp.toColor = Color.FromArgb(255, 255, 255);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(204, 204, 255);
-            colorRamp.toColor = Color.FromArgb(0, 0, 224);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(211, 229, 232);
-            colorRamp.toColor = Color.FromArgb(46, 100, 140);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(203, 245, 234);
-            colorRamp.toColor = Color.FromArgb(48, 207, 146);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(216, 242, 237);
-            colorRamp.toColor = Color.FromArgb(21, 79, 74);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(240, 236, 170);
-            colorRamp.toColor = Color.FromArgb(102, 72, 48);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(156, 85, 31);
-            colorRamp.toColor = Color.FromArgb(33, 130, 145);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(48, 100, 102);
-            colorRamp.toColor = Color.FromArgb(110, 70, 45);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(214, 47, 39);
-            colorRamp.toColor = Color.FromArgb(69, 117, 181);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(245, 0, 245);
-            colorRamp.toColor = Color.FromArgb(0, 245, 245);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(182, 237, 240);
-            colorRamp.toColor = Color.FromArgb(9, 9, 145);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(175, 240, 233);
-            colorRamp.toColor = Color.FromArgb(255, 252, 255);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(118, 219, 211);
-            colorRamp.toColor = Color.FromArgb(255, 252, 255);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(219, 219, 219);
-            colorRamp.toColor = Color.FromArgb(69, 69, 69);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(204, 255, 204);
-            colorRamp.toColor = Color.FromArgb(14, 204, 14);
-            colorRampComboBox.Items.Add(colorRamp);
-
-            colorRamp = new ColorRamp();
-            colorRamp.fromColor = Color.FromArgb(220, 245, 233);
-            colorRamp.toColor = Color.FromArgb(34, 102, 51);
-            colorRampComboBox.Items.Add(colorRamp);
-        }
-
-        /// <summary>
-        /// Calculate RGB values within given color range.
-        /// </summary>
-        /// <param name="FromColor"></param>
-        /// <param name="ToColor"></param>
-        /// <param name="RowCount"></param>
-        /// <returns></returns>
-        private int[,] CalculateRGB(Color FromColor, Color ToColor, int RowCount)
-        {
-            int[,] RGB_Result = new int[RowCount, 3];
-
-            int RF = FromColor.R;
-            int RT = ToColor.R;
-            int GF = FromColor.G;
-            int GT = ToColor.G;
-            int BF = FromColor.B;
-            int BT = ToColor.B;
-
-            int RS = RF - RT;
-            int GS = GF - GT;
-            int BS = BF - BT;
-
-            int NRS = RS / (RowCount - 1);
-            int NGS = GS / (RowCount - 1);
-            int NBS = BS / (RowCount - 1);
-
-            for (int i = 0; i < RowCount; i++)
-            {
-                int R = RF - i * NRS;
-                RGB_Result[i, 0] = R;
-
-                int G = GF - i * NGS;
-                RGB_Result[i, 1] = G;
-
-                int B = BF - i * NBS;
-                RGB_Result[i, 2] = B;
-            }
-
-            return RGB_Result;
-        }
-
-        #endregion
-
         #region Events
 
         private void addValueButton_Click(object sender, EventArgs e)
@@ -268,41 +129,42 @@ namespace ARES
                 // Get value list
                 IDataset rasterDataset = (IDataset)Painter.ActiveLayer;
                 ITable table = (ITable)rasterDataset;
-                string[] values = new string[table.RowCount(null)];
-                for (int x = 0; x < values.Length; x++)
+                List<string> unlistedValues = new List<string>();
+                for (int x = 0; x < table.RowCount(null); x++)
                 {
-                    values[x] = table.GetRow(x).get_Value(1).ToString();
+                    string value = table.GetRow(x).get_Value(1).ToString();
+                    if(!listedValue.Contains(value))
+                    {
+                        unlistedValues.Add(value);    
+                    }
                 }
 
                 SelectValueForm selectValueForm = new SelectValueForm();
-                selectValueForm.InitializeValues(values);
-                selectValueForm.ValueName = "Value";
+                selectValueForm.InitializeValues(unlistedValues.ToArray());
+                selectValueForm.ValueName = "Value";  
+                selectValueForm.NewValue = false;
+                selectValueForm.MultiSelect = true;
+                selectValueForm.Text = "Add new values for painting";
 
                 if (selectValueForm.ShowDialog() == DialogResult.OK)
                 {
-                    string[] selectedValues = selectValueForm.SelectedValue;
-                    
-                    ColorRamp colorRamp = (ColorRamp)colorRampComboBox.Items[colorRampComboBox.SelectedIndex];
-                    foreach (string value in values)
+                    string[] selectedValues = selectValueForm.SelectedValues;
+
+                    foreach (string value in selectedValues)
                     {
-                        if (!listedValue.Contains(value))
-                        {
                             ListViewItem layerItem = new ListViewItem();
 
                             layerItem.Text = value;
                             layerItem.SubItems.Add("    ");
  
-                            int[]
-                            layerItem.SubItems[1].BackColor = Color.FromArgb(RandomRGB.Next(colorRamp.fromColor.R, colorRamp.toColor.R),
-                                                                             RandomRGB.Next(colorRamp.fromColor.G, colorRamp.toColor.G),
-                                                                             RandomRGB.Next(colorRamp.fromColor.B, colorRamp.toColor.B));
+                            layerItem.SubItems[1].BackColor = Color.FromArgb(randomRGB.Next(0, 255),
+                                                                             randomRGB.Next(0, 255),
+                                                                             randomRGB.Next(0, 255));
 
                             layerItem.UseItemStyleForSubItems = false;
-                            ValueListBox.Items.Add(layerItem);
-
+                            valueListBox.Items.Add(layerItem);
 
                             listedValue.Add(value);
-                        }
                     }
                 }
             }
@@ -322,60 +184,80 @@ namespace ARES
             SelectValueForm selectValueForm = new SelectValueForm();
             selectValueForm.InitializeValues(listedValue.ToArray());
             selectValueForm.ValueName = "Value";
+            selectValueForm.NewValue = false;
+            selectValueForm.Text = "Remove values from painting";
+            selectValueForm.MultiSelect = true;
 
             if (selectValueForm.ShowDialog() == DialogResult.OK)
             {
-                foreach (string value in selectValueForm.SelectedValue)
+                string[] removedValues = selectValueForm.SelectedValues;
+                ListViewItem[] items = new ListViewItem[removedValues.Length];
+                for(int i = 0; i < removedValues.Length; i++)
                 {
-                    ValueListBox.Items.RemoveByKey(value); 
+                    for(int j = 0; j < valueListBox.Items.Count; j++)
+                    {
+                        if (valueListBox.Items[j].Text == removedValues[i])
+                        {
+                            items[i] = valueListBox.Items[j];
+                            break;
+                        }
+                    }
                 }
-            }
-        } 
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ColorRamp Ramp_Color = colorRampComboBox.SelectedItem as ColorRamp;
-            Color Ramp_FromC = Ramp_Color.fromColor;
-            Color Ramp_ToC = Ramp_Color.toColor;
-            int row_count = ValueListBox.Items.Count;
-            int[,] ColorList = CalculateRGB(Ramp_FromC, Ramp_ToC, row_count);
-
-            for (int i = 0; i < row_count; i++)
-            {
-                ValueListBox.Items[i].SubItems[1].BackColor = Color.FromArgb(ColorList[i, 0], ColorList[i, 1], ColorList[i, 2]);
+                foreach (ListViewItem item in items)
+                {
+                    listedValue.Remove(item.Text);
+                    valueListBox.Items.Remove(item);
+                }
             }
         }
 
-        private void comboBox1_DrawItem(object sender, DrawItemEventArgs e)
+        private void ValueListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //throw new NotImplementedException();
-            if (colorRampComboBox.Items.Count == 0 || e.Index == -1)
-                return;
-            Rectangle borderRect;
-            if ((e.State & DrawItemState.Selected) != 0)
+            if (valueListBox.SelectedItems.Count > 0)
             {
-                //填充区域
-                borderRect = new Rectangle(3, e.Bounds.Y, e.Bounds.Width - 5, e.Bounds.Height - 2);
-                //画边框
-                Pen pen = new Pen(Color.FromArgb(0, 0, 0));
-                e.Graphics.DrawRectangle(pen, borderRect);
+                selectedValue = double.Parse(valueListBox.SelectedItems[0].Text);
+                selectedColor = valueListBox.SelectedItems[0].SubItems[1].BackColor;
             }
             else
             {
-                //填充区域
-                borderRect = new Rectangle(3, e.Bounds.Y, e.Bounds.Width - 5, e.Bounds.Height - 2);
-                Pen pen = new Pen(Color.FromArgb(255, 255, 255));
-                e.Graphics.DrawRectangle(pen, borderRect);
+                selectedValue = null;
+                selectedColor = Color.Empty;
             }
+        }
 
-            ColorRamp colorRamp = (ColorRamp)colorRampComboBox.Items[e.Index];
-            //渐变画刷
-            LinearGradientBrush brush = new LinearGradientBrush(e.Bounds, colorRamp.fromColor,
-                                             colorRamp.toColor, LinearGradientMode.Horizontal);
-            //填充区域
-            borderRect = new Rectangle(3, e.Bounds.Y, e.Bounds.Width - 5, e.Bounds.Height - 2);
+        private void valueListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                System.Drawing.Point mousepos = valueListBox.PointToClient(Control.MousePosition);
+                ListViewHitTestInfo Ht = valueListBox.HitTest(mousepos);
+                if (Ht.Item != null)
+                {
+                    int hitColumn = Ht.Item.SubItems.IndexOf(Ht.SubItem);
+                    changeColorIndex = Ht.Item.Index;
 
-            e.Graphics.FillRectangle(brush, borderRect);
+                    // fill color
+                    if (hitColumn == 1)
+                    {
+                        valueBoxContextMenuStrip.Show(Control.MousePosition);
+                    }
+                }
+            }
+        }
+
+        private void changeColorToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    valueListBox.Items[changeColorIndex].SubItems[1].BackColor = colorDialog.Color;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
+                }
+            }
         }
 
         #endregion
@@ -414,97 +296,6 @@ namespace ARES
 
         }
 
-        private void Color_TOC_Load(object sender, EventArgs e)
-        {
-            //Color_TOC_Control();
-        }
-        
-        /// <summary>
-        /// Color TOC
-        /// </summary>
-        
-        public void Color_TOC_Control()
-        {
-            IRasterLayer color_layer = Editor.ActiveLayer as IRasterLayer;
-            ValueListBox.Items.Clear();
-            Color ccolor;
-            ValueListBox.Width = this.Width;
-            if (color_layer != null)
-            {
-                IRasterRenderer cRender = color_layer.Renderer;
-                IDataset cDataset = color_layer as IDataset;
 
-                Table cTable = cDataset as Table;
-                int j = cTable.RowCount(null);
-                string[,] cArr = new string[j, 2];
-
-                ///set listview location
-                columnHeader1.Width = ValueListBox.Width - 110;
-              
-                for (int x = 0; x < j; x++)
-                {
-                    ///Get Layer value and count of value
-                    cArr[x, 0] = cTable.GetRow(x).get_Value(1).ToString();
-                    cArr[x, 1] = cTable.GetRow(x).get_Value(2).ToString();
-
-                    ListViewItem layerItem = new ListViewItem();
-
-                    int[] COLORRGB = new int[3];
-                    Random RandomRGB = new Random();
-                    ///For color    
-                    for (int q = 0; q < 3; q++)
-                    {
-                        COLORRGB[q] = RandomRGB.Next(0, 255);
-                    }
-
-                    ccolor = Color.FromArgb(COLORRGB[0], COLORRGB[1], COLORRGB[2]);
-                                    
-                    layerItem.Text = cArr[x, 0];
-                    layerItem.SubItems.Add("    ");
-                    layerItem.SubItems[1].BackColor =ccolor;
-
-                    layerItem.UseItemStyleForSubItems = false;
-                    ValueListBox.Items.Add(layerItem);
-                }
-            }
-
-            else
-            { }
-        }      
-
-        private void Color_List_Click(object sender, EventArgs e)
-        {
-            
-            System.Drawing.Point mousepos = ValueListBox.PointToClient(Control.MousePosition);
-            ListViewHitTestInfo Ht = ValueListBox.HitTest(mousepos);
-            int hitColumn = Ht.Item.SubItems.IndexOf(Ht.SubItem);
-            MessageBox.Show(hitColumn.ToString());
-            //if (hitColumn == 1)
-            //{
-            //    if (colorDialog1.ShowDialog() == DialogResult.OK)
-            //    {
-            //        Color CD_color = colorDialog1.Color;
-            //        Ht.Item.SubItems[1].BackColor = CD_color;
-            //        ValueListBox.FullRowSelect = false;
-            //        selectedValue = Convert.ToInt32(Ht.Item.SubItems[0].Text);
-            //        selectedColor = CD_color;
-            //    }
-            //    else
-            //    { }
-            //}
-            //else
-            //{ }
-        }
-
-
-  
-        /// <summary>
-        /// Defines a color ramp.
-        /// </summary>
-        private class ColorRamp
-        {
-            public Color fromColor { get; set; }
-            public Color toColor { get; set; }
-        }
     }
 }

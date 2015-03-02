@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-
+using System.Windows.Forms;
 
 namespace ARES
 {
@@ -24,6 +24,14 @@ namespace ARES
 
         protected override void OnClick()
         {
+            try
+            {
+                Painter.StopPainting();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
+            }
         }
     }
 }

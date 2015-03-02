@@ -109,6 +109,9 @@ namespace ARES
             StopPaintingButton stopPaintingButton = AddIn.FromID<StopPaintingButton>(ThisAddIn.IDs.StopPaintingButton);
             stopPaintingButton.IsEnabled = true;
 
+            SavePaintsButton savePaintsButton = AddIn.FromID<SavePaintsButton>(ThisAddIn.IDs.SavePaintsButton);
+            savePaintsButton.IsEnabled = true;
+
             FreeDrawTool freeDrawTool = AddIn.FromID<FreeDrawTool>(ThisAddIn.IDs.FreeDrawTool);
             freeDrawTool.IsEnabled = true;
 
@@ -132,11 +135,39 @@ namespace ARES
             StopPaintingButton stopPaintingButton = AddIn.FromID<StopPaintingButton>(ThisAddIn.IDs.StopPaintingButton);
             stopPaintingButton.IsEnabled = false;
 
+            SavePaintsButton savePaintsButton = AddIn.FromID<SavePaintsButton>(ThisAddIn.IDs.SavePaintsButton);
+            savePaintsButton.IsEnabled = false;
+
             FreeDrawTool freeDrawTool = AddIn.FromID<FreeDrawTool>(ThisAddIn.IDs.FreeDrawTool);
             freeDrawTool.IsEnabled = false;
 
             EraseTool eraseTool = AddIn.FromID<EraseTool>(ThisAddIn.IDs.EraseTool);
             eraseTool.IsEnabled = false;
+        }
+
+        /// <summary>
+        /// Save all edits to file.
+        /// </summary>
+        public static void SavePaints()
+        {
+            Raster.SaveEdits(activeLayer, Paints);    
+        }
+
+        /// <summary>
+        /// Get the paint symble of painted pixel.
+        /// </summary>
+        /// <param name="filledColor">Fill color for the symbol</param>
+        /// <returns></returns>
+        public static ISimpleFillSymbol GetPaintSymbol(IColor filledColor)
+        {
+            ISimpleFillSymbol selectionSymbol = new SimpleFillSymbolClass();
+            selectionSymbol.Color = filledColor;
+            ISimpleLineSymbol selectionOutlineSymbol = new SimpleLineSymbolClass();
+            selectionOutlineSymbol.Color = new RgbColorClass() { Red = 255, Green = 255, Blue = 0 };
+            selectionOutlineSymbol.Width = 2;
+            selectionSymbol.Outline = selectionOutlineSymbol;
+
+            return selectionSymbol;
         }
 
         #endregion

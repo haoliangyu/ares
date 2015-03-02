@@ -34,6 +34,7 @@ namespace ARES
         #region Attributes
 
         private int row = 0;
+
         private int col = 0;
 
         #endregion
@@ -67,6 +68,16 @@ namespace ARES
         #endregion      
 
         #region Methods
+
+        /// <summary>
+        /// Indicate whether the position is identical to the given one.
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <returns></returns>
+        public bool Equals(Position pos)
+        {
+            return (pos.Column == this.col) && (pos.Row == this.row);
+        }
 
         /// <summary>
         /// Indicate whether the position is within the given extent.

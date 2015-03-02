@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-
 namespace ARES
 {
-    /// <summary>
-    /// Defines functions and behaviors of Erase tool on the Raster Painter toolbar.
-    /// </summary>
-    public class EraseTool : ESRI.ArcGIS.Desktop.AddIns.Button
+    public class EraseTool : ESRI.ArcGIS.Desktop.AddIns.Tool
     {
         public EraseTool()
         {
             this.Enabled = false;
         }
+
+        #region Attributes
+
+        private Envelope layerExetent = null;
+
+        private Position preMousePos = null;
+
+        #endregion
 
         #region Properties
 
@@ -28,13 +32,6 @@ namespace ARES
         }
 
         #endregion
-
-        protected override void OnClick()
-        {
-        }
-
-        protected override void OnUpdate()
-        {
-        }
     }
+
 }

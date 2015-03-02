@@ -161,6 +161,8 @@
     </Compile>
     <Compile Include="Editor\GoToPixelTool.cs" />
     <Compile Include="Editor\Math.cs" />
+    <Compile Include="Painter\EraseTool.cs" />
+    <Compile Include="Painter\Menu\SavePaintsButton.cs" />
     <Compile Include="Painter\TestButton.cs" />
     <Compile Include="Painter\ValueSymbolForm.cs">
       <SubType>UserControl</SubType>
@@ -168,7 +170,6 @@
     <Compile Include="Painter\ValueSymbolForm.designer.cs">
       <DependentUpon>ValueSymbolForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Painter\EraseTool.cs" />
     <Compile Include="Painter\FreeDrawTool.cs" />
     <Compile Include="Painter\Menu\StartPaintingButton.cs" />
     <Compile Include="Painter\Menu\StopPaintingButton.cs" />
@@ -312,10 +313,16 @@
     <AddInContent Include="Images\StartPaintingButton.png" />
   </ItemGroup>
   <ItemGroup>
-    <AddInContent Include="Images\EraseTool.png" />
+    <AddInContent Include="Images\TestButton.png" />
   </ItemGroup>
   <ItemGroup>
-    <AddInContent Include="Images\TestButton.png" />
+    <AddInContent Include="Images\SavePaintsButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AddInContent Include="Images\SavePaintsButton_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AddInContent Include="Images\EraseTool.png" />
   </ItemGroup>
   <PropertyGroup>
     <ZipFileExtension>esriAddIn</ZipFileExtension>

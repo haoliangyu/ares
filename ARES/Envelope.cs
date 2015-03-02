@@ -83,9 +83,9 @@ namespace ARES
         /// <param name="minCol">Minimal colmun index</param>
         /// <param name="maxRow">Maxmum row index</param>
         /// <param name="maxCol">Maxmum column index</param>
-        public Envelope(int minRow, int minCol, int maxRow, int maxCol)
+        public Envelope(int minRow, int maxRow, int minCol, int maxCol)
         {
-            SetExtent(minRow, minCol, maxRow, maxCol);    
+            SetExtent(minRow, maxRow, minCol, maxCol);    
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace ARES
         /// <param name="minCol">Minimal colmun index</param>
         /// <param name="maxRow">Maxmum row index</param>
         /// <param name="maxCol">Maxmum column index</param>
-        public void SetExtent(int minRow, int minCol, int maxRow, int maxCol)
+        public void SetExtent(int minRow, int maxRow, int minCol, int maxCol)
         {
             if ((minRow <= maxRow) && (minCol <= maxCol))
             {
@@ -131,7 +131,7 @@ namespace ARES
         /// <param name="brCorner">Bottom-right corner of the envelope.</param>
         public void SetExtent(Position tlCorner, Position brCorner)
         {
-            SetExtent(tlCorner.Row, tlCorner.Column, brCorner.Row, brCorner.Column);
+            SetExtent(tlCorner.Row, brCorner.Row, tlCorner.Column, brCorner.Column);
         }
 
         /// <summary>

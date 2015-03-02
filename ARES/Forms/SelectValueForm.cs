@@ -22,6 +22,12 @@ namespace ARES.Forms
             this.DialogResult = DialogResult.Cancel;
         }
 
+        #region Attributes
+
+        private List<string> selectedValues = new List<string>();
+                              
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -39,23 +45,45 @@ namespace ARES.Forms
         /// Get the list of selected values.
         /// </summary>
         /// <returns></returns>
-        public string[] SelectedValue
+        public string[] SelectedValues
         {
             get 
             {
-                if (valueListBox.SelectedIndices.Count == 0)
+                if (selectedValues.Count > 0)
+                {
+                    return selectedValues.ToArray();
+                }
+                else 
                 {
                     return null;
                 }
-
-                string[] values = new string[valueListBox.SelectedIndices.Count];
-                foreach (int index in valueListBox.SelectedIndices)
-                {
-                    values[index] = valueListBox.Items[index].ToString();
-                }
-
-                return values;    
             }
+        }
+
+        /// <summary>
+        /// Set a value indicating whether adding new value is possible.
+        /// </summary>
+        public bool NewValue
+        {
+            set { newButton.Visible = value; }    
+        }
+
+        /// <summary>
+        /// Set a value indicating whether mulitselection is possible.
+        /// </summary>
+        public bool MultiSelect
+        {
+            set 
+            {
+                if (value)
+                {
+                    valueListBox.SelectionMode = SelectionMode.MultiExtended;
+                }
+                else
+                {
+                    valueListBox.SelectionMode = SelectionMode.One;    
+                }
+            }       
         }
 
         #endregion
@@ -65,12 +93,12 @@ namespace ARES.Forms
         /// <summary>
         /// Initialize values in the selection list.
         /// </summary>
-        /// <param name="valueNames"></param>
-        public void InitializeValues(string[] valueNames)
+        /// <param name="values"></param>
+        public void InitializeValues(string[] values)
         {
             valueListBox.Items.Clear();
                                   
-            valueListBox.Items.AddRange(valueNames);
+            valueListBox.Items.AddRange(values);
         }                 
 
         #endregion
@@ -95,8 +123,16 @@ namespace ARES.Forms
             this.Close();
         }
 
+        private void valueListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedValues.Clear();
+
+            foreach(object item in valueListBox.SelectedItems)
+            {
+                selectedValues.Add(item.ToString());
+            }
+        }
+
         #endregion
-
-
     }
 }

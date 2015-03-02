@@ -32,20 +32,23 @@
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.newButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // valueListBox
             // 
             this.valueListBox.FormattingEnabled = true;
             this.valueListBox.ItemHeight = 12;
-            this.valueListBox.Location = new System.Drawing.Point(14, 27);
+            this.valueListBox.Location = new System.Drawing.Point(12, 27);
             this.valueListBox.Name = "valueListBox";
-            this.valueListBox.Size = new System.Drawing.Size(178, 148);
+            this.valueListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.valueListBox.Size = new System.Drawing.Size(145, 148);
             this.valueListBox.TabIndex = 0;
+            this.valueListBox.SelectedIndexChanged += new System.EventHandler(this.valueListBox_SelectedIndexChanged);
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(36, 181);
+            this.okButton.Location = new System.Drawing.Point(165, 27);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 1;
@@ -55,7 +58,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(117, 181);
+            this.cancelButton.Location = new System.Drawing.Point(165, 56);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 2;
@@ -72,16 +75,30 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Value List";
             // 
+            // newButton
+            // 
+            this.newButton.Location = new System.Drawing.Point(163, 152);
+            this.newButton.Name = "newButton";
+            this.newButton.Size = new System.Drawing.Size(75, 23);
+            this.newButton.TabIndex = 4;
+            this.newButton.Text = "New Value";
+            this.newButton.UseVisualStyleBackColor = true;
+            // 
             // SelectValueForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(204, 209);
+            this.ClientSize = new System.Drawing.Size(249, 188);
+            this.Controls.Add(this.newButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.valueListBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SelectValueForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SelectValueForm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -94,5 +111,6 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button newButton;
     }
 }
