@@ -145,7 +145,48 @@ namespace ARES
 
             return Color.FromArgb(rgbColor.Red, rgbColor.Green, rgbColor.Blue);
         }
-                                              
+
+        /// <summary>
+        /// Indicates whether two Color classes represent the same color.
+        /// </summary>
+        /// <param name="color1"></param>
+        /// <param name="color2"></param>
+        /// <returns></returns>
+        public static bool Compare(Color color1, Color color2)
+        {
+            return (color1.R == color2.R) &&
+                   (color1.G == color2.G) &&
+                   (color1.B == color2.B) &&
+                   (color1.IsEmpty == color2.IsEmpty);
+        }
+
+        /// <summary>
+        /// Indicates whether two IColor classes represent the same color.
+        /// </summary>
+        /// <param name="color1"></param>
+        /// <param name="color2"></param>
+        /// <returns></returns>
+        public static bool Compare(IColor color1, IColor color2)
+        {
+            return (color1.RGB == color2.RGB) && (color1.NullColor == color2.NullColor);
+        }
+
+        /// <summary>
+        /// Indicates whether a IColor class and a Color class represent the same color.
+        /// </summary>
+        /// <param name="color1"></param>
+        /// <param name="color2"></param>
+        /// <returns></returns>
+        public static bool Compare(IColor color1, Color color2)
+        {
+            IRgbColor rgbColor1 = (IRgbColor)color1;
+
+            return (rgbColor1.Red == color2.R) &&
+                   (rgbColor1.Green == color2.G) &&
+                   (rgbColor1.Blue == color2.B) &&
+                   (rgbColor1.NullColor == color2.IsEmpty);
+        }
+
         #endregion
         
         #region Private Methods

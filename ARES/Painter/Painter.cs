@@ -160,7 +160,14 @@ namespace ARES
         /// <param name="fileName"></param>
         public static void SaveEditsAs(string fileName)
         {
-            Raster.SaveEditsAs(fileName, ActiveLayer, Paints);
+            try
+            {
+                Raster.SaveEditsAs(fileName, activeLayer, Paints);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
+            }
         }
 
         /// <summary>

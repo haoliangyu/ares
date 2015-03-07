@@ -29,21 +29,23 @@ namespace ARES
 
         protected override void OnClick()
         {
+            IRasterLayer rasterLayer = Painter.ActiveLayer;
+
+            RasterFileDialog saveFileDialog = new RasterFileDialog(FileDialogType.Save);
+            saveFileDialog.InitialDirectory = Path.GetDirectoryName(rasterLayer.FilePath);
+            saveFileDialog.InitialFileName = Path.GetFileNameWithoutExtension(rasterLayer.FilePath) + "_edited";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Painter.SaveEditsAs(saveFileDialog.FileName);
+
+                Display.ClearElement(Painter.Paints.GetAllGraphicElements());
+                Painter.Paints.Clear();
+            }
+
             try
             {
-                IRasterLayer rasterLayer = Painter.ActiveLayer;
 
-                RasterFileDialog saveFileDialog = new RasterFileDialog(FileDialogType.Save);
-                saveFileDialog.InitialDirectory = Path.GetDirectoryName(rasterLayer.FilePath);
-                saveFileDialog.InitialFileName = Path.GetFileNameWithoutExtension(rasterLayer.FilePath) + "_edited";
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    Painter.SaveEditsAs(saveFileDialog.FileName);
-
-                    Display.ClearElement(Painter.Paints.GetAllGraphicElements());
-                    Painter.Paints.Clear();
-                }
             }
             catch (Exception ex)
             {

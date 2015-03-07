@@ -39,7 +39,7 @@
           <InitialPlacement height="300" width="300" state="pinned" position="right" />
         </DockableWindow>
         <DockableWindow id="RasterPainter_ValueSymbolForm" class="ValueSymbolForm+AddinImpl" caption="Raster Paint">
-          <InitialPlacement height="300" width="300" state="pinned" position="right" />
+          <InitialPlacement height="300" width="200" state="pinned" position="right" />
         </DockableWindow>
       </DockableWindows>
       <Menus>
