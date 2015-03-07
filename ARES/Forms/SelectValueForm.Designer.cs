@@ -33,6 +33,7 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.newButton = new System.Windows.Forms.Button();
+            this.selectAllButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // valueListBox
@@ -84,11 +85,22 @@
             this.newButton.Text = "New Value";
             this.newButton.UseVisualStyleBackColor = true;
             // 
+            // selectAllButton
+            // 
+            this.selectAllButton.Location = new System.Drawing.Point(162, 123);
+            this.selectAllButton.Name = "selectAllButton";
+            this.selectAllButton.Size = new System.Drawing.Size(75, 23);
+            this.selectAllButton.TabIndex = 5;
+            this.selectAllButton.Text = "Select All";
+            this.selectAllButton.UseVisualStyleBackColor = true;
+            this.selectAllButton.Click += new System.EventHandler(this.selectAllButton_Click);
+            // 
             // SelectValueForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(249, 188);
+            this.Controls.Add(this.selectAllButton);
             this.Controls.Add(this.newButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cancelButton);
@@ -112,5 +124,6 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button newButton;
+        private System.Windows.Forms.Button selectAllButton;
     }
 }

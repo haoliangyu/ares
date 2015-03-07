@@ -25,12 +25,16 @@ namespace ARES
         }
         
         /// <summary>
-        /// Initializes an instance of PixelCollection class with an existing list of raster cells. 
+        /// Initializes an instance of PixelCollection class with a list of pixels. 
         /// </summary>
-        /// <param name="rasterCells"></param>
-        public PixelCollection(List<Pixel> rasterCells)
+        /// <param name="pixels"></param>
+        public PixelCollection(IEnumerable<Pixel> pixels)
         {
-            pixelCollection = rasterCells;
+            pixelCollection = new List<Pixel>();
+            foreach (Pixel pixel in pixels)
+            {
+                this.Add(pixel);
+            }
         }
 
         #endregion
@@ -114,14 +118,23 @@ namespace ARES
         }
 
         /// <summary>
-        /// Searches for a cell that matches the certain condition. If not found, it returns null.
+        /// Searches for the first cell that matches the certain condition. If not found, it returns null.
         /// </summary>
-        /// <param name="column"></param>
-        /// <param name="row"></param>
-        /// <returns></returns>
+        /// <param name="match">The Predicate<Pixel> delegate that defines the conditions of the elements to search for.</param>
         public Pixel Find(Predicate<Pixel> match)
         {
             return pixelCollection.Find(match);
+        }
+
+        /// <summary>
+        /// Searches for a cell that matches the certain condition.
+        /// </summary>
+        /// <param name="match">The Predicate<Pixel> delegate that defines the conditions of the elements to search for.</param>
+        /// <returns></returns>
+        public PixelCollection FindAll(Predicate<Pixel> match)
+        {
+            List<Pixel> matches = pixelCollection.FindAll(match);
+            return new PixelCollection(matches);
         }
 
         /// <summary>

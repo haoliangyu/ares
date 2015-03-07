@@ -12,6 +12,8 @@ using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.DataSourcesRaster;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Desktop.AddIns;
+using ESRI.ArcGIS.Framework;
+using ESRI.ArcGIS.esriSystem;
 
 using System.Data;
 using System.Drawing;
@@ -41,11 +43,15 @@ namespace ARES
 
         private Color selectedColor = Color.Empty;
 
+        private IColor selectedIColor = null;
+
         private List<string> listedValue = new List<string>();
 
         private Random randomRGB = new Random();
 
         private int changeColorIndex = -1;
+
+        private IColorPalette colorPalette = new ColorPaletteClass();
 
         #endregion
 
@@ -75,23 +81,24 @@ namespace ARES
         {
             get 
             {
-                if (selectedColor == Color.Empty)
-                {
-                    return null;
-                }
-                else
-                {
-                    IRgbColor rgbColor = new RgbColorClass();
-                    rgbColor.Red = selectedColor.R;
-                    rgbColor.Green = selectedColor.G;
-                    rgbColor.Blue = selectedColor.B;
-                    return (IColor)rgbColor;
-                }
+                //if (selectedColor == Color.Empty)
+                //{
+                //    return null;
+                //}
+                //else
+                //{
+                //    IRgbColor rgbColor = new RgbColorClass();
+                //    rgbColor.Red = selectedColor.R;
+                //    rgbColor.Green = selectedColor.G;
+                //    rgbColor.Blue = selectedColor.B;
+                //    return (IColor)rgbColor;
+                //}
+                return selectedIColor;
             }
         }
 
         #endregion
-
+                                              
         #region Public Methods
 
         /// <summary>
@@ -111,6 +118,25 @@ namespace ARES
         {
             this.activeLayer = null;
             this.layerNameTextBox.Text = "";
+
+            valueListBox.Items.Clear();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        /// <summary>
+        /// Validate the input value.
+        /// </summary>
+        /// <param name="value">The input value.</param>
+        /// <param name="validValue">If validation successes, return the validated value. If not, return null.</param>
+        /// <returns>A value indicating whether the validationg is successful.</returns>
+        private bool ValueValidate(string value, out object validValue)
+        {
+            IRasterProps rasterProp = (IRasterProps)Painter.ActiveLayer.Raster;
+
+            return Raster.CSharpValue2PixelValue(value, rasterProp.PixelType, out validValue);
         }
 
         #endregion
@@ -144,7 +170,7 @@ namespace ARES
                 selectValueForm.ValueName = "Value";  
                 selectValueForm.NewValue = false;
                 selectValueForm.MultiSelect = true;
-                selectValueForm.Text = "Add new values for painting";
+                selectValueForm.Text = "Add Values";
 
                 if (selectValueForm.ShowDialog() == DialogResult.OK)
                 {
@@ -152,19 +178,19 @@ namespace ARES
 
                     foreach (string value in selectedValues)
                     {
-                            ListViewItem layerItem = new ListViewItem();
+                        ListViewItem layerItem = new ListViewItem();
 
-                            layerItem.Text = value;
-                            layerItem.SubItems.Add("    ");
+                        layerItem.Text = value;
+                        layerItem.SubItems.Add("    ");
  
-                            layerItem.SubItems[1].BackColor = Color.FromArgb(randomRGB.Next(0, 255),
-                                                                             randomRGB.Next(0, 255),
-                                                                             randomRGB.Next(0, 255));
+                        layerItem.SubItems[1].BackColor = Color.FromArgb(randomRGB.Next(0, 255),
+                                                                            randomRGB.Next(0, 255),
+                                                                            randomRGB.Next(0, 255));
 
-                            layerItem.UseItemStyleForSubItems = false;
-                            valueListBox.Items.Add(layerItem);
+                        layerItem.UseItemStyleForSubItems = false;
+                        valueListBox.Items.Add(layerItem);
 
-                            listedValue.Add(value);
+                        listedValue.Add(value);
                     }
                 }
             }
@@ -185,7 +211,7 @@ namespace ARES
             selectValueForm.InitializeValues(listedValue.ToArray());
             selectValueForm.ValueName = "Value";
             selectValueForm.NewValue = false;
-            selectValueForm.Text = "Remove values from painting";
+            selectValueForm.Text = "Remove Values";
             selectValueForm.MultiSelect = true;
 
             if (selectValueForm.ShowDialog() == DialogResult.OK)
@@ -208,20 +234,31 @@ namespace ARES
                     listedValue.Remove(item.Text);
                     valueListBox.Items.Remove(item);
                 }
+
+                
             }
         }
 
         private void ValueListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (valueListBox.SelectedItems.Count > 0)
+            try
             {
-                selectedValue = double.Parse(valueListBox.SelectedItems[0].Text);
-                selectedColor = valueListBox.SelectedItems[0].SubItems[1].BackColor;
+                if (valueListBox.SelectedItems.Count > 0)
+                {
+                    selectedValue = double.Parse(valueListBox.SelectedItems[0].Text);
+                    selectedColor = valueListBox.SelectedItems[0].SubItems[1].BackColor;
+                    selectedIColor = Display.Color2IColor(valueListBox.SelectedItems[0].SubItems[1].BackColor);
+                }
+                else
+                {
+                    selectedValue = null;
+                    selectedColor = Color.Empty;
+                    selectedIColor = null;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                selectedValue = null;
-                selectedColor = Color.Empty;
+                MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
             }
         }
 
@@ -236,10 +273,37 @@ namespace ARES
                     int hitColumn = Ht.Item.SubItems.IndexOf(Ht.SubItem);
                     changeColorIndex = Ht.Item.Index;
 
-                    // fill color
+                    // change fill color
                     if (hitColumn == 1)
                     {
-                        valueBoxContextMenuStrip.Show(Control.MousePosition);
+                        // Use .Net color dialog to select color
+                        // valueBoxContextMenuStrip.Show(Control.MousePosition);
+
+                        // Use ArcObject ColorPalette to select color (ArcGIS Style)
+                        tagRECT rect = new tagRECT();
+                        rect.left = Control.MousePosition.X;
+                        rect.bottom = Control.MousePosition.Y;
+
+                        IColor color = Display.Color2IColor(valueListBox.Items[changeColorIndex].SubItems[1].BackColor);
+
+                        if (colorPalette.TrackPopupMenu(rect, color, false, 0) &&
+                            !Display.Compare(colorPalette.Color, color))
+                        {
+                            valueListBox.Items[changeColorIndex].SubItems[1].BackColor = Display.IColor2Color(colorPalette.Color);
+
+                            // Redraw the paint symbol based on new fill color
+                            double value = double.Parse(valueListBox.Items[changeColorIndex].Text);
+                            PixelCollection pixels = Painter.Paints.FindAll(pixel => pixel.NewValue == value);
+                            if (pixels.Count > 0)
+                            {
+                                foreach (Pixel pixel in pixels)
+                                {
+                                    Display.RemoveElement(pixel.GraphicElement);
+                                    pixel.GraphicElement = Display.DrawBox(pixel.Position, Painter.GetPaintSymbol(colorPalette.Color), Painter.ActiveLayer);
+                                }
+                                ArcMap.Document.ActiveView.Refresh();
+                            }
+                        }
                     }
                 }
             }
@@ -252,11 +316,55 @@ namespace ARES
                 try
                 {
                     valueListBox.Items[changeColorIndex].SubItems[1].BackColor = colorDialog.Color;
+
+                    // Redraw the paint symbol based on new fill color
+                    double value = double.Parse(valueListBox.Items[changeColorIndex].Text);
+                    PixelCollection pixels = Painter.Paints.FindAll(pixel => pixel.NewValue == value);
+                    if (pixels.Count > 0)
+                    {
+                        IColor color = this.SelectedColor;
+                        foreach (Pixel pixel in pixels)
+                        {
+                            Display.RemoveElement(pixel.GraphicElement);
+                            pixel.GraphicElement = Display.DrawBox(pixel.Position, Painter.GetPaintSymbol(color), Painter.ActiveLayer);
+                            ArcMap.Document.ActiveView.Refresh();
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
                 }
+            }
+        }
+
+        private void addNewValueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SingleInputForm inputValueForm = new SingleInputForm("New Value:", "Add New Value");
+                inputValueForm.ValueValidateMethod = this.ValueValidate;
+
+                if ((inputValueForm.ShowDialog() == DialogResult.OK) &&
+                    !listedValue.Contains(Convert.ToString(inputValueForm.Value)))
+                {
+                    ListViewItem layerItem = new ListViewItem();
+
+                    layerItem.Text = Convert.ToString(inputValueForm.Value);
+                    layerItem.SubItems.Add("    ");
+
+                    layerItem.SubItems[1].BackColor = Color.FromArgb(randomRGB.Next(0, 255),
+                                                                        randomRGB.Next(0, 255),
+                                                                        randomRGB.Next(0, 255));
+
+                    layerItem.UseItemStyleForSubItems = false;
+                    valueListBox.Items.Add(layerItem);
+                    listedValue.Add(layerItem.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
             }
         }
 
@@ -295,7 +403,5 @@ namespace ARES
             }
 
         }
-
-
     }
 }

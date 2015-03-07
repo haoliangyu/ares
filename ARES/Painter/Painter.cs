@@ -112,6 +112,9 @@ namespace ARES
             SavePaintsButton savePaintsButton = AddIn.FromID<SavePaintsButton>(ThisAddIn.IDs.SavePaintsButton);
             savePaintsButton.IsEnabled = true;
 
+            SavePaintsAsButton savePaintAsButton = AddIn.FromID<SavePaintsAsButton>(ThisAddIn.IDs.SavePaintsAsButton);
+            savePaintAsButton.IsEnabled = true;
+
             FreeDrawTool freeDrawTool = AddIn.FromID<FreeDrawTool>(ThisAddIn.IDs.FreeDrawTool);
             freeDrawTool.IsEnabled = true;
 
@@ -129,7 +132,7 @@ namespace ARES
             Display.ClearElement(paints.GetAllGraphicElements());
             paints.Clear();
 
-            StartPaintingButton startPaintingButton = AddIn.FromID<StartPaintingButton>(ThisAddIn.IDs.StartEditingButton);
+            StartPaintingButton startPaintingButton = AddIn.FromID<StartPaintingButton>(ThisAddIn.IDs.StartPaintingButton);
             startPaintingButton.IsEnabled = true;
 
             StopPaintingButton stopPaintingButton = AddIn.FromID<StopPaintingButton>(ThisAddIn.IDs.StopPaintingButton);
@@ -138,11 +141,33 @@ namespace ARES
             SavePaintsButton savePaintsButton = AddIn.FromID<SavePaintsButton>(ThisAddIn.IDs.SavePaintsButton);
             savePaintsButton.IsEnabled = false;
 
+            SavePaintsAsButton savePaintAsButton = AddIn.FromID<SavePaintsAsButton>(ThisAddIn.IDs.SavePaintsAsButton);
+            savePaintAsButton.IsEnabled = false;
+
             FreeDrawTool freeDrawTool = AddIn.FromID<FreeDrawTool>(ThisAddIn.IDs.FreeDrawTool);
             freeDrawTool.IsEnabled = false;
 
             EraseTool eraseTool = AddIn.FromID<EraseTool>(ThisAddIn.IDs.EraseTool);
             eraseTool.IsEnabled = false;
+
+            ValueSymbolForm valueSymbolForm = AddIn.FromID<ValueSymbolForm.AddinImpl>(ThisAddIn.IDs.ValueSymbolForm).UI;
+            valueSymbolForm.ClearLayer();
+        }
+
+        /// <summary>
+        /// Save the edition as a specified file.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public static void SaveEditsAs(string fileName)
+        {
+            try
+            {
+                Raster.SaveEditsAs(fileName, activeLayer, Paints);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
+            }
         }
 
         /// <summary>

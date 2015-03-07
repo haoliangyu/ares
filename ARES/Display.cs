@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Threading;
 using System.Collections.Generic;
+using System.Drawing;
 
 using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Display;
@@ -102,7 +103,7 @@ namespace ARES
                 ArcMap.Document.ActiveView.Refresh();
             }
         }
-
+                                            
         /// <summary>
         /// Remvoe graphic box symbols.
         /// </summary>
@@ -116,7 +117,76 @@ namespace ARES
 
             ArcMap.Document.ActiveView.Refresh();
         }
-                                                                                  
+
+        /// <summary>
+        /// Covert a .Net Color class to an ArcObject IColor class.
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        public static IColor Color2IColor(Color color)
+        {
+            IRgbColor rgbColor = new RgbColorClass();
+            rgbColor.NullColor = color.IsEmpty;
+            rgbColor.Red = color.R;
+            rgbColor.Green = color.G;
+            rgbColor.Blue = color.B;
+
+            return (IColor)rgbColor;
+        }
+
+        /// <summary>
+        /// Covert an ArcObject IColor class to a .Net Color class.
+        /// </summary>
+        /// <param name="icolor"></param>
+        /// <returns></returns>
+        public static Color IColor2Color(IColor icolor)
+        {
+            IRgbColor rgbColor = (IRgbColor)icolor;
+
+            return Color.FromArgb(rgbColor.Red, rgbColor.Green, rgbColor.Blue);
+        }
+
+        /// <summary>
+        /// Indicates whether two Color classes represent the same color.
+        /// </summary>
+        /// <param name="color1"></param>
+        /// <param name="color2"></param>
+        /// <returns></returns>
+        public static bool Compare(Color color1, Color color2)
+        {
+            return (color1.R == color2.R) &&
+                   (color1.G == color2.G) &&
+                   (color1.B == color2.B) &&
+                   (color1.IsEmpty == color2.IsEmpty);
+        }
+
+        /// <summary>
+        /// Indicates whether two IColor classes represent the same color.
+        /// </summary>
+        /// <param name="color1"></param>
+        /// <param name="color2"></param>
+        /// <returns></returns>
+        public static bool Compare(IColor color1, IColor color2)
+        {
+            return (color1.RGB == color2.RGB) && (color1.NullColor == color2.NullColor);
+        }
+
+        /// <summary>
+        /// Indicates whether a IColor class and a Color class represent the same color.
+        /// </summary>
+        /// <param name="color1"></param>
+        /// <param name="color2"></param>
+        /// <returns></returns>
+        public static bool Compare(IColor color1, Color color2)
+        {
+            IRgbColor rgbColor1 = (IRgbColor)color1;
+
+            return (rgbColor1.Red == color2.R) &&
+                   (rgbColor1.Green == color2.G) &&
+                   (rgbColor1.Blue == color2.B) &&
+                   (rgbColor1.NullColor == color2.IsEmpty);
+        }
+
         #endregion
         
         #region Private Methods
