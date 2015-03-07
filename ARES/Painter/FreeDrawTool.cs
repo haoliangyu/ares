@@ -29,6 +29,8 @@ namespace ARES
 
         private Envelope layerExetent = null;
 
+        private Position iniMousePos = null;
+
         private Position preMousePos = null;
 
         private double? selectedValue = null;
@@ -51,20 +53,6 @@ namespace ARES
         #endregion
 
         #region Events
-
-        protected override bool OnDeactivate()
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
-            }
-
-            return base.OnDeactivate();
-        }
 
         protected override void OnActivate()
         {
@@ -99,20 +87,21 @@ namespace ARES
         {
             base.OnMouseDown(arg);
 
-            ValueSymbolForm valueSymbolForm = AddIn.FromID<ValueSymbolForm.AddinImpl>(ThisAddIn.IDs.ValueSymbolForm).UI;
-            selectedValue = valueSymbolForm.SelectedValue;
-            selectedColor = valueSymbolForm.SelectedColor;
-
-            if ((Painter.ActiveLayer == null) || 
-                (arg.Button != MouseButtons.Left) ||
-                (selectedValue == null))
-            {
-                return;
-            }
-
             try
             {
+                ValueSymbolForm valueSymbolForm = AddIn.FromID<ValueSymbolForm.AddinImpl>(ThisAddIn.IDs.ValueSymbolForm).UI;
+                selectedValue = valueSymbolForm.SelectedValue;
+                selectedColor = valueSymbolForm.SelectedColor;
+
+                if ((Painter.ActiveLayer == null) ||
+                    (arg.Button != MouseButtons.Left) ||
+                    (selectedValue == null))
+                {
+                    return;
+                }
+
                 preMousePos = Raster.ScreenCoor2RasterCoor(arg.X, arg.Y, Painter.ActiveLayer);
+                iniMousePos = preMousePos;
             }
             catch (Exception ex)
             {
@@ -136,21 +125,7 @@ namespace ARES
                 Position mousePos = Raster.ScreenCoor2RasterCoor(arg.X, arg.Y, Painter.ActiveLayer);
                 if (layerExetent.Contains(mousePos) && !(mousePos.Equals(preMousePos)))
                 {
-                    Pixel paintedPixel = Painter.Paints[mousePos];
-                    if (paintedPixel == null)
-                    {
-                        paintedPixel = new Pixel(Raster.GetValue(mousePos, Painter.ActiveLayer), mousePos);
-                        Painter.Paints.Add(paintedPixel);
-                    }
-                    else 
-                    {
-                        Display.RemoveElement(paintedPixel.GraphicElement);
-                    }
-                    paintedPixel.NewValue = Convert.ToDouble(selectedValue);
-                    paintedPixel.GraphicElement = Display.DrawBox(mousePos,
-                                          Painter.GetPaintSymbol(selectedColor),
-                                          Painter.ActiveLayer);
-
+                    PaintPixel(mousePos);
                     preMousePos = mousePos;        
                 }
             }
@@ -164,7 +139,58 @@ namespace ARES
         {
             base.OnMouseDown(arg);
 
+            try
+            {
+                if ((Painter.ActiveLayer == null) ||
+                    (arg.Button != MouseButtons.Left) ||
+                    (selectedValue == null))
+                {
+                    return;
+                }
+                else
+                {
+                    // If the mouse does not move, paint at the clicked pixel
+                    Position mousePos = Raster.ScreenCoor2RasterCoor(arg.X, arg.Y, Painter.ActiveLayer);
+                    if (layerExetent.Contains(mousePos) && iniMousePos.Equals(mousePos))
+                    {
+                        PaintPixel(mousePos);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
+            }
+
+            iniMousePos = null;
             preMousePos = null;
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        /// <summary>
+        /// Paint the pixel at given position.
+        /// </summary>
+        /// <param name="pos"></param>
+        private void PaintPixel(Position pos)
+        {
+            Pixel paintedPixel = Painter.Paints[pos];
+            if (paintedPixel == null)
+            {
+                paintedPixel = new Pixel(Raster.GetValue(pos, Painter.ActiveLayer), pos);
+                Painter.Paints.Add(paintedPixel);
+            }
+            else
+            {
+                Display.RemoveElement(paintedPixel.GraphicElement);
+            }
+            paintedPixel.NewValue = Convert.ToDouble(selectedValue);
+            paintedPixel.GraphicElement = Display.DrawBox(pos,
+                                  Painter.GetPaintSymbol(selectedColor),
+                                  Painter.ActiveLayer);
+
         }
 
         #endregion

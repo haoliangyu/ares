@@ -12,6 +12,7 @@ using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.DataSourcesRaster;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Desktop.AddIns;
+using ESRI.ArcGIS.Framework;
 
 using System.Data;
 using System.Drawing;
@@ -46,6 +47,8 @@ namespace ARES
         private Random randomRGB = new Random();
 
         private int changeColorIndex = -1;
+
+        private IColorPalette colorPalette = new ColorPaletteClass();
 
         #endregion
 
@@ -111,6 +114,8 @@ namespace ARES
         {
             this.activeLayer = null;
             this.layerNameTextBox.Text = "";
+
+            valueListBox.Items.Clear();
         }
 
         #endregion
@@ -144,7 +149,7 @@ namespace ARES
                 selectValueForm.ValueName = "Value";  
                 selectValueForm.NewValue = false;
                 selectValueForm.MultiSelect = true;
-                selectValueForm.Text = "Add new values for painting";
+                selectValueForm.Text = "Add Values";
 
                 if (selectValueForm.ShowDialog() == DialogResult.OK)
                 {
@@ -185,7 +190,7 @@ namespace ARES
             selectValueForm.InitializeValues(listedValue.ToArray());
             selectValueForm.ValueName = "Value";
             selectValueForm.NewValue = false;
-            selectValueForm.Text = "Remove values from painting";
+            selectValueForm.Text = "Remove Values";
             selectValueForm.MultiSelect = true;
 
             if (selectValueForm.ShowDialog() == DialogResult.OK)
@@ -208,20 +213,29 @@ namespace ARES
                     listedValue.Remove(item.Text);
                     valueListBox.Items.Remove(item);
                 }
+
+                
             }
         }
 
         private void ValueListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (valueListBox.SelectedItems.Count > 0)
+            try
             {
-                selectedValue = double.Parse(valueListBox.SelectedItems[0].Text);
-                selectedColor = valueListBox.SelectedItems[0].SubItems[1].BackColor;
+                if (valueListBox.SelectedItems.Count > 0)
+                {
+                    selectedValue = double.Parse(valueListBox.SelectedItems[0].Text);
+                    selectedColor = valueListBox.SelectedItems[0].SubItems[1].BackColor;
+                }
+                else
+                {
+                    selectedValue = null;
+                    selectedColor = Color.Empty;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                selectedValue = null;
-                selectedColor = Color.Empty;
+                MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
             }
         }
 
@@ -236,7 +250,7 @@ namespace ARES
                     int hitColumn = Ht.Item.SubItems.IndexOf(Ht.SubItem);
                     changeColorIndex = Ht.Item.Index;
 
-                    // fill color
+                    // change fill color
                     if (hitColumn == 1)
                     {
                         valueBoxContextMenuStrip.Show(Control.MousePosition);
@@ -252,6 +266,20 @@ namespace ARES
                 try
                 {
                     valueListBox.Items[changeColorIndex].SubItems[1].BackColor = colorDialog.Color;
+
+                    // Redraw the paint symbol based on new fill color
+                    double value = double.Parse(valueListBox.Items[changeColorIndex].Text);
+                    PixelCollection pixels = Painter.Paints.FindAll(pixel => pixel.NewValue == value);
+                    if (pixels.Count > 0)
+                    {
+                        IColor color = this.SelectedColor;
+                        foreach (Pixel pixel in pixels)
+                        {
+                            Display.RemoveElement(pixel.GraphicElement);
+                            pixel.GraphicElement = Display.DrawBox(pixel.Position, Painter.GetPaintSymbol(color), Painter.ActiveLayer);
+                            ArcMap.Document.ActiveView.Refresh();
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {

@@ -78,10 +78,12 @@ namespace ARES.Forms
                 if (value)
                 {
                     valueListBox.SelectionMode = SelectionMode.MultiExtended;
+                    selectAllButton.Visible = true;
                 }
                 else
                 {
-                    valueListBox.SelectionMode = SelectionMode.One;    
+                    valueListBox.SelectionMode = SelectionMode.One;
+                    selectAllButton.Visible = false;
                 }
             }       
         }
@@ -130,6 +132,14 @@ namespace ARES.Forms
             foreach(object item in valueListBox.SelectedItems)
             {
                 selectedValues.Add(item.ToString());
+            }
+        }
+
+        private void selectAllButton_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < valueListBox.Items.Count; i++)
+            {
+                valueListBox.SetSelected(i, true);
             }
         }
 

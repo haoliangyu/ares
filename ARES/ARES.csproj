@@ -162,6 +162,7 @@
     <Compile Include="Editor\GoToPixelTool.cs" />
     <Compile Include="Editor\Math.cs" />
     <Compile Include="Painter\EraseTool.cs" />
+    <Compile Include="Painter\Menu\SavePaintsAsButton.cs" />
     <Compile Include="Painter\Menu\SavePaintsButton.cs" />
     <Compile Include="Painter\TestButton.cs" />
     <Compile Include="Painter\ValueSymbolForm.cs">

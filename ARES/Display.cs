@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Threading;
 using System.Collections.Generic;
+using System.Drawing;
 
 using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Display;
@@ -102,7 +103,7 @@ namespace ARES
                 ArcMap.Document.ActiveView.Refresh();
             }
         }
-
+                                            
         /// <summary>
         /// Remvoe graphic box symbols.
         /// </summary>
@@ -116,7 +117,35 @@ namespace ARES
 
             ArcMap.Document.ActiveView.Refresh();
         }
-                                                                                  
+
+        /// <summary>
+        /// Covert a .Net Color class to an ArcObject IColor class.
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        public static IColor Color2IColor(Color color)
+        {
+            IRgbColor rgbColor = new RgbColorClass();
+            rgbColor.NullColor = color.IsEmpty;
+            rgbColor.Red = color.R;
+            rgbColor.Green = color.G;
+            rgbColor.Blue = color.B;
+
+            return (IColor)rgbColor;
+        }
+
+        /// <summary>
+        /// Covert an ArcObject IColor class to a .Net Color class.
+        /// </summary>
+        /// <param name="icolor"></param>
+        /// <returns></returns>
+        public static Color IColor2Color(IColor icolor)
+        {
+            IRgbColor rgbColor = (IRgbColor)icolor;
+
+            return Color.FromArgb(rgbColor.Red, rgbColor.Green, rgbColor.Blue);
+        }
+                                              
         #endregion
         
         #region Private Methods
