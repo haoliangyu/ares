@@ -56,18 +56,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 12);
+            this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Identifying";
             // 
             // layerNameTextBox
             // 
-            this.layerNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.layerNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.layerNameTextBox.Location = new System.Drawing.Point(98, 9);
             this.layerNameTextBox.Name = "layerNameTextBox";
             this.layerNameTextBox.ReadOnly = true;
-            this.layerNameTextBox.Size = new System.Drawing.Size(192, 21);
+            this.layerNameTextBox.Size = new System.Drawing.Size(192, 20);
             this.layerNameTextBox.TabIndex = 1;
             // 
             // label2
@@ -75,7 +75,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 38);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 12);
+            this.label2.Size = new System.Drawing.Size(91, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Upper Left Corner";
             // 
@@ -84,18 +84,16 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(153, 38);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 12);
+            this.label3.Size = new System.Drawing.Size(98, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "Lower Right Corner";
             // 
             // tlPosTextBox
             // 
-            this.tlPosTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tlPosTextBox.Location = new System.Drawing.Point(8, 53);
             this.tlPosTextBox.Name = "tlPosTextBox";
             this.tlPosTextBox.ReadOnly = true;
-            this.tlPosTextBox.Size = new System.Drawing.Size(135, 21);
+            this.tlPosTextBox.Size = new System.Drawing.Size(135, 20);
             this.tlPosTextBox.TabIndex = 4;
             // 
             // brPosTextBox
@@ -103,14 +101,14 @@
             this.brPosTextBox.Location = new System.Drawing.Point(155, 53);
             this.brPosTextBox.Name = "brPosTextBox";
             this.brPosTextBox.ReadOnly = true;
-            this.brPosTextBox.Size = new System.Drawing.Size(135, 21);
+            this.brPosTextBox.Size = new System.Drawing.Size(135, 20);
             this.brPosTextBox.TabIndex = 5;
             // 
             // tabControl
             // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.valueTabPage);
             this.tabControl.Controls.Add(this.statTabPage);
             this.tabControl.Location = new System.Drawing.Point(8, 80);
@@ -122,10 +120,10 @@
             // valueTabPage
             // 
             this.valueTabPage.Controls.Add(this.rasterGridView);
-            this.valueTabPage.Location = new System.Drawing.Point(4, 21);
+            this.valueTabPage.Location = new System.Drawing.Point(4, 22);
             this.valueTabPage.Name = "valueTabPage";
             this.valueTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.valueTabPage.Size = new System.Drawing.Size(274, 192);
+            this.valueTabPage.Size = new System.Drawing.Size(274, 191);
             this.valueTabPage.TabIndex = 0;
             this.valueTabPage.Text = "Values";
             this.valueTabPage.UseVisualStyleBackColor = true;
@@ -146,16 +144,16 @@
             this.rasterGridView.NoDataValue = 0D;
             this.rasterGridView.ReadOnly = true;
             this.rasterGridView.RowTemplate.Height = 23;
-            this.rasterGridView.Size = new System.Drawing.Size(268, 186);
+            this.rasterGridView.Size = new System.Drawing.Size(268, 185);
             this.rasterGridView.TabIndex = 0;
             // 
             // statTabPage
             // 
             this.statTabPage.Controls.Add(this.statDataGridView);
-            this.statTabPage.Location = new System.Drawing.Point(4, 21);
+            this.statTabPage.Location = new System.Drawing.Point(4, 22);
             this.statTabPage.Name = "statTabPage";
             this.statTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.statTabPage.Size = new System.Drawing.Size(274, 192);
+            this.statTabPage.Size = new System.Drawing.Size(274, 191);
             this.statTabPage.TabIndex = 1;
             this.statTabPage.Text = "Statistic";
             this.statTabPage.UseVisualStyleBackColor = true;
@@ -173,7 +171,7 @@
             this.statDataGridView.Name = "statDataGridView";
             this.statDataGridView.ReadOnly = true;
             this.statDataGridView.RowTemplate.Height = 23;
-            this.statDataGridView.Size = new System.Drawing.Size(268, 186);
+            this.statDataGridView.Size = new System.Drawing.Size(268, 185);
             this.statDataGridView.TabIndex = 0;
             // 
             // fieldColumn

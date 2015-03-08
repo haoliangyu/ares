@@ -134,7 +134,6 @@ namespace ARES.Editor
             // Enable the ShowEditsButton
             ShowEditsButton showEditsButton = AddIn.FromID<ShowEditsButton>(ThisAddIn.IDs.ARES_Editor_ShowEditsButton);
             showEditsButton.IsEnabled = true;
-
         }
 
         /// <summary>
