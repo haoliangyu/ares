@@ -342,6 +342,11 @@ namespace ARES
         {
             try
             {
+                if (!Painter.IsPainting)
+                {
+                    return;
+                }
+
                 SingleInputForm inputValueForm = new SingleInputForm("New Value:", "Add New Value");
                 inputValueForm.ValueValidateMethod = this.ValueValidate;
 

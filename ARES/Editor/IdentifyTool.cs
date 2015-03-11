@@ -262,6 +262,8 @@ namespace ARES
                         }
                     }
 
+                    Display.Refresh();
+
                     double[,] values = Raster.GetValues(tlCorner, brCorner, activeLayer.Raster);
 
                     identifyForm.SetValues(tlCorner, brCorner, values);

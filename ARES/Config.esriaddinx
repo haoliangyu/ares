@@ -78,7 +78,7 @@
             <Tool refID="RasterEditor_GoToPixelTool" />
           </Items>
         </Toolbar>
-        <Toolbar id="RasterPainter_Raster_Painter" caption="Raster Paintor" showInitially="true">
+        <Toolbar id="RasterPainter_Raster_Painter" caption="Raster Painter" showInitially="true">
           <Items>
             <Menu refID="RasterPainter_Painter_Menu" />
             <Tool refID="RasterPainter_FreeDrawTool" separator="true" />

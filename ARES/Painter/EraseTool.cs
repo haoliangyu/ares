@@ -26,8 +26,6 @@ namespace ARES
 
         private Envelope layerExetent = null;
 
-        private Position iniMousePos = null;
-
         private Position preMousePos = null;
 
         #endregion
@@ -72,7 +70,6 @@ namespace ARES
             }
 
             preMousePos = Raster.ScreenCoor2RasterCoor(arg.X, arg.Y, Painter.ActiveLayer);
-            iniMousePos = preMousePos;
         }
 
         protected override void OnMouseMove(MouseEventArgs arg)
@@ -90,11 +87,10 @@ namespace ARES
                 if (layerExetent.Contains(mousePos) && !(mousePos.Equals(preMousePos)))
                 {
                     Pixel paintedPixel = Painter.Paints[mousePos];
-                    if (paintedPixel != null)
+                    if (paintedPixel != null)                                             
                     {
-                        Display.RemoveElement(paintedPixel.GraphicElement);
+                        Display.RemoveElement(paintedPixel.GraphicElement, true);          
                         Painter.Paints.Remove(mousePos);
-                        ArcMap.Document.ActiveView.Refresh();
                     }
                     preMousePos = mousePos;
                 }
@@ -119,14 +115,13 @@ namespace ARES
                 {
                     // If the mouse does not move, paint at the clicked pixel
                     Position mousePos = Raster.ScreenCoor2RasterCoor(arg.X, arg.Y, Painter.ActiveLayer);
-                    if (layerExetent.Contains(mousePos) && iniMousePos.Equals(mousePos))
+                    if (layerExetent.Contains(mousePos))
                     {
                         Pixel paintedPixel = Painter.Paints[mousePos];
                         if (paintedPixel != null)
                         {
-                            Display.RemoveElement(paintedPixel.GraphicElement);
+                            Display.RemoveElement(paintedPixel.GraphicElement,true);
                             Painter.Paints.Remove(mousePos);
-                            ArcMap.Document.ActiveView.Refresh();    
                         }
 
                     }
@@ -137,7 +132,6 @@ namespace ARES
                 MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
             }
 
-            iniMousePos = null;
             preMousePos = null;
         }
 

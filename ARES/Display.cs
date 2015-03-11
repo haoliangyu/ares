@@ -19,6 +19,14 @@ namespace ARES
         #region Public Methods
 
         /// <summary>
+        /// Refresh the ArcGIS Graphic Symbols.
+        /// </summary>
+        public static void Refresh()
+        {
+            ArcMap.Document.ActivatedView.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
+        }
+
+        /// <summary>
         /// Draw box symbol at the given position.
         /// </summary>
         /// <param name="pos">Position of pixel</param>
@@ -33,7 +41,7 @@ namespace ARES
 
                 if (refresh)
                 {
-                    ArcMap.Document.ActiveView.Refresh();
+                    Refresh();
                 }
 
                 return element;
@@ -100,7 +108,7 @@ namespace ARES
 
             if (refresh)
             {
-                ArcMap.Document.ActiveView.Refresh();
+                Refresh();
             }
         }
                                             
@@ -115,7 +123,7 @@ namespace ARES
                 RemoveElement(element);
             }
 
-            ArcMap.Document.ActiveView.Refresh();
+            Refresh();
         }
 
         /// <summary>
@@ -227,7 +235,6 @@ namespace ARES
             element.Geometry = (IGeometry)envelop;
 
             activeView.GraphicsContainer.AddElement(element, 0);
-            activeView.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
 
             return element;
         }

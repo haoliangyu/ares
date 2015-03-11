@@ -189,7 +189,7 @@ namespace ARES
             paintedPixel.NewValue = Convert.ToDouble(selectedValue);
             paintedPixel.GraphicElement = Display.DrawBox(pos,
                                   Painter.GetPaintSymbol(selectedColor),
-                                  Painter.ActiveLayer);
+                                  Painter.ActiveLayer,true);
 
         }
 
