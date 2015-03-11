@@ -121,6 +121,7 @@
     <Compile Include="Editor\Menu\ShowEditsButton.cs" />
     <Compile Include="Editor\Menu\StartEditingButton.cs" />
     <Compile Include="Editor\Menu\StopEditingButton.cs" />
+    <Compile Include="Envelope.cs" />
     <Compile Include="Forms\FileDialogType.cs" />
     <Compile Include="Forms\FormList.cs" />
     <Compile Include="Forms\RasterFileDialog.cs" />
@@ -130,11 +131,30 @@
     <Compile Include="Forms\SelectLayerForm.designer.cs">
       <DependentUpon>SelectLayerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectValueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectValueForm.designer.cs">
+      <DependentUpon>SelectValueForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SingleInputForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\SingleInputForm.designer.cs">
       <DependentUpon>SingleInputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Painter\EraseTool.cs" />
+    <Compile Include="Painter\FreeDrawTool.cs" />
+    <Compile Include="Painter\Menu\SavePaintsAsButton.cs" />
+    <Compile Include="Painter\Menu\SavePaintsButton.cs" />
+    <Compile Include="Painter\Menu\StartPaintingButton.cs" />
+    <Compile Include="Painter\Menu\StopPaintingButton.cs" />
+    <Compile Include="Painter\Painter.cs" />
+    <Compile Include="Painter\ValueSymbolForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Painter\ValueSymbolForm.designer.cs">
+      <DependentUpon>ValueSymbolForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Pixel.cs" />
     <Compile Include="PixelCollection.cs" />
@@ -163,6 +183,8 @@
     <AddInContent Include="Images\EditTool.png" />
     <AddInContent Include="Images\GoToPixelTool.png" />
     <AddInContent Include="Images\IdentifyTool.png" />
+    <AddInContent Include="Images\FreeDrawTool.png" />
+    <AddInContent Include="Images\EraseTool.png" />
     <Content Include="Images\NullColor32.png" />
     <Content Include="Images\OpenFile.ico" />
     <Content Include="Images\OpenFile.png" />
@@ -170,6 +192,9 @@
     <AddInContent Include="Images\SaveEditsButton.png" />
     <AddInContent Include="Images\StartEditingButton.png" />
     <AddInContent Include="Images\StopEditingButton.png" />
+    <AddInContent Include="Images\SavePaintsButton.png" />
+    <AddInContent Include="Images\StartPaintingButton.png" />
+    <AddInContent Include="Images\StopPaintingButton.png" />
     <Content Include="Images\Tool.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -185,10 +210,17 @@
     <EmbeddedResource Include="Forms\SelectLayerForm.resx">
       <DependentUpon>SelectLayerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectValueForm.resx">
+      <DependentUpon>SelectValueForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SingleInputForm.resx">
       <DependentUpon>SingleInputForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Painter\ValueSymbolForm.resx">
+      <DependentUpon>ValueSymbolForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <ZipFileExtension>esriAddIn</ZipFileExtension>
     <AddInTargetProduct>Desktop</AddInTargetProduct>

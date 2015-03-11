@@ -21,4 +21,6 @@ E:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.dll
 E:\Projects\C#\ArcGIS\ares\ARES\bin\Debug\ARES.dll
 E:\Projects\C#\ArcGIS\ares\ARES\bin\Debug\ARES.pdb
 E:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.pdb
+E:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.Forms.SelectValueForm.resources
+E:\Projects\C#\ArcGIS\ares\ARES\obj\Debug\ARES.Painter.ValueSymbolForm.resources
 E:\Projects\C#\ArcGIS\ares\ARES\bin\Debug\ARES.esriAddIn

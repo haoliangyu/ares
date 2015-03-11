@@ -14,7 +14,7 @@ namespace ARES
     /// </summary>
     public class PixelCollection : IEnumerable
     {
-        #region Construction Method
+        #region Constructors
 
         /// <summary>
         /// Initializes an empty instance of PixelCollection class.
@@ -23,14 +23,18 @@ namespace ARES
         {
             pixelCollection = new List<Pixel>();    
         }
-        
+
         /// <summary>
-        /// Initializes an instance of PixelCollection class with an existing list of raster cells. 
+        /// Initializes an instance of PixelCollection class with a list of pixels. 
         /// </summary>
-        /// <param name="rasterCells"></param>
-        public PixelCollection(List<Pixel> rasterCells)
+        /// <param name="pixels"></param>
+        public PixelCollection(IEnumerable<Pixel> pixels)
         {
-            pixelCollection = rasterCells;
+            pixelCollection = new List<Pixel>();
+            foreach (Pixel pixel in pixels)
+            {
+                this.Add(pixel);
+            }
         }
 
         #endregion
@@ -122,6 +126,17 @@ namespace ARES
         public Pixel Find(Predicate<Pixel> match)
         {
             return pixelCollection.Find(match);
+        }
+
+        /// <summary>
+        /// Searches for a cell that matches the certain condition.
+        /// </summary>
+        /// <param name="match">The Predicate<Pixel> delegate that defines the conditions of the elements to search for.</param>
+        /// <returns></returns>
+        public PixelCollection FindAll(Predicate<Pixel> match)
+        {
+            List<Pixel> matches = pixelCollection.FindAll(match);
+            return new PixelCollection(matches);
         }
 
         /// <summary>

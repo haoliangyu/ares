@@ -2,11 +2,11 @@
   <Name>ARES for ArcMap 10.2</Name>
   <AddInID>{b73b4d76-92ea-440f-98d9-a187c9f26f3c}</AddInID>
   <Description>ArcMap Raster Edit Suit</Description>
-  <Version>0.1.3</Version>
+  <Version>0.2.0</Version>
   <Image>Images\ARES.png</Image>
   <Author>Haoliang Yu, Xuan Wang, Jian Qing, Hancheng Nie</Author>
   <Company>Haoliang Yu, Xuan Wang, Jian Qing, Hancheng Nie</Company>
-  <Date>1/18/2015</Date>
+  <Date>3/11/2015</Date>
   <Targets>
     <Target name="Desktop" version="10.2" />
   </Targets>
@@ -22,6 +22,12 @@
         <Tool id="Editor_EditTool" class="ARES.Editor.EditTool" message="Select and edit pixels by draging box on the raster layer." caption="Edit" tip="Select &amp; Edit" category="Editor" image="Images\EditTool.png" onDemand="false" />
         <Button id="Editor_GoToPixelTool" class="ARES.Editor.GoToPixelTool" message="Show the pixel with specified row index and column index." caption="Go To Pixel" tip="Go To Pixel" category="Editor" image="Images\GoToPixelTool.png" />
         <Tool id="Editor_IdentifyTool" class="ARES.Editor.IdentifyTool" message="Identify values and calculate statistic of raster pixels for the topmost raster layer." caption="Identify" tip="Identify" category="Editor" image="Images\IdentifyTool.png" />
+        <Tool id="RasterPainter_FreeDrawTool" class="ARES.Painter.FreeDrawTool" message="Freely paint on the layer to edit values." caption="Paint" tip="Paint" category="RasterPainter" image="Images\FreeDrawTool.png" onDemand="false" />
+        <Tool id="RasterPainter_EraseTool" class="ARES.Painter.EraseTool" message="Erase painted value from cache." caption="Erase" tip="Erase" category="RasterPainter" image="Images\EraseTool.png" onDemand="false" />
+        <Button id="RasterPainter_SavePaintsAsButton" class="ARES.Painter.Menu.SavePaintsAsButton" message="Save painted values into a new raster file." caption="SavePaintsAs" tip="Save Paints As..." category="RasterPainter" onDemand="false" />
+        <Button id="RasterPainter_SavePaintsButton" class="ARES.Painter.Menu.SavePaintsButton" message="Save painted values into raster file." caption="SavePaints" tip="Save Paints" category="Save Paints" image="Images\SavePaintsButton.png" onDemand="false" />
+        <Button id="RasterPainter_StartPaintingButton" class="ARES.Painter.Menu.StartPaintingButton" message="Start a painting section." caption="StartPainting" tip="Start Painting" category="RasterPainter" image="Images\StartPaintingButton.png" />
+        <Button id="RasterPainter_StopPaintingButton" class="ARES.Painter.Menu.StopPaintingButton" message="Stop a painting section." caption="Stop Painting" tip="Stop Painting" category="RasterPainter" image="Images\StopPaintingButton.png" onDemand="false" />
       </Commands>
       <DockableWindows>
         <DockableWindow id="Editor_IdentifyForm" class="ARES.Editor.IdentifyForm+AddinImpl" caption="Raster Identify">
@@ -29,6 +35,9 @@
         </DockableWindow>
         <DockableWindow id="Editor_EditForm" class="ARES.Editor.EditForm+AddinImpl" caption="Raster Eidt">
           <InitialPlacement height="300" width="300" state="pinned" position="right" />
+        </DockableWindow>
+        <DockableWindow id="RasterPainter_ValueSymbolForm" class="ARES.Painter.ValueSymbolForm+AddinImpl" caption="Raster Paint">
+          <InitialPlacement height="300" width="200" state="pinned" position="right" />
         </DockableWindow>
       </DockableWindows>
       <Menus>
@@ -42,6 +51,14 @@
             <Button refID="Editor_ShowEditsButton" />
           </Items>
         </Menu>
+        <Menu id="RasterPainter_Menu" caption="Raster Painter" isRootMenu="false">
+          <Items>
+            <Button refID="RasterPainter_StartPaintingButton" />
+            <Button refID="RasterPainter_StopPaintingButton" />
+            <Button refID="RasterPainter_SavePaintsButton" separator="true" />
+            <Button refID="RasterPainter_SavePaintsAsButton" />
+          </Items>
+        </Menu>
       </Menus>
       <Toolbars>
         <Toolbar id="Editor_Toolbar" caption="Raster Editor" showInitially="true">
@@ -50,7 +67,14 @@
             <Tool refID="Editor_EditTool" separator="true" />
             <Tool refID="Editor_IdentifyTool" />
             <Tool refID="Editor_GoToPixelTool" />
-            <Tool refID="Haoliang_Yu,_Xuan_ARES_ArcGISAddin1"/>
+            <Tool refID="Haoliang_Yu,_Xuan_ARES_ArcGISAddin1" />
+          </Items>
+        </Toolbar>
+        <Toolbar id="RasterPainter_Toolbar" caption="Raster Painter" showInitially="true">
+          <Items>
+            <Menu refID="RasterPainter_Menu" />
+            <Tool refID="RasterPainter_FreeDrawTool" separator="true" />
+            <Tool refID="RasterPainter_EraseTool" />
           </Items>
         </Toolbar>
       </Toolbars>

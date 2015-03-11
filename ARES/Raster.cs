@@ -88,7 +88,7 @@ namespace ARES
             ESRI.ArcGIS.RuntimeManager.BindLicense(ESRI.ArcGIS.ProductCode.EngineOrDesktop);
 
             // Get the original file
-            IRasterLayer rasterLayer = (IRasterLayer)ARES.Editor.Editor.ActiveLayer;
+            IRasterLayer rasterLayer = activeLayer;
             IWorkspaceFactory workspaceFactory = new RasterWorkspaceFactoryClass();
             IRasterWorkspace rasterWorkspace = (IRasterWorkspace)workspaceFactory.OpenFromFile(System.IO.Path.GetDirectoryName(rasterLayer.FilePath), 0);
             IRasterDataset rasterDataset = rasterWorkspace.OpenRasterDataset(System.IO.Path.GetFileName(rasterLayer.FilePath));

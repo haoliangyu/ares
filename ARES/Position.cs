@@ -69,6 +69,16 @@ namespace ARES
         #region Methods
 
         /// <summary>
+        /// Indicate whether the position is identical to the given one.
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <returns></returns>
+        public bool Equals(Position pos)
+        {
+            return (pos.Column == this.col) && (pos.Row == this.row);
+        }
+
+        /// <summary>
         /// Indicate whether the position is within the given extent.
         /// </summary>
         /// <param name="tlCorner">Position of top-left corner.</param>

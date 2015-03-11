@@ -225,6 +225,8 @@ namespace ARES.Editor
                         }
                     }
 
+                    Display.Refresh();
+
                     IRasterLayer rasterLayer = (IRasterLayer)Editor.ActiveLayer;
                     double[,] values = Raster.GetValues(tlCorner, brCorner, rasterLayer.Raster);
                     editForm.SetValues(tlCorner, brCorner, values);
