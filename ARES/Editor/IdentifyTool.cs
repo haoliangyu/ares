@@ -258,7 +258,7 @@ namespace ARES.Editor
                         }
                     }
 
-                    Display.Refresh();
+                    Display.PartialRefresh();
 
                     double[,] values = Raster.GetValues(tlCorner, brCorner, activeLayer.Raster);
 

@@ -120,10 +120,10 @@ namespace ARES.Painter
                         Pixel paintedPixel = Painter.Paints[mousePos];
                         if (paintedPixel != null)
                         {
-                            Display.RemoveElement(paintedPixel.GraphicElement, true);
+                            Display.RemoveElement(paintedPixel.GraphicElement);
                             Painter.Paints.Remove(mousePos);
+                            Display.Refresh();
                         }
-
                     }
                 }
             }
@@ -131,7 +131,6 @@ namespace ARES.Painter
             {
                 MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
             }
-
             preMousePos = null;
         }
 

@@ -24,9 +24,9 @@
         <Tool id="Editor_IdentifyTool" class="ARES.Editor.IdentifyTool" message="Identify values and calculate statistic of raster pixels for the topmost raster layer." caption="Identify" tip="Identify" category="Editor" image="Images\IdentifyTool.png" />
         <Tool id="RasterPainter_FreeDrawTool" class="ARES.Painter.FreeDrawTool" message="Freely paint on the layer to edit values." caption="Paint" tip="Paint" category="RasterPainter" image="Images\FreeDrawTool.png" onDemand="false" />
         <Tool id="RasterPainter_EraseTool" class="ARES.Painter.EraseTool" message="Erase painted value from cache." caption="Erase" tip="Erase" category="RasterPainter" image="Images\EraseTool.png" onDemand="false" />
-        <Button id="RasterPainter_SavePaintsAsButton" class="ARES.Painter.Menu.SavePaintsAsButton" message="Save painted values into a new raster file." caption="SavePaintsAs" tip="Save Paints As..." category="RasterPainter" onDemand="false" />
-        <Button id="RasterPainter_SavePaintsButton" class="ARES.Painter.Menu.SavePaintsButton" message="Save painted values into raster file." caption="SavePaints" tip="Save Paints" category="Save Paints" image="Images\SavePaintsButton.png" onDemand="false" />
-        <Button id="RasterPainter_StartPaintingButton" class="ARES.Painter.Menu.StartPaintingButton" message="Start a painting section." caption="StartPainting" tip="Start Painting" category="RasterPainter" image="Images\StartPaintingButton.png" />
+        <Button id="RasterPainter_SavePaintsAsButton" class="ARES.Painter.Menu.SavePaintsAsButton" message="Save painted values into a new raster file." caption="Save Paints As..." tip="Save Paints As..." category="RasterPainter" onDemand="false" />
+        <Button id="RasterPainter_SavePaintsButton" class="ARES.Painter.Menu.SavePaintsButton" message="Save painted values into raster file." caption="Save Paints" tip="Save Paints" category="Save Paints" image="Images\SavePaintsButton.png" onDemand="false" />
+        <Button id="RasterPainter_StartPaintingButton" class="ARES.Painter.Menu.StartPaintingButton" message="Start a painting section." caption="Start Painting" tip="Start Painting" category="RasterPainter" image="Images\StartPaintingButton.png" />
         <Button id="RasterPainter_StopPaintingButton" class="ARES.Painter.Menu.StopPaintingButton" message="Stop a painting section." caption="Stop Painting" tip="Stop Painting" category="RasterPainter" image="Images\StopPaintingButton.png" onDemand="false" />
       </Commands>
       <DockableWindows>

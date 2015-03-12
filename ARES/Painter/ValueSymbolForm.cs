@@ -41,7 +41,7 @@ namespace ARES.Painter
 
         private double? selectedValue = null;
 
-        private Color selectedColor = Color.Empty;
+        // private Color selectedColor = Color.Empty;
 
         private IColor selectedIColor = null;
 
@@ -117,9 +117,12 @@ namespace ARES.Painter
         public void ClearLayer()
         {
             this.activeLayer = null;
+            this.selectedIColor = null;
+            this.selectedValue = null;
             this.layerNameTextBox.Text = "";
 
             valueListBox.Items.Clear();
+            listedValue.Clear();
         }
 
         #endregion
@@ -246,13 +249,13 @@ namespace ARES.Painter
                 if (valueListBox.SelectedItems.Count > 0)
                 {
                     selectedValue = double.Parse(valueListBox.SelectedItems[0].Text);
-                    selectedColor = valueListBox.SelectedItems[0].SubItems[1].BackColor;
+                    // selectedColor = valueListBox.SelectedItems[0].SubItems[1].BackColor;
                     selectedIColor = Display.Color2IColor(valueListBox.SelectedItems[0].SubItems[1].BackColor);
                 }
                 else
                 {
                     selectedValue = null;
-                    selectedColor = Color.Empty;
+                    // selectedColor = Color.Empty;
                     selectedIColor = null;
                 }
             }

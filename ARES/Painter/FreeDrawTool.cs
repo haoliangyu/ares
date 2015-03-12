@@ -81,6 +81,14 @@ namespace ARES.Painter
             base.OnActivate();
         }
 
+        protected override bool OnDeactivate()
+        {
+            selectedColor = null;
+            selectedValue = null;
+
+            return base.OnDeactivate();
+        }
+
         protected override void OnMouseDown(MouseEventArgs arg)
         {
             base.OnMouseDown(arg);

@@ -225,7 +225,7 @@ namespace ARES.Editor
                         }
                     }
 
-                    Display.Refresh();
+                    Display.PartialRefresh();
 
                     IRasterLayer rasterLayer = (IRasterLayer)Editor.ActiveLayer;
                     double[,] values = Raster.GetValues(tlCorner, brCorner, rasterLayer.Raster);

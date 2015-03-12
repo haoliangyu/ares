@@ -20,9 +20,17 @@ namespace ARES
         /// <summary>
         /// Refresh the ArcGIS Graphic Symbols.
         /// </summary>
-        public static void Refresh()
+        public static void PartialRefresh()
         {
             ArcMap.Document.ActivatedView.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);    
+        }
+
+        /// <summary>
+        /// Refresh the ArcGIS.
+        /// </summary>
+        public static void Refresh()
+        {
+            ArcMap.Document.ActivatedView.Refresh();    
         }
 
         /// <summary>
@@ -107,7 +115,7 @@ namespace ARES
 
             if (refresh)
             {
-                Refresh();
+                PartialRefresh();
             }
         }
 
@@ -122,7 +130,7 @@ namespace ARES
                 RemoveElement(element);
             }
 
-            Refresh();
+            ArcMap.Document.ActiveView.Refresh();
         }
 
         /// <summary>
