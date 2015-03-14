@@ -5,8 +5,6 @@ Sometimes we need to edit just a few pixels of a raster layer in ArcMap, not all
 
 ## Introduction
 
----
-
 ArcMap Raster Edit Suite (ARES), previously called ArcMap Raster Editor, is an ArcMap Add-In providing a set of tools in order to improve the convenience of minor raster editing. Its main features include:
 
 It includes two toolbars:
@@ -23,8 +21,6 @@ This addin works in ArcMap 10.0/10.1/10.2, currently not in 10.3.
 
 ## Download & Install
 
----
-
 * Download the package at [ARES 0.2.0](https://github.com/dz316424/ares/releases/download/0.2.0/ARES.0.2.0.zip)
 
 * Unzip the installation file and get into the folder that mathces your ArcMap version.
@@ -40,8 +36,6 @@ Now you have it. A detailed user guide could be found at [Wiki](https://github.c
 In case of possible bugs, it is recommanded to use the .tiff formart as your primary raster file format while using this addin.
 
 ## Contributor
-
----
 
 Special thanks to these people who contribute to this project:
 
