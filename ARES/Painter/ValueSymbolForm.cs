@@ -267,49 +267,7 @@ namespace ARES
 
         private void valueListBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                System.Drawing.Point mousepos = valueListBox.PointToClient(Control.MousePosition);
-                ListViewHitTestInfo Ht = valueListBox.HitTest(mousepos);
-                if (Ht.Item != null)
-                {
-                    int hitColumn = Ht.Item.SubItems.IndexOf(Ht.SubItem);
-                    changeColorIndex = Ht.Item.Index;
-
-                    // change fill color
-                    if (hitColumn == 1)
-                    {
-                        // Use .Net color dialog to select color
-                        // valueBoxContextMenuStrip.Show(Control.MousePosition);
-
-                        // Use ArcObject ColorPalette to select color (ArcGIS Style)
-                        tagRECT rect = new tagRECT();
-                        rect.left = Control.MousePosition.X;
-                        rect.bottom = Control.MousePosition.Y;
-
-                        IColor color = Display.Color2IColor(valueListBox.Items[changeColorIndex].SubItems[1].BackColor);
-
-                        if (colorPalette.TrackPopupMenu(rect, color, false, 0) &&
-                            !Display.Compare(colorPalette.Color, color))
-                        {
-                            valueListBox.Items[changeColorIndex].SubItems[1].BackColor = Display.IColor2Color(colorPalette.Color);
-
-                            // Redraw the paint symbol based on new fill color
-                            double value = double.Parse(valueListBox.Items[changeColorIndex].Text);
-                            PixelCollection pixels = Painter.Paints.FindAll(pixel => pixel.NewValue == value);
-                            if (pixels.Count > 0)
-                            {
-                                foreach (Pixel pixel in pixels)
-                                {
-                                    Display.RemoveElement(pixel.GraphicElement);
-                                    pixel.GraphicElement = Display.DrawBox(pixel.Position, Painter.GetPaintSymbol(colorPalette.Color), Painter.ActiveLayer);
-                                }
-                                ArcMap.Document.ActiveView.Refresh();
-                            }
-                        }
-                    }
-                }
-            }
+         
         }
 
         private void changeColorToolStripMenuItem_Click_1(object sender, EventArgs e)
