@@ -126,7 +126,7 @@
             this.valueBoxContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeColorToolStripMenuItem});
             this.valueBoxContextMenuStrip.Name = "valueBoxContextMenuStrip";
-            this.valueBoxContextMenuStrip.Size = new System.Drawing.Size(161, 48);
+            this.valueBoxContextMenuStrip.Size = new System.Drawing.Size(161, 26);
             // 
             // changeColorToolStripMenuItem
             // 
