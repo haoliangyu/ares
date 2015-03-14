@@ -17,7 +17,7 @@ It includes two toolbars:
 
 * **Raster Painter** for painting values on the raster layer.
 
-![Raster Painter](http://haoliangyu.net/images/GIS/ares_rasterpainter/RasterPainter.png)
+![Raster Painter](http://i59.tinypic.com/25fppig.png)
 
 This addin works in ArcMap 10.0/10.1/10.2, currently not in 10.3. 
 
