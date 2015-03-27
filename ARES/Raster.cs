@@ -86,19 +86,16 @@ namespace ARES
             ESRI.ArcGIS.RuntimeManager.BindLicense(ESRI.ArcGIS.ProductCode.EngineOrDesktop);
 
             // Get the original file
-            IRasterLayer rasterLayer = activeLayer;
+            // IRasterLayer rasterLayer = activeLayer;
             IWorkspaceFactory workspaceFactory = new RasterWorkspaceFactoryClass();
-            IRasterWorkspace rasterWorkspace = (IRasterWorkspace)workspaceFactory.OpenFromFile(System.IO.Path.GetDirectoryName(rasterLayer.FilePath), 0);
-            IRasterDataset rasterDataset = rasterWorkspace.OpenRasterDataset(System.IO.Path.GetFileName(rasterLayer.FilePath));
+            //IRasterWorkspace rasterWorkspace = (IRasterWorkspace)workspaceFactory.OpenFromFile(System.IO.Path.GetDirectoryName(rasterLayer.FilePath), 0);
+            //IRasterDataset rasterDataset = rasterWorkspace.OpenRasterDataset(System.IO.Path.GetFileName(rasterLayer.FilePath));
 
             // Open the new file save location
             IWorkspace mWorkspace = workspaceFactory.OpenFromFile(System.IO.Path.GetDirectoryName(fileName), 0);
 
-            // Copy file to the new location   
-            //rasterDataset.Copy(tempFile, mWorkspace);
-
             // Save the original file to a new file
-            ISaveAs saveAs = (ISaveAs)rasterDataset;
+            ISaveAs saveAs = (ISaveAs)activeLayer.Raster;
             IRasterDataset2 mRasterDataset = (IRasterDataset2)saveAs.SaveAs(System.IO.Path.GetFileName(fileName),
                                                                             mWorkspace,
                                                                             Raster.GetFormat(System.IO.Path.GetExtension(fileName)));
@@ -123,14 +120,14 @@ namespace ARES
             ESRI.ArcGIS.RuntimeManager.BindLicense(ESRI.ArcGIS.ProductCode.EngineOrDesktop);
 
             // Get the original file
-            IWorkspaceFactory workspaceFactory = new RasterWorkspaceFactoryClass();
-            IRasterWorkspace rasterWorkspace = (IRasterWorkspace)workspaceFactory.OpenFromFile(System.IO.Path.GetDirectoryName(activeLayer.FilePath), 0);
-            IRasterDataset2 mRasterDataset = (IRasterDataset2)rasterWorkspace.OpenRasterDataset(System.IO.Path.GetFileName(activeLayer.FilePath));
-            IRaster mRaster = mRasterDataset.CreateFullRaster();
+            //IWorkspaceFactory workspaceFactory = new RasterWorkspaceFactoryClass();
+            //IRasterWorkspace rasterWorkspace = (IRasterWorkspace)workspaceFactory.OpenFromFile(System.IO.Path.GetDirectoryName(activeLayer.FilePath), 0);
+            //IRasterDataset2 mRasterDataset = (IRasterDataset2)rasterWorkspace.OpenRasterDataset(System.IO.Path.GetFileName(activeLayer.FilePath));
+            //IRaster mRaster = mRasterDataset.CreateFullRaster();
 
-            Raster.WriteEdits(mRaster, edits);
+            Raster.WriteEdits(activeLayer.Raster, edits);
 
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(mRaster);
+            //System.Runtime.InteropServices.Marshal.ReleaseComObject(mRaster);
 
             ArcMap.Document.ActiveView.Refresh();
         }
