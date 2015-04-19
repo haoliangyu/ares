@@ -63,7 +63,6 @@
             this.valueListBox.UseCompatibleStateImageBehavior = false;
             this.valueListBox.View = System.Windows.Forms.View.Details;
             this.valueListBox.SelectedIndexChanged += new System.EventHandler(this.ValueListBox_SelectedIndexChanged);
-            this.valueListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.valueListBox_MouseDown);
             // 
             // columnHeader1
             // 
@@ -152,7 +151,7 @@
             this.optionsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addNewValueToolStripMenuItem});
             this.optionsContextMenuStrip.Name = "optionsContextMenuStrip";
-            this.optionsContextMenuStrip.Size = new System.Drawing.Size(167, 26);
+            this.optionsContextMenuStrip.Size = new System.Drawing.Size(167, 48);
             // 
             // addNewValueToolStripMenuItem
             // 

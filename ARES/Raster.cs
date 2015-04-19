@@ -206,13 +206,24 @@ namespace ARES
 
             double[,] values = new double[colCount, rowCount];
             for (int x = 0; x < colCount; x++)
-            {
+            {                                                      
                 for (int y = 0; y < rowCount; y++)
                 {
                     values[x, y] = Convert.ToDouble(pixelBlock.GetVal(0, x, y));
                 }
             }
             return values;
+        }
+
+        /// <summary>
+        /// Indicates whether the input raster data is a categorical data.
+        /// </summary>
+        /// <param name="rasterLayer"></param>
+        /// <returns></returns>
+        public static bool IsCategorical(IRasterLayer rasterLayer)
+        {
+            IRasterProps rasterProps = (IRasterProps)rasterLayer.Raster;
+            return !((rasterProps.PixelType == rstPixelType.PT_FLOAT) || (rasterProps.PixelType == rstPixelType.PT_DOUBLE));
         }
 
         /// <summary>

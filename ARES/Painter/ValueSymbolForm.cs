@@ -142,6 +142,27 @@ namespace ARES
             return Raster.CSharpValue2PixelValue(value, rasterProp.PixelType, out validValue);
         }
 
+        /// <summary>
+        /// Add new value to the value symbol list.
+        /// </summary>
+        /// <param name="valueStr"></param>
+        private void AddNewValueSymbol(string valueStr)
+        {
+            ListViewItem layerItem = new ListViewItem();
+
+            layerItem.Text = valueStr;
+            layerItem.SubItems.Add("    ");
+
+            layerItem.SubItems[1].BackColor = Color.FromArgb(randomRGB.Next(0, 255),
+                                                                randomRGB.Next(0, 255),
+                                                                randomRGB.Next(0, 255));
+
+            layerItem.UseItemStyleForSubItems = false;
+            valueListBox.Items.Add(layerItem);
+
+            listedValue.Add(valueStr);    
+        }
+
         #endregion
 
         #region Events
@@ -155,46 +176,47 @@ namespace ARES
                     return;
                 }
 
-                // Get value list
-                IDataset rasterDataset = (IDataset)Painter.ActiveLayer;
-                ITable table = (ITable)rasterDataset;
-                List<string> unlistedValues = new List<string>();
-                for (int x = 0; x < table.RowCount(null); x++)
+                if (Raster.IsCategorical(Painter.ActiveLayer))
                 {
-                    string value = table.GetRow(x).get_Value(1).ToString();
-                    if(!listedValue.Contains(value))
+                    // If this data is a categorical data, we are able to get access
+                    // to its attribute table and get the value list.
+
+                    IDataset rasterDataset = (IDataset)Painter.ActiveLayer;
+                    ITable table = (ITable)rasterDataset;
+                    List<string> unlistedValues = new List<string>();
+                    for (int x = 0; x < table.RowCount(null); x++)
                     {
-                        unlistedValues.Add(value);    
+                        string value = table.GetRow(x).get_Value(1).ToString();
+                        if (!listedValue.Contains(value))
+                        {
+                            unlistedValues.Add(value);
+                        }
+                    }
+
+                    SelectValueForm selectValueForm = new SelectValueForm();
+                    selectValueForm.InitializeValues(unlistedValues.ToArray());
+                    selectValueForm.ValueName = "Value";
+                    selectValueForm.NewValue = false;
+                    selectValueForm.MultiSelect = true;
+                    selectValueForm.Text = "Add Values";
+
+                    if (selectValueForm.ShowDialog() == DialogResult.OK)
+                    {
+                        string[] selectedValues = selectValueForm.SelectedValues;
+
+                        foreach (string value in selectedValues)
+                        {
+                            AddNewValueSymbol(value);
+                        }
                     }
                 }
+                else
+                { 
+                    // If it is a data with continuous data type, we are not able to 
+                    // get a value list. We can only add new data without using a 
+                    // value list.
 
-                SelectValueForm selectValueForm = new SelectValueForm();
-                selectValueForm.InitializeValues(unlistedValues.ToArray());
-                selectValueForm.ValueName = "Value";  
-                selectValueForm.NewValue = false;
-                selectValueForm.MultiSelect = true;
-                selectValueForm.Text = "Add Values";
-
-                if (selectValueForm.ShowDialog() == DialogResult.OK)
-                {
-                    string[] selectedValues = selectValueForm.SelectedValues;
-
-                    foreach (string value in selectedValues)
-                    {
-                        ListViewItem layerItem = new ListViewItem();
-
-                        layerItem.Text = value;
-                        layerItem.SubItems.Add("    ");
- 
-                        layerItem.SubItems[1].BackColor = Color.FromArgb(randomRGB.Next(0, 255),
-                                                                            randomRGB.Next(0, 255),
-                                                                            randomRGB.Next(0, 255));
-
-                        layerItem.UseItemStyleForSubItems = false;
-                        valueListBox.Items.Add(layerItem);
-
-                        listedValue.Add(value);
-                    }
+                    addNewValueToolStripMenuItem.PerformClick();
                 }
             }
             catch (Exception ex)
@@ -263,11 +285,6 @@ namespace ARES
             {
                 MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
             }
-        }
-
-        private void valueListBox_MouseDown(object sender, MouseEventArgs e)
-        {
-         
         }
 
         private void changeColorToolStripMenuItem_Click_1(object sender, EventArgs e)
