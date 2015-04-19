@@ -2,11 +2,11 @@
   <Name>ARES for ArcMap 10.2</Name>
   <AddInID>{b73b4d76-92ea-440f-98d9-a187c9f26f3c}</AddInID>
   <Description>ArcMap Raster Edit Suit</Description>
-  <Version>0.2.0</Version>
+  <Version>0.2.1</Version>
   <Image>Images\ARES.png</Image>
   <Author>Haoliang Yu, Xuan Wang, Jian Qing, Hancheng Nie</Author>
   <Company>Haoliang Yu, Xuan Wang, Jian Qing, Hancheng Nie</Company>
-  <Date>3/11/2015</Date>
+  <Date>2015-4-19</Date>
   <Targets>
     <Target name="Desktop" version="10.2" />
   </Targets>
@@ -33,7 +33,7 @@
         <DockableWindow id="Editor_IdentifyForm" class="ARES.Editor.IdentifyForm+AddinImpl" caption="Raster Identify">
           <InitialPlacement height="300" width="300" state="pinned" position="right" />
         </DockableWindow>
-        <DockableWindow id="Editor_EditForm" class="ARES.Editor.EditForm+AddinImpl" caption="Raster Eidt">
+        <DockableWindow id="Editor_EditForm" class="ARES.Editor.EditForm+AddinImpl" caption="Raster Edit">
           <InitialPlacement height="300" width="300" state="pinned" position="right" />
         </DockableWindow>
         <DockableWindow id="RasterPainter_ValueSymbolForm" class="ARES.Painter.ValueSymbolForm+AddinImpl" caption="Raster Paint">

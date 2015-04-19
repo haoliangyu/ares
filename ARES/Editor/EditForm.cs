@@ -171,7 +171,7 @@ namespace ARES.Editor
 
                 if (Editor.ShowEdits)
                 {
-                    newCell.GraphicElement = Display.DrawBox(newCell.Position, Editor.GetEidtSymbol(), Editor.ActiveLayer);       
+                    newCell.GraphicElement = Display.DrawBox(newCell.Position, Editor.GetEidtSymbol(), Editor.ActiveLayer,true);       
                 }
 
                 Editor.Edits.Add(newCell);

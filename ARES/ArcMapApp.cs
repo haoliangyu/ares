@@ -65,12 +65,13 @@ namespace ARES
             for (int i = 0; i < ArcMap.Document.FocusMap.LayerCount; i++)
             {
                 ILayer layer = ArcMap.Document.FocusMap.get_Layer(i);
-                if ((layer is IRasterLayer) && (layerCount == index))
+                if (layer is IRasterLayer)
                 {
-                    return (IRasterLayer)layer;
-                }
-                else
-                {
+                    if (layerCount == index)
+                    {
+                        return (IRasterLayer)layer;
+                    }
+
                     layerCount++;
                 }
             }
