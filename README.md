@@ -21,7 +21,7 @@ This addin works in ArcMap 10.0/10.1/10.2, currently not in 10.3.
 
 ## Download & Install
 
-* Download the package at [ARES 0.2.0](https://github.com/dz316424/ares/releases/download/0.2.0/ARES.0.2.0.zip)
+* Download the package at [ARES 0.2.1](https://github.com/dz316424/ares/releases/download/v0.2.1/ARES.0.2.1.zip)
 
 * Unzip the installation file and get into the folder that mathces your ArcMap version.
  
