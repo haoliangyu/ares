@@ -29,9 +29,9 @@ This addin works in ArcMap 10.0/10.1/10.2, currently not in 10.3.
 
 Now you have it. A detailed user guide could be found at [Wiki](https://github.com/dz316424/arcmap-raster-editor/wiki) or my blog articles:
 
-* Raster Editor: ![Editing single pixels of raster layer in ArcMap with just a few clicks](http://haoliangyu.net/editing-single-pixels-of-raster-layer-in-arcmap-with-just-a-few-clicks.html#.VQOzWuFp4S8)
+* Raster Editor: ![Editing single pixels of raster layer in ArcMap with just a few clicks](http://haoliangyu.net/editing-single-pixels-of-raster-layer-in-arcmap-with-just-a-few-clicks.html)
 
-* Raster Painter: ![Yet another way to edit your raster layer in ArcMap: Paint on it!](Yet another way to edit your raster layer in ArcMap: Paint on it!)
+* Raster Painter: ![Yet another way to edit your raster layer in ArcMap: Paint on it!](http://haoliangyu.net/yet-another-way-to-edit-your-raster-layer-in-arcmap-paint-on-it.html)
 
 In case of possible bugs, it is recommanded to use the .tiff formart as your primary raster file format while using this addin.
 
