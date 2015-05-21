@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using ESRI.ArcGIS.Geodatabase;
+using ESRI.ArcGIS.DataSourcesRaster;
+
 namespace ARES
 {                                                                   
     /// <summary>
     /// Provides access to members that define a region on a raster layer.
     /// </summary>
-    class Envelope
+    public class Envelope
     {
         #region Attributes
 
@@ -152,6 +155,21 @@ namespace ARES
         public bool Contains(Position position)
         {
             return Contains(position.Row, position.Column); 
+        }
+
+        #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        /// Get the envelop's envelop.
+        /// </summary>
+        /// <param name="raster"></param>
+        /// <returns></returns>
+        public static Envelope FromRaster(IRaster raster)
+        {
+            IRasterProps rasterProps = (IRasterProps)raster;
+            return new Envelope(0, rasterProps.Width - 1, 0, rasterProps.Height - 1);
         }
 
         #endregion

@@ -195,6 +195,69 @@ namespace ARES
                    (rgbColor1.NullColor == color2.IsEmpty);
         }
 
+        /// <summary>
+        /// Gets locations of pixels on a specified polyline.
+        /// </summary>
+        /// <param name="startPos">Starting position of the polyline.</param>
+        /// <param name="endPos">Ending position of the polyline.</param>
+        /// <param name="envelop">Envelop of editting raster.</param>
+        /// <returns></returns>
+        public static Position[] GetPolyline(Position startPos, Position endPos, Envelope envelop)
+        {
+            Position[] polyline;
+            Position pStartPos = startPos;
+            Position pEndPos = endPos;
+
+            pStartPos.Adjust(envelop);
+            pEndPos.Adjust(envelop);
+
+            #region Horizontal Line
+
+            if (pStartPos.Column == pEndPos.Column)
+            { 
+                if (pStartPos.Row > pEndPos.Row)
+                {
+                    Position temp = pStartPos;
+                    pStartPos = pEndPos;
+                    pEndPos = startPos;
+                }
+
+                polyline = new Position[pEndPos.Row - pStartPos.Row + 1];
+                for (int i = pStartPos.Row; i <= pEndPos.Row; i++)
+                {
+                    polyline[i - pStartPos.Row] = new Position(pStartPos.Column, i);    
+                }
+
+                return polyline;
+            }
+
+            #endregion
+
+            #region Vertical Line
+
+            if (pStartPos.Row == pEndPos.Row)
+            {
+                if (pStartPos.Column > pEndPos.Column)
+                {
+                    Position temp = pStartPos;
+                    pStartPos = pEndPos;
+                    pEndPos = startPos;
+                }
+
+                polyline = new Position[pEndPos.Column - pStartPos.Column + 1];
+                for (int i = pStartPos.Column; i <= pEndPos.Column; i++)
+                {
+                    polyline[i - pStartPos.Column] = new Position(pStartPos.Column, i);
+                }
+
+                return polyline;
+            }
+
+            #endregion
+
+            return DDALine(pStartPos, pEndPos);
+        }
+
         #endregion
         
         #region Private Methods
@@ -239,11 +302,6 @@ namespace ARES
             return element;
         }
 
-        #endregion
-
-        #region Computer Graphic Portion (Need to be merged)
-
-
         /// <summary>
         /// Gets pixels on given line using Digital Differential Analyzer(DDA).
         /// </summary>
@@ -253,10 +311,10 @@ namespace ARES
         static private Position[] DDALine(Position startPos, Position endPos)
         {
             int x0 = startPos.Column;
-            int y0 = -startPos.Row;
+            int y0 = startPos.Row;
             int x1 = endPos.Column;
-            int y1 = -endPos.Row;
-                 
+            int y1 = endPos.Row;
+
             int dx = x1 - x0;
             int dy = y1 - y0;
             double x = x0;

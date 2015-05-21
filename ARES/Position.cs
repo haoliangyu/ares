@@ -102,6 +102,15 @@ namespace ARES
         }
 
         /// <summary>
+        /// Adjust the position to satisfy the given envelop.
+        /// </summary>
+        /// <param name="maxExtent"></param>
+        public void Adjust(Envelope envelop)
+        {
+            Adjust(envelop.TLCorner, envelop.BRCorner);
+        }
+
+        /// <summary>
         /// Adjust the position to satisfy the given extent.
         /// </summary>
         /// <param name="maxExtent"></param>

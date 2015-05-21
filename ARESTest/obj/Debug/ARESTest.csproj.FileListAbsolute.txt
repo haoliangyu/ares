@@ -1,0 +1,8 @@
+C:\Documents and Settings\Yu\桌面\ares\ARESTest\bin\Debug\ARESTest.dll
+C:\Documents and Settings\Yu\桌面\ares\ARESTest\bin\Debug\ARESTest.pdb
+C:\Documents and Settings\Yu\桌面\ares\ARESTest\bin\Debug\ARES.dll
+C:\Documents and Settings\Yu\桌面\ares\ARESTest\bin\Debug\ESRI.ArcGIS.Desktop.AddIns.dll
+C:\Documents and Settings\Yu\桌面\ares\ARESTest\bin\Debug\ARES.pdb
+C:\Documents and Settings\Yu\桌面\ares\ARESTest\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Yu\桌面\ares\ARESTest\obj\Debug\ARESTest.dll
+C:\Documents and Settings\Yu\桌面\ares\ARESTest\obj\Debug\ARESTest.pdb

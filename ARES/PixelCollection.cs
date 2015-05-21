@@ -14,7 +14,7 @@ namespace ARES
     /// </summary>
     public class PixelCollection : IEnumerable
     {
-        #region Construction Method
+        #region Constructors
 
         /// <summary>
         /// Initializes an empty instance of PixelCollection class.
