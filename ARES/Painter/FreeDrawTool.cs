@@ -56,6 +56,8 @@ namespace ARES
 
         protected override void OnActivate()
         {
+            base.OnActivate();
+
             try
             {
                 if (Painter.ActiveLayer == null)
@@ -79,8 +81,6 @@ namespace ARES
             {
                 MessageBox.Show(string.Format("Unfortunately, the application meets an error.\n\nSource: {0}\nSite: {1}\nMessage: {2}", ex.Source, ex.TargetSite, ex.Message), "Error");
             }
-
-            base.OnActivate();
         }
 
         protected override bool OnDeactivate()

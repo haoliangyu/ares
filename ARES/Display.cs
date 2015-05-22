@@ -281,6 +281,24 @@ namespace ARES
             return lines.ToArray();
         }
 
+        /// <summary>
+        /// Get the default selection line symbol (black color and width equals to one)
+        /// </summary>
+        /// <returns></returns>
+        public static ISimpleLineSymbol GetDefaultSelectLineSymbol()
+        {
+            IRgbColor color = new RgbColorClass();
+            color.Red = 255;
+            color.Green = 255;
+            color.Blue = 255;
+
+            ISimpleLineSymbol lineSymbol = new SimpleLineSymbolClass();
+            lineSymbol.Width = 1;
+            lineSymbol.Color = (IColor)color;
+
+            return lineSymbol;
+        }
+
         #endregion
         
         #region Private Methods

@@ -145,19 +145,10 @@ namespace ARES
                     Display.ClearElement(Editor.Selections.GetAllGraphicElements());
                     Editor.Selections.Clear();
 
-                    IRgbColor color = new RgbColorClass();
-                    color.Red = 255;
-                    color.Green = 255;
-                    color.Blue = 255;
-
-                    ISimpleLineSymbol lineSymbol = new SimpleLineSymbolClass();
-                    lineSymbol.Width = 1;
-                    lineSymbol.Color = (IColor)color;
-
                     IPoint startCoor = Raster.ScreenCoor2MapCoor(arg.X, arg.Y);
                     newEnvelopeFeedback = new NewEnvelopeFeedbackClass();
                     newEnvelopeFeedback.Display = ArcMap.Document.ActiveView.ScreenDisplay;
-                    newEnvelopeFeedback.Symbol = (ISymbol)lineSymbol;
+                    newEnvelopeFeedback.Symbol = (ISymbol)Display.GetDefaultSelectLineSymbol();
                     newEnvelopeFeedback.Start(startCoor);
                 }
                 catch (Exception ex)
