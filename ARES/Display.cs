@@ -208,9 +208,6 @@ namespace ARES
             Position pStartPos = startPos;
             Position pEndPos = endPos;
 
-            pStartPos.Adjust(envelop);
-            pEndPos.Adjust(envelop);
-
             #region Horizontal Line
 
             if (pStartPos.Column == pEndPos.Column)
@@ -221,6 +218,9 @@ namespace ARES
                     pStartPos = pEndPos;
                     pEndPos = startPos;
                 }
+
+                pStartPos.Adjust(envelop);
+                pEndPos.Adjust(envelop);
 
                 polyline = new Position[pEndPos.Row - pStartPos.Row + 1];
                 for (int i = pStartPos.Row; i <= pEndPos.Row; i++)
@@ -244,6 +244,9 @@ namespace ARES
                     pEndPos = startPos;
                 }
 
+                pStartPos.Adjust(envelop);
+                pEndPos.Adjust(envelop);
+
                 polyline = new Position[pEndPos.Column - pStartPos.Column + 1];
                 for (int i = pStartPos.Column; i <= pEndPos.Column; i++)
                 {
@@ -255,7 +258,27 @@ namespace ARES
 
             #endregion
 
-            return DDALine(pStartPos, pEndPos);
+            return DDALine(pStartPos, pEndPos, envelop);
+        }
+
+        /// <summary>
+        /// Get the position of pixels at line of the polygon.
+        /// </summary>
+        /// <param name="vertexes"></param>
+        /// <param name="envelope"></param>
+        /// <returns></returns>
+        public static Position[] GetPolygon(Position[] vertexes, Envelope envelope)
+        {
+            List<Position> lines = new List<Position>();
+
+            // It is not sure that whether the final vertex will be the first one. I assume it is.
+            for (int i = 0; i < vertexes.Length - 1; i++)
+            {
+                Position[] line = GetPolyline(vertexes[i], vertexes[i + 1], envelope);
+                lines.AddRange(line);
+            }
+
+            return lines.ToArray();
         }
 
         #endregion
@@ -308,7 +331,7 @@ namespace ARES
         /// <param name="startPos">Starting position</param>
         /// <param name="endPos">Ending position</param>
         /// <returns></returns>
-        static private Position[] DDALine(Position startPos, Position endPos)
+        static private Position[] DDALine(Position startPos, Position endPos, Envelope envelope)
         {
             int x0 = startPos.Column;
             int y0 = startPos.Row;
@@ -317,6 +340,7 @@ namespace ARES
 
             int dx = x1 - x0;
             int dy = y1 - y0;
+
             double x = x0;
             double y = y0;
 
@@ -329,38 +353,23 @@ namespace ARES
             {
                 steps = (int)System.Math.Abs(dy);
             }
-            Position[] line = new Position[steps + 1];
-            line[0] = new Position(x0, y0);
+
+            List<Position> line = new List<Position>();
 
             double xIncrement = dx / (double)steps;
             double yincrement = dy / (double)steps;
-            for (int k = 1; k <= steps; k++)
+            for (int k = 0; k <= steps; k++)
             {
+                if (x >= 0 && x <= envelope.MaxColumn && y >= 0 && y <= envelope.MaxRow)
+                {
+                    line.Add(new Position((int)System.Math.Round(x), (int)System.Math.Round(y)));
+                }
+
                 x += xIncrement;
                 y += yincrement;
-                line[k] = new Position((int)System.Math.Round(x), (int)System.Math.Round(y));
             }
 
-            return line;
-        }
-
-        /// <summary>
-        /// Gets pixels on the boundary of given polygon using Digital Differential Analyzer(DDA).
-        /// </summary>
-        /// <param name="vertex">Vertexss of polygons</param>
-        /// <returns></returns>
-        static private Position[] DDAPolygon(Position[] vertexes)
-        {
-            List<Position> lines = new List<Position>();
-
-            // It is not sure that whether the final vertex will be the first one. I assume it is.
-            for (int i = 0; i < vertexes.Length - 1; i++)
-            {
-                Position[] line = DDALine(vertexes[i], vertexes[i + 1]);
-                lines.AddRange(line);
-            }
-
-            return lines.ToArray();
+            return line.ToArray();                                         
         }
 
         #endregion

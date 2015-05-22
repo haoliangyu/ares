@@ -10,7 +10,7 @@ using ARES;
 namespace ARESTest
 {
     [TestClass]
-    public class DrawingTest
+    public class DisplayTest
     {
         #region Test Method
 
@@ -26,7 +26,7 @@ namespace ARESTest
             end.Row = 9;
             
             Console.WriteLine("Horizontal Line");
-            PrintPositions(ARES.Display.GetPolyline(start, end, new ARES.Envelope(0, 100, 0, 100)));
+            PrintPositions(ARES.Display.GetPolyline(start, end, new ARES.Envelope(0, 5, 0, 5)));
 
             // Vertical Line
             start.Row = end.Row = 3;
@@ -34,7 +34,7 @@ namespace ARESTest
             end.Column = 9;
 
             Console.WriteLine("Vertical Line");
-            PrintPositions(ARES.Display.GetPolyline(start, end, new ARES.Envelope(0, 100, 0, 100)));
+            PrintPositions(ARES.Display.GetPolyline(start, end, new ARES.Envelope(0, 5, 0, 5)));
 
             // k > 0
             start.Row = 8;
@@ -52,7 +52,27 @@ namespace ARESTest
             end.Column = 7;
 
             Console.WriteLine("k >０");
-            PrintPositions(ARES.Display.GetPolyline(start, end, new ARES.Envelope(0, 100, 0, 100)));
+            PrintPositions(ARES.Display.GetPolyline(start, end, new ARES.Envelope(0, 100, 0, 100)));             
+
+            // outside box
+            start.Row = 0;
+            end.Row = 5;
+            start.Column = 0;
+            end.Column = 5;
+
+            Console.WriteLine("outside box");
+            PrintPositions(ARES.Display.GetPolyline(start, end, new ARES.Envelope(0, 3, 0, 3)));  
+        }
+
+        //[TestMethod]
+        public void DrawPolygon()
+        {
+            Console.Write("draw polygon");
+            PrintPositions(Display.GetPolygon(new Position[]{new Position(5, 5),
+                                                             new Position(5, 15),
+                                                             new Position(15, 15),
+                                                             new Position(15, 5)},
+                                              new Envelope(0, 10, 0, 10)));
         }
 
         #endregion
