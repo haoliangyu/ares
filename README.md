@@ -1,21 +1,14 @@
-ArcMap Raster Edit Suite
-====================
+# ArcMap Raster Edit Suite
 
-Sometimes we need to edit just a few pixels of a raster layer in ArcMap, not all. For example, removing several misclassified pixels from a classification result is a very common situation. In ArcMap, tools we usually use to edit raster layer are Reclassify and Raster Calculator. However, both of them aim at editing the raster layer as a whole and it takes a lot of additional work if only a few pixels are of interest. Editing a raster layer in ArcMap should be as simple and quick as what we deal with a feature layer. This addin makes this possible.
+An ArcMap Addin that enables the editing of single pixels on raster layer.
 
-## Introduction
+* **Raster Editor** toolbar for editing and identifying raster pixels.
 
-ArcMap Raster Edit Suite (ARES), previously called ArcMap Raster Editor, is an ArcMap Add-In providing a set of tools in order to improve the convenience of minor raster editing. Its main features include:
+![Raster Editor](http://haoliangyu.github.io/2015/02/17/Editing-single-pixels-of-raster-layer-in-ArcMap-with-just-a-few-clicks/eidtor_toolbar.png)
 
-It includes two toolbars:
+* **Raster Painter** toolbar for painting values on the raster layer.
 
-* **Raster Editor** for editing and identifying pixels with given rows and columns.
-
-![Raster Editor](http://haoliangyu.net/images/GIS/ares_editing/eidtor_toolbar.png)
-
-* **Raster Painter** for painting values on the raster layer.
-
-![Raster Painter](http://i59.tinypic.com/25fppig.png)
+![Raster Painter](http://haoliangyu.github.io/2015/03/11/Yet-another-way-to-edit-your-raster-layer-in-ArcMap-Paint-on-it/RasterPainter.png)
 
 This addin works in ArcMap 10.0/10.1/10.2, currently not in 10.3. 
 
@@ -29,11 +22,11 @@ This addin works in ArcMap 10.0/10.1/10.2, currently not in 10.3.
 
 Now you have it. A detailed user guide could be found at [Wiki](https://github.com/dz316424/arcmap-raster-editor/wiki) or my blog articles:
 
-* Raster Editor: ![Editing single pixels of raster layer in ArcMap with just a few clicks](http://haoliangyu.net/editing-single-pixels-of-raster-layer-in-arcmap-with-just-a-few-clicks.html)
+* Raster Editor: ![Editing single pixels of raster layer in ArcMap with just a few clicks](http://haoliangyu.github.io/2015/02/17/Editing-single-pixels-of-raster-layer-in-ArcMap-with-just-a-few-clicks/)
 
-* Raster Painter: ![Yet another way to edit your raster layer in ArcMap: Paint on it!](http://haoliangyu.net/yet-another-way-to-edit-your-raster-layer-in-arcmap-paint-on-it.html)
+* Raster Painter: ![Yet another way to edit your raster layer in ArcMap: Paint on it!]http://haoliangyu.github.io/2015/03/11/Yet-another-way-to-edit-your-raster-layer-in-ArcMap-Paint-on-it/)
 
-In case of possible bugs, it is recommanded to use the .tiff formart as your primary raster file format while using this addin.
+In case of possible bugs, it is recommanded to use the .tiff formart as your raster file format while using this addin.
 
 ## Contributor
 
