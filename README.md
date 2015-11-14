@@ -24,7 +24,7 @@ Now you have it. A detailed user guide could be found at [Wiki](https://github.c
 
 * Raster Editor: ![Editing single pixels of raster layer in ArcMap with just a few clicks](http://haoliangyu.github.io/2015/02/17/Editing-single-pixels-of-raster-layer-in-ArcMap-with-just-a-few-clicks/)
 
-* Raster Painter: ![Yet another way to edit your raster layer in ArcMap: Paint on it!]http://haoliangyu.github.io/2015/03/11/Yet-another-way-to-edit-your-raster-layer-in-ArcMap-Paint-on-it/)
+* Raster Painter: ![Yet another way to edit your raster layer in ArcMap: Paint on it!](http://haoliangyu.github.io/2015/03/11/Yet-another-way-to-edit-your-raster-layer-in-ArcMap-Paint-on-it/)
 
 In case of possible bugs, it is recommanded to use the .tiff formart as your raster file format while using this addin.
 
