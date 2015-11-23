@@ -1,6 +1,6 @@
 # ArcMap Raster Edit Suite
 
-An ArcMap Addin that enables the editing of single pixels on raster layer.
+An ArcMap Addin that enables manual editing of single pixels on raster layer.
 
 * **Raster Editor** toolbar for editing and identifying raster pixels.
 
@@ -10,7 +10,7 @@ An ArcMap Addin that enables the editing of single pixels on raster layer.
 
 ![Raster Painter](http://haoliangyu.github.io/2015/03/11/Yet-another-way-to-edit-your-raster-layer-in-ArcMap-Paint-on-it/RasterPainter.png)
 
-This addin works in ArcMap 10.0/10.1/10.2, currently not in 10.3. 
+Working in ArcMap 10.0/10.1/10.2/10.3. 
 
 ## Download & Install
 
