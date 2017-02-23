@@ -1,14 +1,14 @@
 ﻿<ESRI.Configuration xmlns="http://schemas.esri.com/Desktop/AddIns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Name>ARES for ArcMap 10.3</Name>
+  <Name>ARES for ArcMap 10.4</Name>
   <AddInID>{b73b4d76-92ea-440f-98d9-a187c9f26f3c}</AddInID>
   <Description>ArcMap Raster Edit Suit</Description>
   <Version>0.2.1</Version>
   <Image>Images\ARES.png</Image>
   <Author>Haoliang Yu, Xuan Wang, Jian Qing, Hancheng Nie</Author>
   <Company>Haoliang Yu, Xuan Wang, Jian Qing, Hancheng Nie</Company>
-  <Date>2015-11-22</Date>
+  <Date>2017-02-22</Date>
   <Targets>
-    <Target name="Desktop" version="10.3" />
+    <Target name="Desktop" version="10.4" />
   </Targets>
   <AddIn language="CLR" library="ARES.dll" namespace="ARES">
     <ArcMap>
