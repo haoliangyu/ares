@@ -1,5 +1,7 @@
 # ArcMap Raster Edit Suite
 
+**This project is no longer maintained as I am not working with ESRI products now. If you are instereted in maintianing it, please let me know!**
+
 An ArcMap Addin that enables manual editing of single pixels on raster layer.
 
 * **Raster Editor** toolbar for editing and identifying raster pixels.
